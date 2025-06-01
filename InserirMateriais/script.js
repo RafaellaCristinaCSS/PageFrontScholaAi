@@ -27,7 +27,7 @@ function criarMaterial() {
                 "idAgente": parseInt(localStorage.idEducador),
                 "idMateria": idMateria
             }
-            executarRequisicao("api/materiais", parametros, "POST")
+            executarRequisicao("materiais", parametros, "POST")
             alert("O material foi criado com sucesso!");
         } catch {
             alert("Ocorreu um erro interno. Por favor, tente novamente mais tarde.");
@@ -72,7 +72,7 @@ function criarMateria() {
             };
 
             try {
-                executarRequisicao("api/materia", parametros, "POST");
+                executarRequisicao("materia", parametros, "POST");
 
                 $('#modalCriarMateria').modal('hide');
                 alert("Matéria criada com sucesso!");

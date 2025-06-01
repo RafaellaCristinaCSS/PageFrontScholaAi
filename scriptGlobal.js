@@ -1,8 +1,8 @@
-let BaseUrlFront = 'http://127.0.0.1:5500/';
-let BaseUrlBack = 'https://localhost:7034/';
+let BaseUrlFront = 'https://rafaellacristinacss.github.io/PageFrontScholaAi/';
+let BaseUrlBack = 'https://scholaai-production.up.railway.app/api/';
 
 async function buscarEducadores() {
-    return educadores = await executarRequisicao("api/Agente/buscarDadosEducadores", "", "GET");
+    return educadores = await executarRequisicao("Agente/buscarDadosEducadores", "", "GET");
 }
 async function executarScriptsEspecificos(nome) {
 
@@ -42,7 +42,7 @@ async function executarScriptsEspecificos(nome) {
 }
 async function preencherSelectALunoPorEducador() {
     try {
-        const alunos = await executarRequisicao(`api/Agente/buscarAlunosPorEducador/${localStorage.getItem("idAgente")}`, "", "GET");
+        const alunos = await executarRequisicao(`Agente/buscarAlunosPorEducador/${localStorage.getItem("idAgente")}`, "", "GET");
         let html = '<option value="">Selecione um Aluno</option>';
         for (const aluno of alunos) {
             html += `<option value="${aluno.idAluno}">${aluno.nome}</option>`;
@@ -55,7 +55,7 @@ async function preencherSelectALunoPorEducador() {
 async function preencherCheckboxALunoPorEducador() {
 
     try {
-        const alunos = await executarRequisicao(`api/Agente/buscarAlunosPorEducador/${localStorage.getItem("idAgente")}`, "", "GET");
+        const alunos = await executarRequisicao(`Agente/buscarAlunosPorEducador/${localStorage.getItem("idAgente")}`, "", "GET");
         let html = '';
         for (const aluno of alunos) {
             html += `<label><input type="checkbox" value="${aluno.idAluno}">${aluno.nome}</label>`;
@@ -66,7 +66,7 @@ async function preencherCheckboxALunoPorEducador() {
     }
 }
 async function preencherAtividadesPorAgente() {
-    const dados = await executarRequisicao(`api/atividade/atividadesPorAgente/${localStorage.getItem("idAgente")}`, "", "GET");
+    const dados = await executarRequisicao(`atividade/atividadesPorAgente/${localStorage.getItem("idAgente")}`, "", "GET");
     if (dados.tipoAgente == 'educador') $(".cabecalhoEducador").show();
 
     const lista = document.getElementById('lista-atividades');
@@ -103,7 +103,7 @@ async function preencherAtividadesPorAgente() {
 
 async function preencherNomesMaterias() {
     try {
-        const materias = await executarRequisicao(`api/materia`, "", "GET");
+        const materias = await executarRequisicao(`materia`, "", "GET");
 
         let html = '<option value="">Selecione uma Materia</option>';
         for (const materia of materias) {
@@ -139,5 +139,5 @@ async function executarRequisicao(rota, parametros, tipo) {
     }
 }
 async function getAlunos() {
-    return await executarRequisicao(`api/Agente/buscarAlunosPorEducador/${localStorage.getItem("idAgente")}`, "", "GET");
+    return await executarRequisicao(`Agente/buscarAlunosPorEducador/${localStorage.getItem("idAgente")}`, "", "GET");
 }

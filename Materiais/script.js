@@ -1,6 +1,6 @@
 async function preencherListMateriais() {
     try {
-        const response = await fetch('https://localhost:7034/api/materiais');
+        const response = await fetch('https://scholaai-production.up.railway.app/api/materiais');
         const materiais = await response.json();
         let html = '';
 
@@ -28,7 +28,7 @@ async function preencherListMateriais() {
 
 async function excluirMaterial(id) {
     if (confirm("Tem certeza que deseja excluir este material?")) {
-        const response = await fetch(`https://localhost:7034/api/materiais/${id}`, {
+        const response = await fetch(`https://scholaai-production.up.railway.app/api/materiais/${id}`, {
             method: 'DELETE'
         });
         if (response.ok) {
@@ -49,7 +49,7 @@ async function editarMaterial(id) {
     const dados = { conteudo: novoConteudo };
 
     try {
-        const response = await fetch(`https://localhost:7034/api/materiais/${id}`, {
+        const response = await fetch(`https://scholaai-production.up.railway.app/api/materiais/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dados)

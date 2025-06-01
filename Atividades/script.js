@@ -3,11 +3,11 @@ async function buscarAtividade(id) {
     if (tipoAgente == 2) {
         $("#main").load(`./Atividades/novaAtividade.html`);
         executarScriptsEspecificos('NovaAtividade')
-        let dados = await executarRequisicao(`api/atividade/buscarAtividade/${id}`, "", "GET");
+        let dados = await executarRequisicao(`atividade/buscarAtividade/${id}`, "", "GET");
         preencherAtividade(dados.atividade);
     } else {
         $("#main").load(`./Atividades/preencherAtividade.html`);
-        let dados = await executarRequisicao(`api/atividade/buscarAtividade/${id}`, "", "GET");
+        let dados = await executarRequisicao(`atividade/buscarAtividade/${id}`, "", "GET");
         exibirAtividadeParaAluno(dados.atividade);
     }
 }
@@ -248,7 +248,7 @@ async function salvarAtividade(publicar) {
     try {
         const idAtividade = $('#idAtividade').val();
         if (idAtividade) {
-            await executarRequisicao(`api/atividade/${parseInt(idAtividade)}`, atividadeBase, 'PUT');
+            await executarRequisicao(`atividade/${parseInt(idAtividade)}`, atividadeBase, 'PUT');
         } else {
             await executarRequisicao('api/atividade', atividadeBase, 'POST');
         }

@@ -22,11 +22,11 @@ async function criarSelectAlunos() {
     $($("#alunoRelatorio").after(selectAlunos))
 }
 async function gerarRelatorio(idAluno, nome = 'Aluno') {
-    const relatorioAluno = await executarRequisicao(`api/relatorio/relatorio-desempenho/${idAluno}`, "", "GET");
+    const relatorioAluno = await executarRequisicao(`relatorio/relatorio-desempenho/${idAluno}`, "", "GET");
     if (relatorioAluno.length > 0) {
         gerarGraficosRelatorio(relatorioAluno, nome);
     } else {
-        window.location.href = "http://127.0.0.1:5500/Codigo/FRONT/ScholaAi.html";
+        window.location.href = "https://rafaellacristinacss.github.io/PageFrontScholaAi/Codigo/FRONT/ScholaAi.html";
         alert("Nenhuma Estatistica Registrada")
     }
 }

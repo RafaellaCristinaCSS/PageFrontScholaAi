@@ -157,7 +157,7 @@
   });
   async function enviarRespostaAtividade(parametro) {
     try {
-      let dados = await executarRequisicao(`api/atividade/responderAtividade`, parametro, "POST");
+      let dados = await executarRequisicao(`atividade/responderAtividade`, parametro, "POST");
       console.log(dados);
       alert("Atividade enviada com sucesso!");
       $("#main").load(`./Atividades/index.html`);

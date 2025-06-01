@@ -58,7 +58,7 @@
     calendar.render();
     carregarGraficosAluno()
     async function carregarGraficosAluno(idAluno) {
-        const dados = await executarRequisicao(`api/relatorio/relatorio-desempenho/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
+        const dados = await executarRequisicao(`relatorio/relatorio-desempenho/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
         gerarGraficos(dados, 'graficoDesempenho', 'graficoGeral');
     }
 </script>

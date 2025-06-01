@@ -1,9 +1,9 @@
-async function alterarNivelEducador(idEducador, nivelVisibilidade){
-    var parametros ={
+async function alterarNivelEducador(idEducador, nivelVisibilidade) {
+    var parametros = {
         "nivelVisibilidade": nivelVisibilidade
     }
 
-    let resposta = await executarRequisicao(`api/Agente/educador/${idEducador}/editarNivelVisibilidade`, parametros, "PUT")
+    let resposta = await executarRequisicao(`Agente/educador/${idEducador}/editarNivelVisibilidade`, parametros, "PUT")
     console.log(resposta)
     preencherListEducadores()
     alert("Mudança realizada com sucesso!");

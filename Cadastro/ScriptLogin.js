@@ -12,10 +12,10 @@ $(document).ready(() => {
     })
 })
 function setarValores() {
-    
+
     let urlParams = new URLSearchParams(window.location.search);
-    let idEducador = urlParams.get("Educador");  
-    if(idEducador){
+    let idEducador = urlParams.get("Educador");
+    if (idEducador) {
         $("#idTipoAgente").val(1)
         $("#idEducador").val(idEducador)
     }
@@ -29,12 +29,12 @@ async function realizarCadastro() {
         "dataNascimento": converterData($("#dataNascimento").val()),
         "idEducador": parseInt($("#idEducador").val())
     }
-    await executarRequisicao("api/Agente", parametros, "POST")
-    window.location.href = "http://127.0.0.1:5500/Codigo/FRONT/ScholaAi.html";
+    await executarRequisicao("Agente", parametros, "POST")
+    window.location.href = "https://rafaellacristinacss.github.io/PageFrontScholaAi/Codigo/FRONT/ScholaAi.html";
 }
 async function preencherLoginsEducadores() {
     try {
-        const educadores = await executarRequisicao("api/Agente/buscarLoginEducadores", "", "GET");
+        const educadores = await executarRequisicao("Agente/buscarLoginEducadores", "", "GET");
 
         let html = '<option value="">Selecione um educador</option>';
         for (const educador of educadores) {

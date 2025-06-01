@@ -3,7 +3,7 @@ function exibirPerfilAluno() {
     executarScriptsEspecificos("Perfil")
 }
 async function getDadosAluno() {
-    const resposta = await executarRequisicao(`api/Agente/aluno/${parseInt(localStorage.getItem("idAluno"))}`, "", "GET");
+    const resposta = await executarRequisicao(`Agente/aluno/${parseInt(localStorage.getItem("idAluno"))}`, "", "GET");
     if (!resposta) {
         console.error("Aluno não encontrado");
         return null;
@@ -27,6 +27,6 @@ async function enviarInformacoesAluno() {
         "hobbies": document.getElementById("hobbies").value,
         "informacaoAdicional": document.getElementById("informacaoAdicional").value
     };
-    await executarRequisicao(`api/Agente/complementar-informacoes`, dados, "POST");
+    await executarRequisicao(`Agente/complementar-informacoes`, dados, "POST");
     alert("Informações salvas com sucesso!");
 }

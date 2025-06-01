@@ -1,5 +1,5 @@
 function redirecionarCadastroUsuario() {
-    window.location.href = BaseUrlFront + "Codigo/FRONT/Cadastro/Cadastro.html?Educador=" + localStorage.getItem("idAgente");
+    window.location.href = BaseUrlFront + "./Cadastro/index.html?Educador=" + localStorage.getItem("idAgente");
 }
 async function preencherAlunosVinculados() {
     try {
@@ -20,7 +20,7 @@ function preencherDependentesVinculados(alunos) {
     $("#dependentesVinculados").html(html);
 }
 async function carregarGraficosPorAluno() {
-    const dados = await executarRequisicao(`api/relatorio/relatorio-desempenho/educador/${parseInt(localStorage.getItem('idEducador'))}`, "", "GET");
+    const dados = await executarRequisicao(`relatorio/relatorio-desempenho/educador/${parseInt(localStorage.getItem('idEducador'))}`, "", "GET");
     carregarGraficosEducador(dados);
 }
 async function carregarGraficosEducador(dadosTodos) {
