@@ -28,7 +28,7 @@ function criarMaterial() {
                 idAgente: parseInt(localStorage.idEducador),
                 idMateria: idMateria
             };
-            executarRequisicao("api/materiais", parametros, "POST");
+            executarRequisicao("materiais", parametros, "POST");
             swal('Material criado com sucesso!', '', 'success');
         } catch (error) {
             console.error(error);

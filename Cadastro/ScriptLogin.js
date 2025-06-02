@@ -46,7 +46,7 @@ function setarValores() {
 
 async function preencherLoginsEducadores() {
     try {
-        const educadores = await executarRequisicao("api/Agente/buscarLoginEducadores", "", "GET");
+        const educadores = await executarRequisicao("Agente/buscarLoginEducadores", "", "GET");
         let html = '<option value="">Selecione um educador</option>';
         for (const educador of educadores) {
             html += `<option value="${educador.id}">${educador.login}</option>`;
@@ -109,7 +109,7 @@ async function realizarCadastro() {
     };
 
     try {
-        await executarRequisicao("api/Agente", parametros, "POST");
+        await executarRequisicao("Agente", parametros, "POST");
         swal('Cadastro realizado com sucesso', '', 'success');
         setTimeout(() => {
             window.location.href = `${BaseUrlFront}`;

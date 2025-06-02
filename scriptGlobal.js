@@ -66,7 +66,7 @@ async function preencherCheckboxALunoPorEducador() {
 }
 async function preencherAtividadesPorAgente() {
     try {
-        const dados = await executarRequisicao(`api/atividade/atividadesPorAgente/${localStorage.getItem("idAgente")}`, "", "GET");
+        const dados = await executarRequisicao(`atividade/atividadesPorAgente/${localStorage.getItem("idAgente")}`, "", "GET");
         if (dados.tipoAgente == 'educador') $(".cabecalhoEducador").show();
 
         const lista = document.getElementById('lista-atividades');

@@ -214,11 +214,11 @@ async function salvarAtividade(publicar) {
 
     if (!nomeAtividade || !materia || !tipoAtividade || !aluno) {
         Swal.fire({
-  title: 'Preencha todos os campos obrigatórios.',
-  icon: 'warning',
-  timer: 3000,
-  showConfirmButton: false
-});;
+            title: 'Preencha todos os campos obrigatórios.',
+            icon: 'warning',
+            timer: 3000,
+            showConfirmButton: false
+        });;
         return;
     }
 
@@ -255,7 +255,7 @@ async function salvarAtividade(publicar) {
         if (idAtividade) {
             await executarRequisicao(`atividade/${parseInt(idAtividade)}`, atividadeBase, 'PUT');
         } else {
-            await executarRequisicao('api/atividade', atividadeBase, 'POST');
+            await executarRequisicao('atividade', atividadeBase, 'POST');
         }
 
         swal('Realizado com sucesso', "", 'success')

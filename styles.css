@@ -21,8 +21,15 @@ body {
 }
 
 /* Gerais */
-.titulo, .card-title {
+.titulo,
+.card-title {
   text-transform: capitalize;
+}
+
+label {
+  font-weight: bold;
+  color: #1f333d;
+  font-family: monospace;
 }
 
 .card-title {
@@ -91,7 +98,9 @@ input[type='checkbox'] {
 }
 
 /* Fonte padrão mais suave */
-.user-profile, .user-menu, .user-info {
+.user-profile,
+.user-menu,
+.user-info {
   font-family: 'Inter', 'Poppins', sans-serif;
   font-weight: 400;
 }
@@ -115,7 +124,8 @@ input[type='checkbox'] {
 }
 
 .user-info:hover {
-  background-color: #f3f4f6; /* cinza claro ao passar o mouse */
+  background-color: #f3f4f6;
+  /* cinza claro ao passar o mouse */
 }
 
 .user-avatar {
