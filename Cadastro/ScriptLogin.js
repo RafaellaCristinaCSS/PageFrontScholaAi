@@ -64,14 +64,13 @@ async function realizarCadastro() {
     const tipoAgente = $("#idTipoAgente").val();
     const idEducador = $("#idEducador").val();
     const dataNascimento = $("#dataNascimento").val();
-    const login = $("#login").val().trim();
-    const email = $("#email").val().trim();
+    const email = $("#login").val().trim();
     const senha = $("#senha").val();
     const confirmarSenha = $("#confirmarSenha").val();
 
     let erro = false;
 
-    if (!nome || !tipoAgente || !login || !email || !senha || !confirmarSenha) {
+    if (!nome || !tipoAgente || !email || !senha || !confirmarSenha) {
         swal('Por favor, preencha todos os campos.', '', 'warning');
         return;
     }
@@ -102,7 +101,6 @@ async function realizarCadastro() {
 
     const parametros = {
         "nome": nome,
-        "login": login,
         "senha": senha,
         "email": email,
         "idTipoAgente": parseInt(tipoAgente),
