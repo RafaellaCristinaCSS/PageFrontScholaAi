@@ -7,7 +7,7 @@
 }
 
 body {
-  background-image: #fff;
+  background-image: none;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -21,13 +21,12 @@ body {
 }
 
 /* Gerais */
-.titulo {
+.titulo, .card-title {
   text-transform: capitalize;
 }
 
 .card-title {
   margin-top: 5px;
-  text-transform: capitalize;
 }
 
 iframe {
@@ -43,11 +42,11 @@ iframe {
 }
 
 .row {
-  margin: 20px 0px;
+  margin: 20px 0;
 }
 
 .form-control {
-  margin: 5px 0px;
+  margin: 5px 0;
 }
 
 a {
@@ -81,90 +80,130 @@ input[type='checkbox'] {
   z-index: 1000;
 }
 
+.logo {
+  height: 40px;
+}
+
 .logo-container {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.logo {
-  height: 40px;
+/* Fonte padrão mais suave */
+.user-profile, .user-menu, .user-info {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
-/* ===== Menu do usuário ===== */
+/* Container da área do perfil */
 .user-profile {
   position: relative;
   display: inline-block;
-  cursor: pointer;
 }
 
+/* Informações do usuário */
 .user-info {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  transition: background 0.3s ease;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 6px;
+  padding: 4px 8px;
+  transition: background-color 0.3s ease;
 }
 
 .user-info:hover {
-  background-color: #f3f4f6;
+  background-color: #f3f4f6; /* cinza claro ao passar o mouse */
 }
 
-.user-icon {
-  font-size: 25px;
-  color: #4b5563;
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
 
-.dropdown-icon {
-  font-size: 14px;
-  color: #9ca3af;
-}
-
+/* Menu do usuário */
 .user-menu {
-  display: none;
   position: absolute;
-  top: 110%;
+  top: 100%;
   right: 0;
   z-index: 1000;
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  width: 240px;
-  font-size: 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  width: 180px;
+  font-size: 15px;
   color: #111827;
-  transition: opacity 0.3s ease;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .user-menu::before {
   content: "";
   position: absolute;
-  top: -6px;
-  right: 20px;
-  width: 12px;
-  height: 12px;
+  top: -5px;
+  right: 12px;
+  width: 10px;
+  height: 10px;
   background: #ffffff;
   transform: rotate(45deg);
-  box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.03);
+  box-shadow: -1px -1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* Exibição suave ao passar o mouse */
+.user-profile:hover .user-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Texto interno */
+.user-menu p {
+  margin: 0 0 8px 0;
+  font-size: 12px;
 }
 
 .user-menu strong {
-  display: inline-block;
-  color: #111827;
-  font-weight: 600;
-  margin-bottom: 6px;
+  font-weight: 500;
 }
 
+/* Botões */
 .user-menu button {
-  margin-top: 5px;
+  margin-top: 6px;
   width: 100%;
-  transition: background-color 0.3s ease;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12.5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.user-profile:hover .user-menu {
-  display: block;
+.user-menu .profile {
+  background-color: #dbeafe;
+  color: #1e3a8a;
 }
+
+.user-menu .profile:hover {
+  background-color: #bfdbfe;
+}
+
+.user-menu .logout {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.user-menu .logout:hover {
+  background-color: #fecaca;
+}
+
 
 /* Sidebar */
 .sidebar {
@@ -238,6 +277,8 @@ input[type='checkbox'] {
 
 .educadores ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .educadores ul li {

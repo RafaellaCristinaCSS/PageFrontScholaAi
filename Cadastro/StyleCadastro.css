@@ -5,8 +5,11 @@ body {
     background-repeat: no-repeat; 
 }
 .logo{
-    height: 40%;
+  width: 150px;
+  height: 120px;
+    display: block;
+    margin: 0 auto 20px auto;
 }
 .card{
-    border-radius: 20px; padding: 20px; margin-top: 10%
+    border-radius: 20px; padding: 20px;
 }

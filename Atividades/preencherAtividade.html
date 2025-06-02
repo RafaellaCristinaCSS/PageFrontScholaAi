@@ -135,7 +135,12 @@
       });
 
       if (!todasRespondidas) {
-        alert("Por favor, responda todas as questões antes de enviar.");
+        Swal.fire({
+          title: 'Por favor, responda todas as questões antes de enviar.',
+          icon: 'warning',
+          timer: 3000,
+          showConfirmButton: false
+        });;
         return;
       }
 
@@ -159,7 +164,12 @@
     try {
       let dados = await executarRequisicao(`atividade/responderAtividade`, parametro, "POST");
       console.log(dados);
-      alert("Atividade enviada com sucesso!");
+      Swal({
+        title: 'Perfil salvo com sucesso',
+        icon: 'success',
+        timer: 3000,
+        showConfirmButton: false
+      });
       $("#main").load(`./Atividades/index.html`);
       executarScriptsEspecificos('Atividades')
     } catch (ex) {

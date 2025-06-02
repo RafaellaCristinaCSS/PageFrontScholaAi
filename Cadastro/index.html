@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<script src="sweetalert2/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
 
 <head>
     <meta charset="UTF-8">
@@ -9,19 +11,16 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./../styles.css">
     <link rel="stylesheet" href="./StyleCadastro.css">
-    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
-   
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 
 <body>
     <div class="row d-flex justify-content-center">
         <div class="col-5">
             <div class="card" style="border-radius: 20px; padding: 20px;">
-                <div class="text-center rouded-2">
+                <div class="text-center rounded-2">
                     <img src="./../imagens/logo.png" alt="ScholaAI Logo" class="logo">
-                    <h1 class="display-6 fw-bold" style="font-size:25px" style="color: #5A67BA;">ScholaAi</h1>
+                    <h1 class="display-6 fw-bold" style="font-size:25px; color: #5A67BA;">ScholaAi</h1>
                 </div>
                 <form>
                     <input type="hidden" name="id">
@@ -33,9 +32,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label>Tipo de Usuáro</label>
-                        <select class="form-control form-control-lg" id="idTipoAgente"
-                            placeholder="Informe o seu tipo de Usuário" name="idTipoAgente" required>
+                        <label>Tipo de Usuário</label>
+                        <select class="form-control form-control-lg" id="idTipoAgente" name="idTipoAgente" required>
+                            <option value="">Selecione</option>
                             <option value="1">Aluno</option>
                             <option value="2">Educador</option>
                         </select>
@@ -44,32 +43,42 @@
                     <div class="mb-3" style="display: none;">
                         <label>Selecione um Educador</label>
                         <select class="form-control form-control-lg" id="idEducador" name="idEducador">
-                            <option val=''>Selecione</option>
+                            <option value="">Selecione</option>
                         </select>
                     </div>
+
                     <div class="mb-3" style="display: none;">
                         <label>Data de Nascimento</label>
-                        <input class="form-control form-control-lg" mask="0000-00-00" id="dataNascimento"
-                            placeholder="yyyy-mm-dd" type="text">
+                        <input class="form-control form-control-lg" id="dataNascimento"
+                            placeholder="Selecione sua data de nascimento" type="date" />
                     </div>
+
                     <div class="mb-3">
                         <label>Login</label>
-                        <input type="text" class="form-control form-control-lg" required id="login"
-                            placeholder="Preencha o seu login">
+                        <input type="text" class="form-control form-control-lg" id="login"
+                            placeholder="Preencha o seu login" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control form-control-lg" id="email"
+                            placeholder="Digite seu e-mail" required>
+                        <label id="erroEmail" class="text-danger" style="display: none;">
+                            E-mail inválido.
+                        </label>
                     </div>
 
                     <div class="mb-3">
                         <label>Senha</label>
                         <input type="password" class="form-control form-control-lg" id="senha"
-                            placeholder="Preencha a sua senha" name="senha" required minlength="6" maxlength="8">
+                            placeholder="Preencha a sua senha" required minlength="6" maxlength="8">
                     </div>
 
                     <div class="mb-3">
                         <label>Confirme a sua senha</label>
-                        <input type="password" class="form-control form-control-lg" placeholder="Confirme a sua senha"
-                            name="confirmarSenha" id="confirmarSenha" required minlength="6" maxlength="8">
-
-                        <label class="text-danger" style="display: none;">
+                        <input type="password" class="form-control form-control-lg" id="confirmarSenha"
+                            placeholder="Confirme a sua senha" required minlength="6" maxlength="8">
+                        <label id="erroSenha" class="text-danger" style="display: none;">
                             As senhas não conferem.
                         </label>
                     </div>
@@ -84,5 +93,6 @@
     <script src="./ScriptLogin.js"></script>
     <script src="../scriptGlobal.js"></script>
 </body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </html>

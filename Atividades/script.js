@@ -213,7 +213,12 @@ async function salvarAtividade(publicar) {
     let pontuacao = $("#pontucaoAtividade").val();
 
     if (!nomeAtividade || !materia || !tipoAtividade || !aluno) {
-        alert("Preencha todos os campos obrigatórios.");
+        Swal.fire({
+  title: 'Preencha todos os campos obrigatórios.',
+  icon: 'warning',
+  timer: 3000,
+  showConfirmButton: false
+});;
         return;
     }
 
@@ -253,7 +258,7 @@ async function salvarAtividade(publicar) {
             await executarRequisicao('api/atividade', atividadeBase, 'POST');
         }
 
-        alert("Atividade salva com sucesso!");
+        swal('Realizado com sucesso', "", 'success')
         $("#main").load(`./Atividades/index.html`);
         executarScriptsEspecificos('Atividades');
     } catch (ex) {

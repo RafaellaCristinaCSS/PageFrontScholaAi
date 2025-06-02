@@ -1,24 +1,35 @@
 $(document).ready(() => {
     $("#idTipoAgente").change(() => {
-        verificarTipoAgente()
-    })
+        verificarTipoAgente();
+    });
+
     $("#btnLogin").click(function () {
-        var loginData = {
-            Login: $("#login").val(),
-            Senha: $("#senha").val()
+        const login = $("#login").val();
+        const senha = $("#senha").val();
+
+        if (!login || !senha) {
+            swal("Campos obrigatórios", "Preencha o login e a senha.", "warning");
+            return;
+        }
+
+        const loginData = {
+            Login: login,
+            Senha: senha
         };
 
         $.ajax({
-            url: "https://scholaai-production.up.railway.app/api/agente/login",
+            url: `${BaseUrlBack}agente/login`,
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(loginData),
+            beforeSend: () => {
+                $("#btnLogin").prop("disabled", true).text("Entrando...");
+            },
             success: function (response) {
                 const token = response.token;
-                localStorage.setItem("token", token);
                 const decoded = jwt_decode(token);
 
-                console.log("TOKEN ::", token);
+                localStorage.setItem("token", token);
                 localStorage.setItem("tipo", decoded.Tipo);
                 localStorage.setItem("nivel", decoded.Nivel);
                 localStorage.setItem("idAgente", decoded.Id);
@@ -26,15 +37,25 @@ $(document).ready(() => {
                 localStorage.setItem("idAluno", response.idAluno);
                 localStorage.setItem("login", decoded.unique_name);
 
-                window.location.href = "https://rafaellacristinacss.github.io/PageFrontScholaAi/Codigo/FRONT/ScholaAi.html";
-
-            }, error: function (xhr) {
-                alert("Erro: " + xhr.responseText);
+                swal("Login realizado!", "Redirecionando...", "success")
+                    .then(() => {
+                        `${BaseUrlFront}`;
+                    });
+            },
+            error: function (xhr) {
+                let mensagem = "Erro ao realizar login.";
+                if (xhr.status === 401 || xhr.status === 400) {
+                    mensagem = xhr.responseText || "Credenciais inválidas.";
+                }
+                swal("Erro", mensagem, "error");
+            },
+            complete: () => {
+                $("#btnLogin").prop("disabled", false).text("Entrar");
             }
         });
+    });
 
-    });
     $("#novaConta").click(function () {
-        window.location.href = "https://rafaellacristinacss.github.io/PageFrontScholaAi/Codigo/FRONT/Cadastro/Cadastro.html";
+        window.location.href = `${BaseUrlFront}Cadastro/index.html`;
     });
-})
+});

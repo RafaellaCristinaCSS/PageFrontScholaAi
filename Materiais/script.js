@@ -1,7 +1,6 @@
 async function preencherListMateriais() {
     try {
-        const response = await fetch('https://scholaai-production.up.railway.app/api/materiais');
-        const materiais = await response.json();
+        const materiais = await executarRequisicao("materiais", "", "GET");
         let html = '';
 
         for (const material of materiais) {
@@ -23,49 +22,56 @@ async function preencherListMateriais() {
         document.getElementById("listMateriais").innerHTML = html;
     } catch (error) {
         console.error("Erro ao carregar materiais:", error);
+        swal("Erro", "Ainda não tem estatísticas cadastradas.", "info");
     }
 }
 
 async function excluirMaterial(id) {
-    if (confirm("Tem certeza que deseja excluir este material?")) {
-        const response = await fetch(`https://scholaai-production.up.railway.app/api/materiais/${id}`, {
-            method: 'DELETE'
-        });
-        if (response.ok) {
+    const confirmacao = await swal({
+        title: "Tem certeza?",
+        text: "Você deseja excluir este material?",
+        icon: "warning",
+        buttons: ["Cancelar", "Excluir"],
+        dangerMode: true,
+    });
+
+    if (confirmacao) {
+        const response = await executarRequisicao(`materiais/${id}`, {}, 'DELETE');
+        if (response) {
+            swal("Excluído!", "O material foi removido.", "success");
             preencherListMateriais();
         } else {
-            alert("Erro ao excluir material.");
+            swal("Erro", "Não foi possível excluir o material.", "error");
         }
     }
 }
 
 async function editarMaterial(id) {
-    const novoConteudo = prompt("Digite o novo conteúdo do material:");
+    const { value: novoConteudo } = await swal({
+        text: "Digite o novo conteúdo do material:",
+        content: "input",
+        buttons: ["Cancelar", "Salvar"],
+    });
+
     if (!novoConteudo || novoConteudo.trim() === "") {
-        alert("O conteúdo não pode estar vazio.");
+        swal("Aviso", "O conteúdo não pode estar vazio.", "warning");
         return;
     }
 
-    const dados = { conteudo: novoConteudo };
+    const dados = { conteudo: novoConteudo.trim() };
 
     try {
-        const response = await fetch(`https://scholaai-production.up.railway.app/api/materiais/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dados)
-        });
-
-        if (response.ok) {
-            alert("Material atualizado com sucesso!");
+        const response = await executarRequisicao(`materiais/${id}`, dados, 'PUT');
+        if (response) {
+            swal("Sucesso", "Material atualizado com sucesso!", "success");
             preencherListMateriais();
         } else {
             const erro = await response.text();
-            alert("Erro ao editar material: " + erro);
+            swal("Erro", `Não foi possível editar o material:\n${erro}`, "error");
         }
     } catch (error) {
         console.error("Erro ao editar material:", error);
-        alert("Erro inesperado.");
+        swal("Erro", "Erro inesperado ao editar o material.", "error");
     }
 }
-
 preencherListMateriais();

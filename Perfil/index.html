@@ -1,10 +1,13 @@
-<main class="content">
+<script src="sweetalert2/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
+
+<main class="content container mt-5">
   <h3 class="mb-4 text-center">Perfil</h3>
   <form id="form-estatisticas">
     <div class="row">
       <div class="col-md-4 col-xs-12">
         <label for="dataNascimento">Data de Nascimento</label>
-        <input class="form-control form-date" type="datetime" id="dataNascimento" />
+        <input class="form-control" type="date" id="dataNascimento" lang="pt-BR">
       </div>
       <div class="col-md-4 col-xs-12">
         <label for="estiloAprendizagem">Estilo de Aprendizagem</label>
@@ -55,8 +58,13 @@
         <input class="form-control" type="text" id="informacaoAdicional" placeholder="Ex: Dificuldade com leitura..." />
       </div>
     </div>
-    <div class="text-center">
+
+    <div class="text-center mt-4">
       <button type="button" onclick="enviarInformacoesAluno()" class="btn btn-success">Salvar</button>
     </div>
+
   </form>
 </main>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 

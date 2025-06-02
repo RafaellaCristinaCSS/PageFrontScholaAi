@@ -5,35 +5,33 @@ async function buscarEducadores() {
     return educadores = await executarRequisicao("Agente/buscarDadosEducadores", "", "GET");
 }
 async function executarScriptsEspecificos(nome) {
-
     switch (nome) {
         case "ListaEducadores":
-            preencherListEducadores()
+            preencherListEducadores();
             break;
         case "Dashboard":
             let tipoAgente = localStorage.getItem('tipo');
             if (tipoAgente == '2') {
-                preencherAlunosVinculados()
+                preencherAlunosVinculados();
             }
             break;
         case "InserirMateriais":
-            preencherNomesMaterias()
+            preencherNomesMaterias();
             break;
         case "Materiais":
             preencherListMateriais();
             break;
         case "Atividades":
-            preencherNomesMaterias()
-            preencherAtividadesPorAgente()
+            preencherNomesMaterias();
+            preencherAtividadesPorAgente();
             break;
         case "NovaAtividade":
-            preencherCheckboxALunoPorEducador()
-            preencherNomesMaterias()
+            preencherCheckboxALunoPorEducador();
+            preencherNomesMaterias();
             break;
         case "Estatistica":
-            if (localStorage.getItem("tipo") == "1") gerarRelatorio(parseInt(localStorage.getItem('idAluno')))
-            else criarSelectAlunos()
-
+            if (localStorage.getItem("tipo") == "1") gerarRelatorio(parseInt(localStorage.getItem('idAluno')));
+            else criarSelectAlunos();
             break;
         case "Perfil":
             getDadosAluno();
@@ -50,10 +48,10 @@ async function preencherSelectALunoPorEducador() {
         $("#aluno").html(html);
     } catch (error) {
         console.error("Erro - preencherSelectALunoPorEducador:", error);
+        swal("Erro", "Não foi possível carregar a lista de alunos.", "error");
     }
 }
 async function preencherCheckboxALunoPorEducador() {
-
     try {
         const alunos = await executarRequisicao(`Agente/buscarAlunosPorEducador/${localStorage.getItem("idAgente")}`, "", "GET");
         let html = '';
@@ -63,42 +61,46 @@ async function preencherCheckboxALunoPorEducador() {
         $("#aluno").html(html);
     } catch (error) {
         console.error("Erro - preencherCheckboxALunoPorEducador:", error);
+        swal("Erro", "Não foi possível carregar os alunos para seleção.", "error");
     }
 }
 async function preencherAtividadesPorAgente() {
-    const dados = await executarRequisicao(`atividade/atividadesPorAgente/${localStorage.getItem("idAgente")}`, "", "GET");
-    if (dados.tipoAgente == 'educador') $(".cabecalhoEducador").show();
+    try {
+        const dados = await executarRequisicao(`api/atividade/atividadesPorAgente/${localStorage.getItem("idAgente")}`, "", "GET");
+        if (dados.tipoAgente == 'educador') $(".cabecalhoEducador").show();
 
-    const lista = document.getElementById('lista-atividades');
-    lista.innerHTML = "";
+        const lista = document.getElementById('lista-atividades');
+        lista.innerHTML = "";
 
-    dados.atividades.forEach(atividade => {
-        const li = document.createElement('li');
-        li.className = "card btn editarAtividade";
-        li.setAttribute("data-materia", atividade.materia.nome);
-        li.setAttribute("id", `atividade-${atividade.id}`);
+        dados.atividades.forEach(atividade => {
+            const li = document.createElement('li');
+            li.className = "card btn editarAtividade";
+            li.setAttribute("data-materia", atividade.materia.nome);
+            li.setAttribute("id", `atividade-${atividade.id}`);
 
-        const imagemBase64 = atividade.materia.imagem;
-        const imagemSrc = imagemBase64
-            ? `${imagemBase64}`
-            : "caminho/para/imagem-default.png";
+            const imagemBase64 = atividade.materia.imagem;
+            const imagemSrc = imagemBase64
+                ? `${imagemBase64}`
+                : "caminho/para/imagem-default.png";
 
-        li.innerHTML = `
-            <div class="d-flex flex-column">
-                <img src="${imagemSrc}" alt="Capa da Matéria" id="imagem-atividade-${atividade.id}">
+            li.innerHTML = `
+                <div class="d-flex flex-column">
+                    <img src="${imagemSrc}" alt="Capa da Matéria" id="imagem-atividade-${atividade.id}">
+                    <div class="card-title">${atividade.nome}</div>
+                    <small class="text-muted hide">${atividade.materia.nome}</small>
+                    <div class="card-description">${atividade.informacaoExtra}</div>
+                    <button type="button" class="btn btn-sm btn-outline-danger deletarAtividade d-none">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            `;
 
-                 <div class="card-title">${atividade.nome}</div>
-                <small class="text-muted hide">${atividade.materia.nome}</small>
-        
-                <div class="card-description">${atividade.informacaoExtra}     </div>
-                <button type="button" class="btn btn-sm btn-outline-danger deletarAtividade d-none">
-                    <i class="fa fa-trash"></i>
-                </button>
-            </div>
-        `;
-
-        lista.appendChild(li);
-    });
+            lista.appendChild(li);
+        });
+    } catch (error) {
+        console.error("Erro - preencherAtividadesPorAgente:", error);
+        swal("Erro", "Não foi possível carregar as atividades.", "error");
+    }
 }
 
 async function preencherNomesMaterias() {
@@ -113,6 +115,7 @@ async function preencherNomesMaterias() {
 
     } catch (error) {
         console.error("Erro - preencherNomesMaterias:", error);
+        swal("Erro", "Não foi possível carregar as matérias.", "error");
     }
 }
 async function executarRequisicao(rota, parametros, tipo) {
@@ -135,7 +138,8 @@ async function executarRequisicao(rota, parametros, tipo) {
 
     } catch (error) {
         console.error("Erro na requisição:", error);
-        throw error; // Propaga o erro para quem chamar essa função
+        swal("Erro", "Falha na comunicação com o servidor.", "error");
+        throw error;
     }
 }
 async function getAlunos() {

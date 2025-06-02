@@ -1,17 +1,24 @@
 async function carregarEstatistica(idAluno, nome) {
-    $("#main").load(`./Estatistica/index.html`);
-    $(".sidebar li").removeClass("active");
-    $("#menuEstatisticas").addClass("active");
-    gerarRelatorio(idAluno, nome)
-}
-async function criarSelectAlunos() {
-    const alunos = await getAlunos();
-    let optionAlunos = `<option value="0">Selecione</option>`;
-    for (const aluno of alunos) {
-        optionAlunos += `<option value="${aluno.idAluno}">${aluno.nome}</option>`;
+    try {
+        $("#main").load(`./Estatistica/index.html`);
+        $(".sidebar li").removeClass("active");
+        $("#menuEstatisticas").addClass("active");
+        gerarRelatorio(idAluno, nome);
+    } catch (error) {
+        console.error("Erro ao carregar estatística:", error);
+        swal('Erro ao carregar estatística', '', 'error');
     }
+}
 
-    let selectAlunos = `
+async function criarSelectAlunos() {
+    try {
+        const alunos = await getAlunos();
+        let optionAlunos = `<option value="0">Selecione</option>`;
+        for (const aluno of alunos) {
+            optionAlunos += `<option value="${aluno.idAluno}">${aluno.nome}</option>`;
+        }
+
+        let selectAlunos = `
           <div class="divSelecaoAluno">
             <label for="alunos">Selecione um Aluno</label>
               <select class="form-control form-select" onchange="gerarRelatorio(this.value, this.options[this.selectedIndex].text)" name="alunos" id="alunos">
@@ -19,22 +26,32 @@ async function criarSelectAlunos() {
               </select>
           </div>
         `;
-    $($("#alunoRelatorio").after(selectAlunos))
-}
-async function gerarRelatorio(idAluno, nome = 'Aluno') {
-    const relatorioAluno = await executarRequisicao(`relatorio/relatorio-desempenho/${idAluno}`, "", "GET");
-    if (relatorioAluno.length > 0) {
-        gerarGraficosRelatorio(relatorioAluno, nome);
-    } else {
-        window.location.href = "https://rafaellacristinacss.github.io/PageFrontScholaAi/Codigo/FRONT/ScholaAi.html";
-        alert("Nenhuma Estatistica Registrada")
+        $($("#alunoRelatorio").after(selectAlunos));
+    } catch (error) {
+        console.error("Erro ao criar select de alunos:", error);
+        swal('Erro ao carregar alunos', '', 'error');
     }
 }
+async function gerarRelatorio(idAluno, nome = 'Aluno') {
+    try {
+        const relatorioAluno = await executarRequisicao(`relatorio/relatorio-desempenho/${idAluno}`, "", "GET");
+        if (relatorioAluno.length > 0) {
+            gerarGraficosRelatorio(relatorioAluno, nome);
+        } else {
+            window.location.href = `${BaseUrlFront}`;
+            swal('Nenhuma estatística registrada', '', 'info');
+        }
+    } catch (error) {
+        console.error("Erro ao gerar relatório:", error);
+        swal('Erro ao gerar relatório', '', 'error');
+    }
+}
+
 function gerarGraficosRelatorio(relatorio, nome) {
     const container = document.getElementById('graficosRelatorio');
     const alunoRelatorio = document.getElementById('alunoRelatorio');
     container.innerHTML = '';
-    alunoRelatorio.innerHTML = 'Relatorio ' + nome;
+    alunoRelatorio.innerHTML = 'Relatório ' + nome;
 
     relatorio.forEach((materia, index) => {
         const idCanvas = `graficoMateria_${index}`;

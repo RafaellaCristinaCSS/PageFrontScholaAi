@@ -1,116 +1,133 @@
 <main class="content">
-  <div class="row">
-    <h4>Todos as aulas</h4>
-    <div class="d-flex justify-content-end hide">
-      <button type="button" id="novaAtividade" href="" class="btn btn-primary">Nova Atividade</button>
+  <h4 class="mb-4">Todas as aulas</h4>
+
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-6 col-sm-12">
+      <label for="materia">Filtrar por matéria:</label>
+      <select class="form-control form-select" id="materia">
+        <option selected>Selecione uma Matéria</option>
+      </select>
+    </div>
+    <div class="col-md-6 col-sm-12 text-md-end mt-3 mt-md-0">
+      <button type="button" id="novaAtividade" class="btn btn-primary">Nova Atividade</button>
     </div>
   </div>
-  <div class="row">
-    <div class="col-6">
-      <label>Filtrar por matéria:</label>
-      <select class="form-control form-select" id="materia"></select>
-    </div>
+
+  <div class="container">
+    <div class="grid" id="lista-atividades"></div>
   </div>
+</main>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f0f2f5;
-    }
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f0f2f5;
+  }
 
-    .container {
-      padding: 30px;
-      box-sizing: border-box;
-    }
+  .container {
+    padding: 30px;
+    box-sizing: border-box;
+  }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 28px;
-      color: #333;
-    }
+  h4 {
+    font-size: 24px;
+    color: #333;
+  }
 
-    .filtro-container {
-      display: flex;
-      margin-left: 240px;
-      margin-bottom: 30px;
-    }
+  label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+  }
 
-    .filtro-container label {
-      margin-right: 10px;
-      font-weight: bold;
-      color: #555;
-    }
+  select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+  }
 
-    select {
-      padding: 10px 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background-color: #fff;
-      font-size: 14px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
+  select:hover {
+    border-color: #888;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
 
-    select:hover {
-      border-color: #888;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-    }
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+  }
 
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
 
-    .card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-    .card-content {
-      padding: 20px;
-    }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
 
-    .card-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #333;
-    }
+  .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
 
-    .card-description {
-      font-size: 14px;
-      color: #666;
-    }
-  </style>
-  </head>
+  .card-content {
+    padding: 20px;
+  }
 
-  <body>
-    <div class="container">
-      <div class="grid" id="lista-atividades"></div>
-    </div>
-  </body>
-  <script>
-    $(document).on('click', '.editarAtividade', function () {
-      const id = $(this).attr('id').replace('atividade-', '');
-      buscarAtividade(id)
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .card-description {
+    font-size: 14px;
+    color: #666;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+  $(document).on('click', '.editarAtividade', function () {
+    const id = $(this).attr('id').replace('atividade-', '');
+    buscarAtividade(id);
+  });
+
+    $('#novaAtividade').click(function () {
+      $("#main").load(`./Atividades/novaAtividade.html`);
+      executarScriptsEspecificos("NovaAtividade")
     });
-  </script>
-
-  </html>
+  });
+</script>
