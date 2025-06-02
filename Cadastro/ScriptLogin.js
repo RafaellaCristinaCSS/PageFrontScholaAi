@@ -102,7 +102,7 @@ async function realizarCadastro() {
     const parametros = {
         "nome": nome,
         "senha": senha,
-        "email": email,
+        "login": email,
         "idTipoAgente": parseInt(tipoAgente),
         "idEducador": tipoAgente === "1" ? parseInt(idEducador) : null,
         "dataNascimento": tipoAgente === "1" ? converterData(dataNascimento) : null
@@ -116,6 +116,6 @@ async function realizarCadastro() {
         }, 1500);
     } catch (e) {
         console.error(e);
-        swal('Erro ao cadastrar. Verifique os dados e tente novamente.', '', 'error');
+        swal('Erro ao cadastrar', 'Verifique os dados e tente novamente.', 'error');
     }
 }

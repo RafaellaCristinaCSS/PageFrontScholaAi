@@ -28,8 +28,11 @@ body {
 
 label {
   font-weight: bold;
-  color: #1f333d;
-  font-family: monospace;
+  color: #555555;
+  font-family: sans-serif;
+  font-size: small;
+  display: flex;
+  align-items: center;
 }
 
 .card-title {
@@ -59,11 +62,6 @@ iframe {
 a {
   color: #333 !important;
   text-decoration: none !important;
-}
-
-label {
-  display: flex;
-  align-items: center;
 }
 
 input[type='checkbox'] {
