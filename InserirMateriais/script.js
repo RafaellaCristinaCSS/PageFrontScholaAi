@@ -3,7 +3,7 @@ function abrirModalCriarMateria() {
 }
 
 function clickInputFile() {
-    $("#fileInput").trigger("click");
+    $("#fileInput").click();
 }
 
 function carregarTextoInseridoPorArquivo(event) {
