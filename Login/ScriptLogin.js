@@ -22,6 +22,9 @@ $(document).ready(() => {
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(loginData),
+            xhrFields: {
+                withCredentials: true
+            },
             beforeSend: () => {
                 $("#btnLogin").prop("disabled", true).text("Entrando...");
             },
@@ -39,7 +42,7 @@ $(document).ready(() => {
 
                 swal("Login realizado!", "Redirecionando...", "success")
                     .then(() => {
-                        `${BaseUrlFront}`;
+                        window.location.href = `${BaseUrlFront}`;
                     });
             },
             error: function (xhr) {
