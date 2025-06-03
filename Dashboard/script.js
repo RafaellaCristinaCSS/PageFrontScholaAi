@@ -80,6 +80,8 @@ async function gerarGraficos(dados, idCanvasDesempenho = null, idCanvasGeral = n
     if (!dados || dados.length === 0) return;
 
     try {
+        $("#informativoSemDadosGerais").remove();
+        $("#informativoSemDesempenho").remove();
         const materias = dados.map(m => m.nomeMateria.trim());
         const porcentagens = dados.map(m => ((m.totalPontuacaoObtida / m.totalPontuacaoPossivel) * 100).toFixed(1));
 
