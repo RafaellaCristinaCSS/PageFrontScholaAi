@@ -33,35 +33,36 @@ function definirTipoAtividade() {
             break;
         case '3':
             $(".cardAtividade").removeClass("hide")
-            $("#pontucaoAtividade").prop("disabled", false)
+            if (!isAluno()) $("#pontucaoAtividade").prop("disabled", false)
             break;
     }
 }
 function adicionarPergunta() {
     perguntaCount++;
-    const perguntaHtml = `
+    let perguntaHtml = `
     <div class="pergunta-container row" data-pergunta-id="${perguntaCount}">
     <div class="col-12 col-md-10 mb-2">
         <input type="text" name="pergunta_${perguntaCount}" placeholder="Digite a pergunta" class="pergunta form-control"/>
-    </div>
+    </div> 
     <div class="col-12 col-md-2 mb-2">
-        <input type="text" name="pontuacao_${perguntaCount}" placeholder="Valor da pergunta" class="pontuacaoPergunta form-control"/>
+        <input type="text" ${(isAluno() ? 'disabled val="0" class="d-none"' : "")} name="pontuacao_${perguntaCount}" placeholder="Valor da pergunta" class="pontuacaoPergunta form-control"/>
     </div>
+    
     <div class='row'>
     <div class="alternativas-container"></div>
     <button type="button" class="add-alternativa btn btn-secondary">+ Nova Alternativa</button>
     </div>
-    </div>
-    `;
+    </div >
+        `;
     $('#perguntas-container').append(perguntaHtml);
 }
 function adicionarAlternativa() {
     const container = $(this).siblings('.alternativas-container');
     const alternativaHtml = `
-    <div class="alternativa d-flex align-items-center mb-2">
+        < div class="alternativa d-flex align-items-center mb-2" >
         <input type="checkbox" class="me-2" />
         <input type="text" placeholder="Texto da alternativa" class="form-control" />
-        </div>
+        </div >
         `;
     container.append(alternativaHtml);
 }
@@ -94,9 +95,9 @@ function preencherAtividade(atividade) {
     let idsAlunos = [];
     atividade.alunos.forEach(aluno => {
         idsAlunos.push(aluno.id);
-        $(`#aluno input[type=checkbox][value='${aluno.id}']`).prop("checked", true).prop("disabled", publicada);
+        $(`#aluno input[type = checkbox][value = '${aluno.id}']`).prop("checked", true).prop("disabled", publicada);
     });
-    $(`#aluno input[type=checkbox]`).prop("disabled", publicada);
+    $(`#aluno input[type = checkbox]`).prop("disabled", publicada);
     $(".adicionarAlunos").trigger("click");
 
     $('#perguntas-container').empty();
@@ -110,7 +111,7 @@ function preencherAtividade(atividade) {
 
         atividade.questoes.forEach((questao, index) => {
             const perguntaHtml = `
-                <div class="pergunta-container row mb-3" data-pergunta-id="${index + 1}">
+        < div class="pergunta-container row mb-3" data - pergunta - id="${index + 1}" >
                     <div class="col-12 col-md-10 mb-2">
                         <input type="text" name="pergunta_${index + 1}" value="${questao.texto}" placeholder="Digite a pergunta" class="pergunta form-control" ${desabilitar}/>
                     </div>
@@ -128,8 +129,8 @@ function preencherAtividade(atividade) {
                         </div>
                         ${!publicada ? `<button class="add-alternativa btn btn-secondary">+ Nova Alternativa</button>` : ''}
                     </div>
-                </div>
-            `;
+                </div >
+        `;
             $('#perguntas-container').append(perguntaHtml);
         });
     } else if (tipo === 2 || tipo === 3) {
@@ -140,9 +141,9 @@ function preencherAtividade(atividade) {
         if (atividade.nomeArquivo && atividade.arquivoBase64) {
 
             debugger
-            const imagemBase64 = `${atividade.arquivoBase64}`;
+            const imagemBase64 = `${atividade.arquivoBase64} `;
             const imagemSrc = imagemBase64
-                ? `${imagemBase64}`
+                ? `${imagemBase64} `
                 : "caminho/para/imagem-default.png";
             $("#exibirArquivo").prop("src", imagemBase64)
             $("#exibirArquivo").closest("div").removeClass("hide")
@@ -164,22 +165,22 @@ function exibirAtividadeParaAluno(atividade) {
 
     atividade.questoes.forEach((questao, index) => {
         const questaoId = questao.id;
-        const grupoNome = `questao_${questaoId}`;
+        const grupoNome = `questao_${questaoId} `;
 
         const alternativasHtml = questao.alternativas.map((alt, i) => `
 
-        <label class="option" for="${grupoNome}_alt_${alt.id}">
-                <input type="radio" name="${grupoNome}" id="${grupoNome}_alt_${alt.id}" value="${alt.id}">
-                    ${alt.texto}
-                </label>
+        < label class="option" for= "${grupoNome}_alt_${alt.id}" >
+            <input type="radio" name="${grupoNome}" id="${grupoNome}_alt_${alt.id}" value="${alt.id}">
+                ${alt.texto}
+            </label>
 
         `).join('');
 
         const questaoHtml = `
-            <div class="question" data-questao-id="${questaoId}">
-                <p>${index + 1}. ${questao.texto}</p>
+        < div class= "question" data - questao - id="${questaoId}" >
+            <p>${index + 1}. ${questao.texto}</p>
                 ${alternativasHtml}
-            </div>
+            </div >
         `;
 
         $("#questoes-container").append(questaoHtml);
@@ -239,27 +240,32 @@ async function salvarAtividade(publicar) {
             atividadeBase.questoes = questoes;
             break;
 
+
         case "2":
-            atividadeBase.textoLeitura = montarAtividadeLeitura();
+            const { base64: base64_2, nome: nome_2, texto: texto_2 } = await montarAtividadeLeitura();
+            atividadeBase.textoLeitura = texto_2;
+            atividadeBase.arquivoBase64 = base64_2;
+            atividadeBase.nomeArquivo = nome_2;
             break;
 
         case "3":
-            const { base64, nome, texto } = await montarAtividadeExternaOuImpressao();
-            atividadeBase.arquivoBase64 = base64;
-            atividadeBase.nomeArquivo = nome;
+            const { base64: base64_3, nome: nome_3, texto: texto_3 } = await montarAtividadeExternaOuImpressao();
+            atividadeBase.textoLeitura = texto_3;
+            atividadeBase.arquivoBase64 = base64_3;
+            atividadeBase.nomeArquivo = nome_3;
             break;
     }
 
     try {
         const idAtividade = $('#idAtividade').val();
         if (idAtividade) {
-            await executarRequisicao(`atividade/${parseInt(idAtividade)}`, atividadeBase, 'PUT');
+            await executarRequisicao(`atividade / ${parseInt(idAtividade)} `, atividadeBase, 'PUT');
         } else {
             await executarRequisicao('atividade', atividadeBase, 'POST');
         }
 
         swal('Realizado com sucesso', "", 'success')
-        $("#main").load(`./Atividades/index.html`);
+        $("#main").load(`./ Atividades / index.html`);
         executarScriptsEspecificos('Atividades');
     } catch (ex) {
         alert("Erro ao salvar atividade: " + ex);
@@ -329,3 +335,6 @@ async function montarAtividadeExternaOuImpressao() {
     });
 }
 
+function isAluno() {
+    return localStorage.getItem("tipo") == "1";
+}

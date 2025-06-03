@@ -1,0 +1,214 @@
+/* bodyAtividades */
+#bodyAtividades body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f0f2f5;
+}
+
+#bodyAtividades .container {
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+#bodyAtividades h4 {
+    font-size: 24px;
+    color: #333;
+}
+
+#bodyAtividades label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#bodyAtividades select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+#bodyAtividades select:hover {
+    border-color: #888;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+#bodyAtividades .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#bodyAtividades .btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+}
+
+#bodyAtividades .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+#bodyAtividades .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+#bodyAtividades .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#bodyAtividades .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+#bodyAtividades .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+#bodyAtividades .card-content {
+    padding: 20px;
+}
+
+#bodyAtividades .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#bodyAtividades .card-description {
+    font-size: 14px;
+    color: #666;
+}
+
+/* bodyNovaAtividade */
+
+#bodyNovaAtividade .dual-listbox div {
+    margin: 0px 20px;
+    padding: 15px;
+}
+
+#bodyNovaAtividade .dual-listbox h5 {
+    margin-top: 20px;
+}
+
+#bodyNovaAtividade .selecaoAlunos {
+    border: 1px solid #c2cad8;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* bodyPreencherAtividade */
+#bodyPreencherAtividade body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+#bodyPreencherAtividade .container {
+    max-width: 70%;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: 100px;
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+#bodyPreencherAtividade h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 40px;
+}
+
+#bodyPreencherAtividade .question {
+    margin-bottom: 40px;
+}
+
+#bodyPreencherAtividade .question p {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #2c3e50;
+}
+
+#bodyPreencherAtividade .option {
+    background-color: #f0f4fa;
+    padding: 12px 18px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#bodyPreencherAtividade .option input[type="radio"] {
+    margin-right: 12px;
+    transform: scale(1.2);
+}
+
+#bodyPreencherAtividade .option:hover {
+    background-color: #e6ecf4;
+    border-color: #cfd8e2;
+}
+
+#bodyPreencherAtividade .submit-btn {
+    display: block;
+    width: 100%;
+    background-color: #4a67d6;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(74, 103, 214, 0.3);
+    margin-top: 30px;
+}
+
+#bodyPreencherAtividade .submit-btn:hover {
+    background-color: #3b56b0;
+}
+
+#bodyPreencherAtividade .msg-erro {
+    color: #e67e22;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    #bodyPreencherAtividade .container {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    #bodyPreencherAtividade h1 {
+        font-size: 24px;
+    }
+}

@@ -1,4 +1,4 @@
-<main class="content">
+<main class="content" id="bodyAtividades">
   <h4 class="mb-4">Todas as aulas</h4>
 
   <div class="row mb-4 align-items-center">
@@ -18,116 +18,19 @@
   </div>
 </main>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f0f2f5;
-  }
-
-  .container {
-    padding: 30px;
-    box-sizing: border-box;
-  }
-
-  h4 {
-    font-size: 24px;
-    color: #333;
-  }
-
-  label {
-    font-weight: bold;
-    color: #555;
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  select {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    font-size: 14px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    width: 100%;
-  }
-
-  select:hover {
-    border-color: #888;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  }
-
-  .btn {
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .btn-primary {
-    background-color: #007bff;
-    border: none;
-    color: white;
-  }
-
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
-
-  .card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  }
-
-  .card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-  }
-
-  .card-content {
-    padding: 20px;
-  }
-
-  .card-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-  }
-
-  .card-description {
-    font-size: 14px;
-    color: #666;
-  }
-</style>
-
 <script>
   $(document).ready(function () {
-  $(document).on('click', '.editarAtividade', function () {
-    const id = $(this).attr('id').replace('atividade-', '');
-    buscarAtividade(id);
-  });
+
+    $(document).on('click', '.editarAtividade', function () {
+      const id = $(this).attr('id').replace('atividade-', '');
+      buscarAtividade(id);
+    });
 
     $('#novaAtividade').click(function () {
-      $("#main").load(`./Atividades/novaAtividade.html`);
-      executarScriptsEspecificos("NovaAtividade")
+      if (localStorage.getItem("tipo") == "2") {
+        $("#main").load(`./Atividades/novaAtividade.html`);
+        executarScriptsEspecificos("NovaAtividade")
+      }
     });
   });
 </script>
