@@ -8,7 +8,7 @@ async function preencherListMateriais() {
                 <li>
                     <span class="material-nome">${material.conteudo}</span>
                     <div class="material-actions">
-                        <button class="btn edit" onclick="editarMaterial(${material.id})">
+                        <button class="btn edit" onclick="editarMaterial(${material.id}, ${material.conteudo})">
                             <i class="fa fa-edit"></i>
                         </button>
                         <button class="btn delete" onclick="excluirMaterial(${material.id})">
@@ -44,7 +44,7 @@ async function excluirMaterial(id) {
         }
     }
 }
-async function editarMaterial(id, conteudo) {
+async function editarMaterial(id, conteudo = "") {
     debugger
     try {
         const textarea = document.createElement("textarea");
