@@ -6,17 +6,19 @@ async function preencherListMateriais() {
         for (const material of materiais) {
             html += `
                 <li>
-                    <span class="material-nome">${material.conteudo}</span>
-                    <div class="material-actions">
-                        <button class="btn edit" onclick="editarMaterial(${material.id}, '${material.conteudo}')">
-                            <i class="fa fa-edit"></i>
-                        </button>
-                        <button class="btn delete" onclick="excluirMaterial(${material.id})">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
-                </li>
-            `;
+                <span class="material-nome">${material.conteudo}</span>
+                <div class="material-actions">
+                    <button class="btn edit" 
+                            data-id="${material.id}" 
+                            data-conteudo="${encodeURIComponent(material.conteudo)}"
+                            onclick="editarMaterial(this)">
+                    <i class="fa fa-edit"></i>
+                    </button>
+                    <button class="btn delete" onclick="excluirMaterial(${material.id})">
+                    <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+                </li>`;
         }
 
         document.getElementById("listMateriais").innerHTML = html;
@@ -44,29 +46,30 @@ async function excluirMaterial(id) {
         }
     }
 }
-async function editarMaterial(id, conteudo = "") {
-    debugger
+async function editarMaterial(botao) {
+    const id = botao.getAttribute("data-id");
+    const conteudoOriginal = decodeURIComponent(botao.getAttribute("data-conteudo"));
+
+    const textarea = document.createElement("textarea");
+    textarea.value = conteudoOriginal;
+    textarea.rows = Math.min(20, Math.max(5, conteudoOriginal.split("\n").length));
+    textarea.style.width = "100%";
+
+    const { value: novoConteudo } = await swal({
+        text: "Edite o conteúdo do material:",
+        content: textarea,
+        buttons: ["Cancelar", "Salvar"]
+    });
+
+    if (!novoConteudo || novoConteudo.trim() === "") {
+        swal("Aviso", "O conteúdo não pode estar vazio.", "warning");
+        return;
+    }
+
+    const dados = { conteudo: novoConteudo.trim() };
+
     try {
-        const textarea = document.createElement("textarea");
-        textarea.value = conteudo;
-        textarea.rows = Math.min(20, Math.max(5, conteudo.split("\n").length));
-        textarea.style.width = "100%";
-
-        const { value: novoConteudo } = await swal({
-            text: "Edite o conteúdo do material:",
-            content: textarea,
-            buttons: ["Cancelar", "Salvar"]
-        });
-
-        if (!novoConteudo || novoConteudo.trim() === "") {
-            swal("Aviso", "O conteúdo não pode estar vazio.", "warning");
-            return;
-        }
-
-        const dados = { conteudo: novoConteudo.trim() };
-
         const response = await executarRequisicao(`materiais/${id}`, dados, 'PUT');
-
         if (response) {
             swal("Sucesso", "Material atualizado com sucesso!", "success");
             preencherListMateriais();
@@ -74,10 +77,10 @@ async function editarMaterial(id, conteudo = "") {
             const erro = await response.text();
             swal("Erro", `Não foi possível editar o material:\n${erro}`, "error");
         }
-
     } catch (error) {
         console.error("Erro ao editar material:", error);
         swal("Erro", "Erro inesperado ao editar o material.", "error");
     }
 }
+
 preencherListMateriais();
