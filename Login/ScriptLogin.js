@@ -4,6 +4,7 @@ $(document).ready(() => {
     });
 
     $("#btnLogin").click(function () {
+        debugger
         const login = $("#login").val();
         const senha = $("#senha").val();
 
