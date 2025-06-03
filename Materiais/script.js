@@ -8,7 +8,7 @@ async function preencherListMateriais() {
                 <li>
                     <span class="material-nome">${material.conteudo}</span>
                     <div class="material-actions">
-                        <button class="btn edit" onclick="editarMaterial(${material.id}, ${material.conteudo})">
+                        <button class="btn edit" onclick="editarMaterial(${material.id}, '${material.conteudo}')">
                             <i class="fa fa-edit"></i>
                         </button>
                         <button class="btn delete" onclick="excluirMaterial(${material.id})">
