@@ -55,32 +55,39 @@ async function editarMaterial(botao) {
     textarea.rows = Math.min(20, Math.max(5, conteudoOriginal.split("\n").length));
     textarea.style.width = "100%";
 
-    const { value: novoConteudo } = await swal({
+    setTimeout(() => textarea.focus(), 200);
+
+    const result = await swal({
         text: "Edite o conteúdo do material:",
         content: textarea,
         buttons: ["Cancelar", "Salvar"]
     });
 
-    if (!novoConteudo || novoConteudo.trim() === "") {
-        swal("Aviso", "O conteúdo não pode estar vazio.", "warning");
-        return;
-    }
+    if (result) {
+        const novoConteudo = textarea.value;
 
-    const dados = { conteudo: novoConteudo.trim() };
-
-    try {
-        const response = await executarRequisicao(`materiais/${id}`, dados, 'PUT');
-        if (response) {
-            swal("Sucesso", "Material atualizado com sucesso!", "success");
-            preencherListMateriais();
-        } else {
-            const erro = await response.text();
-            swal("Erro", `Não foi possível editar o material:\n${erro}`, "error");
+        if (!novoConteudo || novoConteudo.trim() === "") {
+            swal("Aviso", "O conteúdo não pode estar vazio.", "warning");
+            return;
         }
-    } catch (error) {
-        console.error("Erro ao editar material:", error);
-        swal("Erro", "Erro inesperado ao editar o material.", "error");
+
+        const dados = { conteudo: novoConteudo.trim() };
+
+        try {
+            const response = await executarRequisicao(`materiais/${id}`, dados, 'PUT');
+            if (response) {
+                swal("Sucesso", "Material atualizado com sucesso!", "success");
+                preencherListMateriais();
+            } else {
+                const erro = await response.text();
+                swal("Erro", `Não foi possível editar o material:\n${erro}`, "error");
+            }
+        } catch (error) {
+            console.error("Erro ao editar material:", error);
+            swal("Erro", "Erro inesperado ao editar o material.", "error");
+        }
     }
 }
+
 
 preencherListMateriais();
