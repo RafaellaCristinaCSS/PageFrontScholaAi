@@ -41,11 +41,11 @@
         <textarea id="texto" class="form-control" rows="4" placeholder="Digite aqui..."></textarea>
 
         <label class="form-label mt-3">Insira os arquivos:</label>
-        <div class="upload-box border border-dashed text-center p-3" style="cursor: pointer" onclick="clickInputFile()">
+        <div class="upload-box border border-dashed text-center p-3">
             <i class="fa-solid fa-cloud-upload fa-2x"></i>
-            <p class="mt-2" id="fileFake">Clique aqui para selecionar arquivos</p>
-            <input type="file" id="fileInput" onclick="event.stopPropagation();"
-                onchange="carregarTextoInseridoPorArquivo(event)" class="d-none">
+            <p class="mt-2" id="fileFake" style="cursor: pointer" onclick="clickInputFile()">Clique aqui para selecionar
+                arquivos</p>
+            <input type="file" id="fileInput" onchange="carregarTextoInseridoPorArquivo(event)" class="d-none">
         </div>
 
         <button class="btn btn-success w-100 mt-3" onclick="criarMaterial()" id="enviar">Enviar</button>
