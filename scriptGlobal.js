@@ -133,7 +133,6 @@ async function executarRequisicao(rota, parametros, tipo) {
                 withCredentials: true
             },
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
         });
 
         console.log("Resposta da API:", response);
@@ -141,7 +140,7 @@ async function executarRequisicao(rota, parametros, tipo) {
 
     } catch (error) {
         console.error("Erro na requisição:", error);
-        swal("Erro", "Falha na comunicação com o servidor.", "error");
+        swal("Erro", "Erro na requisição", "error");
         throw error;
     }
 }
