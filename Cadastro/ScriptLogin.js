@@ -14,6 +14,8 @@ function setarValores() {
     let urlParams = new URLSearchParams(window.location.search);
     let idEducador = urlParams.get("Educador");
     if (idEducador) {
+        $("#dataNascimento").closest("div").show()
+        $("#idEducador").closest("div").show()
         $("#idTipoAgente").val(1)
         $("#idEducador").val(idEducador)
     }
@@ -29,18 +31,10 @@ function verificarTipoAgente() {
 }
 function converterData(data) {
     if (data) {
-        return `${data}T00:00:00`;
+        const novaData = new Date(`${data}T00:00:00Z`);
+        return novaData.toISOString();
     } else {
         return null;
-    }
-}
-
-function setarValores() {
-    let urlParams = new URLSearchParams(window.location.search);
-    let idEducador = urlParams.get("Educador");
-    if (idEducador) {
-        $("#idTipoAgente").val("1");
-        $("#idEducador").val(idEducador);
     }
 }
 
