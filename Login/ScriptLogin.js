@@ -40,11 +40,7 @@ $(document).ready(() => {
                 localStorage.setItem("idEducador", response.idEducador);
                 localStorage.setItem("idAluno", response.idAluno);
                 localStorage.setItem("login", decoded.unique_name);
-
-                swal("Login realizado!", "Redirecionando...", "success")
-                    .then(() => {
-                        window.location.href = `${BaseUrlFront}`;
-                    });
+                window.location.href = `${BaseUrlFront}`;
             },
             error: function (xhr) {
                 let mensagem = "Erro ao realizar login.";

@@ -113,7 +113,7 @@ async function realizarCadastro() {
         await executarRequisicao("Agente", parametros, "POST");
         swal('Cadastro realizado com sucesso', '', 'success');
         setTimeout(() => {
-            window.location.href = `${BaseUrlFront}`;
+            window.location.href = `${BaseUrlFront}Login/index.html`;
         }, 1500);
     } catch (e) {
         console.error(e);

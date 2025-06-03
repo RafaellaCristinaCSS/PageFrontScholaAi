@@ -115,33 +115,6 @@
             }
         });
 
-        function redirecionarLogin() {
-            window.location.href = BaseUrlFront + "Login/index.html";
-        }
-
-        function definirMenu(response) {
-            const payload = jwt_decode(response);
-
-            $(".user-name").html(payload.unique_name);
-            $(".user-tipo").html(payload.Nivel);
-
-            const tipoUsuario = localStorage.getItem('tipo');
-
-            // Se for aluno, exibe botão de perfil
-            if (tipoUsuario === "1") {
-                $("#perfilAlunoContainer").html(
-                    '<button class="profile" type="button" onclick="exibirPerfilAluno()">Perfil</button>'
-                );
-            }
-
-            if (payload.Nivel !== "admin") {
-                $("#menuEducadores").hide();
-            }
-
-            if (payload.Nivel !== "contribuidor" && payload.Nivel !== "admin") {
-                $("#menuMateriais, #menuInserirMateriais").hide();
-            }
-        }
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

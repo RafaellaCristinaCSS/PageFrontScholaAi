@@ -129,6 +129,9 @@ async function executarRequisicao(rota, parametros, tipo) {
             },
             crossDomain: true,
             data: JSON.stringify(parametros),
+            xhrFields: {
+                withCredentials: true
+            },
             contentType: "application/json; charset=utf-8",
             dataType: "json",
         });
@@ -144,4 +147,29 @@ async function executarRequisicao(rota, parametros, tipo) {
 }
 async function getAlunos() {
     return await executarRequisicao(`Agente/buscarAlunosPorEducador/${localStorage.getItem("idAgente")}`, "", "GET");
+}
+
+function redirecionarLogin() {
+    window.location.href = `${BaseUrlFront}Login/index.html`;
+}
+function definirMenu(response) {
+    const payload = jwt_decode(response);
+
+    $(".user-name").html(payload.unique_name);
+    $(".user-tipo").html(payload.Nivel);
+
+    const tipoUsuario = localStorage.getItem('tipo');
+    if (tipoUsuario === "1") {
+        $("#perfilAlunoContainer").html(
+            '<button class="profile" type="button" onclick="exibirPerfilAluno()">Perfil</button>'
+        );
+    }
+
+    if (payload.Nivel !== "admin") {
+        $("#menuEducadores").hide();
+    }
+
+    if (payload.Nivel !== "contribuidor" && payload.Nivel !== "admin") {
+        $("#menuMateriais, #menuInserirMateriais").hide();
+    }
 }
