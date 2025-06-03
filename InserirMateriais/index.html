@@ -28,9 +28,9 @@
     <h4 class="text-center mb-4" style="margin-top: 60px;">Insira aqui seus materiais de aulas e estudos
         direcionados</h4>
     <div class="card p-4 w-100">
-        <label for="materia" class="form-label">Matéria <button
-                class="btn btn-primary adicionarMateria" id="adicionarMateria" onclick="abrirModalCriarMateria()"
-                type="button"><i class="fa-solid fa-plus"></i></button> </label>
+        <label for="materia" class="form-label">Matéria <button class="btn btn-primary adicionarMateria"
+                id="adicionarMateria" onclick="abrirModalCriarMateria()" type="button"><i
+                    class="fa-solid fa-plus"></i></button> </label>
 
         <div class="col-xs-10">
             <select id="materia" class="form-control form-select"></select>
@@ -41,9 +41,9 @@
         <textarea id="texto" class="form-control" rows="4" placeholder="Digite aqui..."></textarea>
 
         <label class="form-label mt-3">Insira os arquivos:</label>
-        <div class="upload-box border border-dashed text-center p-3">
+        <div class="upload-box border border-dashed text-center p-3" style="cursor: pointer" onclick="clickInputFile()">
             <i class="fa-solid fa-cloud-upload fa-2x"></i>
-            <p class="mt-2" id="fileFake" onclick="clickInputFile()">Clique aqui para selecionar arquivos</p>
+            <p class="mt-2" id="fileFake">Clique aqui para selecionar arquivos</p>
             <input type="file" id="fileInput" onchange="carregarTextoInseridoPorArquivo(event)" class="d-none">
         </div>
 

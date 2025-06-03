@@ -28,8 +28,14 @@ function criarMaterial() {
                 idAgente: parseInt(localStorage.idEducador),
                 idMateria: idMateria
             };
-            executarRequisicao("materiais", parametros, "POST");
-            swal('Material criado com sucesso!', '', 'success');
+            const response = executarRequisicao("materiais", parametros, "POST");
+            if (response) {
+                swal('Material criado com sucesso!', '', 'success');
+                let texto = $("#texto").val("");
+                let idMateria = $("#materia").val("");
+            } else {
+                swal('Erro ao criar o material', '', 'error');
+            }
         } catch (error) {
             console.error(error);
             swal('Erro ao criar o material', 'Tente novamente mais tarde.', 'error');

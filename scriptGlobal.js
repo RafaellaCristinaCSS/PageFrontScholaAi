@@ -119,6 +119,7 @@ async function preencherNomesMaterias() {
     }
 }
 async function executarRequisicao(rota, parametros, tipo) {
+    debugger
     try {
         const response = await $.ajax({
             type: tipo,
