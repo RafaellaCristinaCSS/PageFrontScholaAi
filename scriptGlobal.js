@@ -119,13 +119,12 @@ async function preencherNomesMaterias() {
     }
 }
 async function executarRequisicao(rota, parametros, tipo) {
-    console.log(localStorage.getItem("token"))
     try {
         const response = await $.ajax({
             type: tipo,
             url: BaseUrlBack + rota,
             headers: {
-                "Authorization": "Bearer " + localStorage.getItem("token")
+                "Authorization": "Bearer " + localStorage.token
             },
             crossDomain: true,
             data: JSON.stringify(parametros),

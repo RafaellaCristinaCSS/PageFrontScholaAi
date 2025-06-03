@@ -22,7 +22,6 @@ async function preencherListMateriais() {
         document.getElementById("listMateriais").innerHTML = html;
     } catch (error) {
         console.error("Erro ao carregar materiais:", error);
-        swal("Erro", "Ainda não tem estatísticas cadastradas.", "info");
     }
 }
 
@@ -45,23 +44,29 @@ async function excluirMaterial(id) {
         }
     }
 }
-
-async function editarMaterial(id) {
-    const { value: novoConteudo } = await swal({
-        text: "Digite o novo conteúdo do material:",
-        content: "input",
-        buttons: ["Cancelar", "Salvar"],
-    });
-
-    if (!novoConteudo || novoConteudo.trim() === "") {
-        swal("Aviso", "O conteúdo não pode estar vazio.", "warning");
-        return;
-    }
-
-    const dados = { conteudo: novoConteudo.trim() };
-
+async function editarMaterial(id, conteudo) {
+    debugger
     try {
+        const textarea = document.createElement("textarea");
+        textarea.value = conteudo;
+        textarea.rows = Math.min(20, Math.max(5, conteudo.split("\n").length));
+        textarea.style.width = "100%";
+
+        const { value: novoConteudo } = await swal({
+            text: "Edite o conteúdo do material:",
+            content: textarea,
+            buttons: ["Cancelar", "Salvar"]
+        });
+
+        if (!novoConteudo || novoConteudo.trim() === "") {
+            swal("Aviso", "O conteúdo não pode estar vazio.", "warning");
+            return;
+        }
+
+        const dados = { conteudo: novoConteudo.trim() };
+
         const response = await executarRequisicao(`materiais/${id}`, dados, 'PUT');
+
         if (response) {
             swal("Sucesso", "Material atualizado com sucesso!", "success");
             preencherListMateriais();
@@ -69,6 +74,7 @@ async function editarMaterial(id) {
             const erro = await response.text();
             swal("Erro", `Não foi possível editar o material:\n${erro}`, "error");
         }
+
     } catch (error) {
         console.error("Erro ao editar material:", error);
         swal("Erro", "Erro inesperado ao editar o material.", "error");
