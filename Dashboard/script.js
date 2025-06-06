@@ -1,9 +1,9 @@
 function redirecionarCadastroUsuario() {
     window.location.href = `${BaseUrlFront}Cadastro/index.html?Educador=${localStorage.getItem("idAgente")}`;
 }
-function getAnotacoesBlocoNotas() {
+async function getAnotacoesBlocoNotas() {
     debugger
-    const response = executarRequisicao(`blocoNotas/${parseInt(localStorage.idAgente)}`, "", "GET");
+    const response = await executarRequisicao(`blocoNotas/${parseInt(localStorage.idAgente)}`, "", "GET");
     $("#bloco-anotacoes").val(response.anotacao);
 }
 function blocoNotas() {
@@ -19,10 +19,10 @@ function blocoNotas() {
 
         clearTimeout(debounceTimeout);
         debounceTimeout = setTimeout(() => {
-            let parametros = [{
+            let parametros = {
                 idAgente: parseInt(localStorage.idAgente),
                 anotacao: bloco.value
-            }]
+            }
             executarRequisicao("blocoNotas", parametros, "POST")
         }, 800);
     });
