@@ -11,6 +11,7 @@ function blocoNotas(limiteBloco = 100) {
     const bloco = document.getElementById('bloco-anotacoes');
     const contadorBloco = document.getElementById('contador-anotacoes');
     let debounceTimeout;
+    contadorBloco.textContent = `${limiteBloco} caracteres restantes`;
 
     bloco.addEventListener('input', () => {
         const restante = limiteBloco - bloco.value.length;
