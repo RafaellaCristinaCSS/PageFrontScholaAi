@@ -1,13 +1,20 @@
 function abrirModalCriarMateria() {
     $('#modalCriarMateria').modal('show');
 }
+function fecharModalCriarMateria() {
+    $('#modalCriarMateria').modal('hide');
+}
 
 function clickInputFile() {
     $("#fileInput").click();
 }
 
 function clickInputFileImagemMateria() {
-    $("#fileImagemMateria").click();
+    $("#imagemMateria").click();
+    $("#imagemMateria").change(() => {
+        $("#nomeArquivoSelecionado").text("Arquivo Inserido com sucesso!");
+        $("#fileFake").html("Alterar Arquivo");
+    })
 }
 function carregarTextoInseridoPorArquivo(event) {
     const file = event.target.files[0];

@@ -4,9 +4,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalCriarMateriaLabel">Criar Matéria</h5>
-                <button type="button" class="btn btn-danger close" data-dismiss="modal" aria-label="Fechar"
-                    style="border: none;">
-                    <span aria-hidden="true" style="font-size: 1.5rem;">&times;</span>
+                <button type="button" class="btn btn-danger close" style="padding: 0.5px 6px;"
+                    onclick="fecharModalCriarMateria()">
+                    <span aria-hidden="true" style="font-size: 1rem;">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -17,9 +17,8 @@
                         <label for="imagemMateria" id="fileFake" style="margin-top: 15px;">Insira uma capa para a sua
                             matéria</label>
                         <div class="btn btn-primary" id="fileFake" onclick="clickInputFileImagemMateria()">Inserir
-                            arquivo</div>
-                        <input type="file" name="imagemMateria" id="fileImagemMateria" class="d-none" id="imagemMateria"
-                            accept="image/*">
+                            arquivo</div> <span id="nomeArquivoSelecionado"></span>
+                        <input type="file" name="imagemMateria" class="d-none" id="imagemMateria" accept="image/*">
                     </div>
                     <button type="button" style="margin-top: 10px;" onclick="criarMateria()"
                         class="btn btn-success">Criar
