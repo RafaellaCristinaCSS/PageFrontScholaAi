@@ -15,7 +15,6 @@ function clickInputFileImagemMateria() {
     $("#imagemMateria").click();
     $("#imagemMateria").change(() => {
         $("#nomeArquivoSelecionado").text("Arquivo inserido com sucesso!");
-        $("#fileFake").html("Alterar Arquivo");
     })
 }
 function carregarTextoInseridoPorArquivo(event) {
