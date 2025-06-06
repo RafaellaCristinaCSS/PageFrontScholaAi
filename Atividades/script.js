@@ -342,3 +342,4 @@ async function montarAtividadeExternaOuImpressao() {
 function isAluno() {
     return localStorage.getItem("tipo") == "1";
 }
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

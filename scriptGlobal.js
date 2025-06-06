@@ -1,6 +1,5 @@
 let BaseUrlFront = 'https://rafaellacristinacss.github.io/PageFrontScholaAi/';
 let BaseUrlBack = 'https://scholaai-production.up.railway.app/api/';
-
 async function buscarEducadores() {
     return educadores = await executarRequisicao("Agente/buscarDadosEducadores", "", "GET");
 }

@@ -1,10 +1,12 @@
 <h2>Dashboard</h2>
-<div class="content container-fluid">
+<div class="content container-fluid" id="dashboardEducador">
     <div class="row">
         <div class="col-md-4">
-            <div class="card p-3" style="height: 100%;">
+            <div id="bloco-anotacoes-container" class="card p-3">
                 <h5>Bloco de Anotações </h5>
-                <textarea class="form-control" rows="6" placeholder="Escreva aqui"></textarea>
+                <textarea id="bloco-anotacoes" class="form-control" rows="5" maxlength="100"
+                    placeholder="Escreva aqui"></textarea>
+                <small id="contador-anotacoes" class="form-text text-muted">100 caracteres restantes</small>
             </div>
         </div>
         <div class="col-md-3">
@@ -54,5 +56,16 @@
         ]
     });
     calendar.render();
-
 </script>
+
+<script>
+    const bloco = document.getElementById('bloco-anotacoes');
+    const contadorBloco = document.getElementById('contador-anotacoes');
+    const limiteBloco = 100;
+
+    bloco.addEventListener('input', () => {
+        const restante = limiteBloco - bloco.value.length;
+        contadorBloco.textContent = `${restante} caracteres restantes`;
+    });
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

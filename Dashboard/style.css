@@ -1,0 +1,12 @@
+#bloco-anotacoes {
+    resize: none;
+}
+
+#bloco-anotacoes-container {
+    height: auto;
+}
+
+#dashboardAluno .card,
+#dashboardEducador .card {
+    min-height: 360px;
+}
