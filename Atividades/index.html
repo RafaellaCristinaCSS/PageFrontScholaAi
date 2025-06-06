@@ -27,10 +27,8 @@
     });
 
     $('#novaAtividade').click(function () {
-      if (localStorage.getItem("tipo") == "2") {
-        $("#main").load(`./Atividades/novaAtividade.html`);
-        executarScriptsEspecificos("NovaAtividade")
-      }
+      $("#main").load(`./Atividades/novaAtividade.html`);
+      executarScriptsEspecificos("NovaAtividade")
     });
   });
 </script>
