@@ -3,8 +3,10 @@ function redirecionarCadastroUsuario() {
 }
 async function getAnotacoesBlocoNotas() {
     const response = await executarRequisicao(`blocoNotas/${parseInt(localStorage.idAgente)}`, "", "GET");
-    $("#bloco-anotacoes").val(response.anotacao);
-    if (response.anotacao) blocoNotas(100 - response.anotacao.length);
+    if (response.anotacao) {
+        $("#bloco-anotacoes").val(response.anotacao);
+        blocoNotas(100 - response.anotacao.length);
+    }
     else blocoNotas();
 }
 function blocoNotas(limiteBloco = 100) {
