@@ -2,6 +2,7 @@ function redirecionarCadastroUsuario() {
     window.location.href = `${BaseUrlFront}Cadastro/index.html?Educador=${localStorage.getItem("idAgente")}`;
 }
 function blocoNotas() {
+    debugger
     const bloco = document.getElementById('bloco-anotacoes');
     const contadorBloco = document.getElementById('contador-anotacoes');
     const limiteBloco = 100;
