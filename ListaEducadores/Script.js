@@ -56,6 +56,6 @@ async function preencherListEducadores() {
 
     } catch (error) {
         console.error("Erro ao carregar educadores:", error);
-        swal('Erro ao carregar educadores', 'Verifique a conexão e tente novamente.', 'error');
+        preencherListEducadores()
     }
 }

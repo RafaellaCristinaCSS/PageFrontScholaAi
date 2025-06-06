@@ -26,7 +26,7 @@ async function getDadosAluno() {
         swal('Dados carregados com sucesso', "", 'success');
     } catch (error) {
         console.error("Erro ao obter dados do aluno:", error);
-        swal("Erro", "Não foi possível carregar os dados do perfil.", "error");
+        getDadosAluno()
     }
 }
 
@@ -49,11 +49,7 @@ async function enviarInformacoesAluno() {
 
         const resposta = await executarRequisicao(`Agente/complementar-informacoes`, dados, "POST");
 
-        if (resposta) {
-            swal('Perfil salvo com sucesso', "", 'success');
-        } else {
-            swal("Erro", "Falha ao salvar as informações.", "error");
-        }
+        if (!resposta) swal("Erro", "Falha ao salvar as informações.", "error");
     } catch (error) {
         console.error("Erro ao enviar informações do aluno:", error);
         swal("Erro", "Não foi possível salvar as informações.", "error");

@@ -6,7 +6,7 @@ async function carregarEstatistica(idAluno, nome) {
         gerarRelatorio(idAluno, nome);
     } catch (error) {
         console.error("Erro ao carregar estatística:", error);
-        swal('Erro ao carregar estatística', '', 'error');
+        carregarEstatistica(idAluno, nome)
     }
 }
 
@@ -29,7 +29,7 @@ async function criarSelectAlunos() {
         $($("#alunoRelatorio").after(selectAlunos));
     } catch (error) {
         console.error("Erro ao criar select de alunos:", error);
-        swal('Erro ao carregar alunos', '', 'error');
+        criarSelectAlunos();
     }
 }
 async function gerarRelatorio(idAluno, nome = 'Aluno') {
@@ -39,11 +39,13 @@ async function gerarRelatorio(idAluno, nome = 'Aluno') {
             gerarGraficosRelatorio(relatorioAluno, nome);
         } else {
             window.location.href = `${BaseUrlFront}`;
-            swal('Nenhuma estatística registrada', '', 'info');
+            setTimeout(() => {
+                swal('Nenhuma estatística registrada', '', 'info');
+            }, 1500);
         }
     } catch (error) {
         console.error("Erro ao gerar relatório:", error);
-        swal('Erro ao gerar relatório', '', 'error');
+        gerarRelatorio(idAluno, nome);
     }
 }
 

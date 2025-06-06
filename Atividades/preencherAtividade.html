@@ -65,16 +65,15 @@
     try {
       let dados = await executarRequisicao(`atividade/responderAtividade`, parametro, "POST");
       console.log(dados);
-      Swal({
-        title: 'Perfil salvo com sucesso',
-        icon: 'success',
-        timer: 3000,
-        showConfirmButton: false
-      });
       $("#main").load(`./Atividades/index.html`);
       executarScriptsEspecificos('Atividades')
     } catch (ex) {
-      alert("Erro " + ex);
+      Swal({
+        title: `Erro ao tentar enviar resposta atividade, por favor tente novamente ${ex}`,
+        icon: 'error',
+        timer: 3000,
+        showConfirmButton: false
+      });
     }
   }
 </script>

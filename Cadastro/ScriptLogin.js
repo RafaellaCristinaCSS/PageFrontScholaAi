@@ -49,7 +49,7 @@ async function preencherLoginsEducadores() {
         setarValores();
     } catch (error) {
         console.error("Erro ao carregar educadores:", error);
-        swal('Erro ao carregar educadores', '', 'error');
+        preencherLoginsEducadores()
     }
 }
 
@@ -104,9 +104,9 @@ async function realizarCadastro() {
 
     try {
         await executarRequisicao("Agente", parametros, "POST");
-        swal('Cadastro realizado com sucesso', '', 'success');
         setTimeout(() => {
             window.location.href = `${BaseUrlFront}Login/index.html`;
+            swal('Cadastro realizado com sucesso', '', 'success');
         }, 1500);
     } catch (e) {
         console.error(e);

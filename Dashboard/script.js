@@ -37,7 +37,7 @@ async function preencherAlunosVinculados() {
         carregarGraficosPorAluno();
     } catch (error) {
         console.error("Erro ao carregar alunos vinculados:", error);
-        swal('Erro ao carregar alunos vinculados', '', 'error');
+        preencherAlunosVinculados()
     }
 }
 
@@ -55,7 +55,7 @@ async function carregarGraficosPorAluno() {
         carregarGraficosEducador(dados);
     } catch (error) {
         console.error("Erro ao carregar gráficos de desempenho:", error);
-        swal('Erro ao carregar gráficos de desempenho', '', 'error');
+        carregarGraficosPorAluno()
     }
 }
 
@@ -158,6 +158,6 @@ async function gerarGraficos(dados, idCanvasDesempenho = null, idCanvasGeral = n
         }
     } catch (error) {
         console.error("Erro ao gerar gráficos:", error);
-        swal('Erro ao gerar gráficos', '', 'error');
+        gerarGraficos(dados, idCanvasDesempenho, idCanvasGeral)
     }
 }

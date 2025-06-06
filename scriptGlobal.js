@@ -48,7 +48,7 @@ async function preencherSelectALunoPorEducador() {
         $("#aluno").html(html);
     } catch (error) {
         console.error("Erro - preencherSelectALunoPorEducador:", error);
-        swal("Erro", "Não foi possível carregar a lista de alunos.", "error");
+        preencherSelectALunoPorEducador()
     }
 }
 async function preencherCheckboxALunoPorEducador() {
@@ -61,7 +61,7 @@ async function preencherCheckboxALunoPorEducador() {
         $("#aluno").html(html);
     } catch (error) {
         console.error("Erro - preencherCheckboxALunoPorEducador:", error);
-        swal("Erro", "Não foi possível carregar os alunos para seleção.", "error");
+        preencherCheckboxALunoPorEducador()
     }
 }
 async function preencherAtividadesPorAgente() {
@@ -99,7 +99,7 @@ async function preencherAtividadesPorAgente() {
         });
     } catch (error) {
         console.error("Erro - preencherAtividadesPorAgente:", error);
-        swal("Erro", "Não foi possível carregar as atividades.", "error");
+        preencherAtividadesPorAgente()
     }
 }
 
@@ -115,7 +115,7 @@ async function preencherNomesMaterias() {
 
     } catch (error) {
         console.error("Erro - preencherNomesMaterias:", error);
-        swal("Erro", "Não foi possível carregar as matérias.", "error");
+        preencherNomesMaterias()
     }
 }
 async function executarRequisicao(rota, parametros, tipo) {
