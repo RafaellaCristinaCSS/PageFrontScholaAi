@@ -12,7 +12,7 @@ function clickInputFile() {
 function clickInputFileImagemMateria() {
     $("#imagemMateria").click();
     $("#imagemMateria").change(() => {
-        $("#nomeArquivoSelecionado").text("Arquivo Inserido com sucesso!");
+        $("#nomeArquivoSelecionado").text("Arquivo inserido com sucesso!");
         $("#fileFake").html("Alterar Arquivo");
     })
 }
@@ -55,7 +55,7 @@ function criarMaterial() {
     }
 }
 
-function criarMateria() {
+async function criarMateria() {
     let materia = $('#nomeMateria').val();
     let inputImagem = document.getElementById('imagemMateria');
     let arquivoImagem = inputImagem.files[0];
@@ -75,7 +75,7 @@ function criarMateria() {
         const imagemBase64 = e.target.result;
 
         const img = new Image();
-        img.onload = function () {
+        img.onload = async function () {
             const larguraMaxima = 800;
             const alturaMaxima = 800;
 
@@ -90,7 +90,7 @@ function criarMateria() {
             };
 
             try {
-                executarRequisicao("materia", parametros, "POST");
+                await executarRequisicao("materia", parametros, "POST");
 
                 $('#modalCriarMateria').modal('hide');
                 swal('Matéria criada com sucesso', '', 'success');
