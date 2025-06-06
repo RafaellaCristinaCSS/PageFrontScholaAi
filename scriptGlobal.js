@@ -4,7 +4,6 @@ async function buscarEducadores() {
     return educadores = await executarRequisicao("Agente/buscarDadosEducadores", "", "GET");
 }
 async function executarScriptsEspecificos(nome) {
-    debugger
     switch (nome) {
         case "ListaEducadores":
             preencherListEducadores();

@@ -1,0 +1,58 @@
+#modalCriarMateria {
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#modalCriarMateria label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #343a40;
+}
+
+#modalCriarMateria input[type="text"],
+#modalCriarMateria input[type="file"] {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+#modalCriarMateria input[type="file"] {
+    padding: 6px;
+    background-color: #f8f9fa;
+}
+
+#modalCriarMateria .btn-success {
+    background-color: #198754;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#modalCriarMateria .btn-success:hover {
+    background-color: #157347;
+}
+
+.custom-file-upload {
+    display: block;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    border: 2px dashed #ced4da;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.custom-file-upload:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.custom-file-upload i {
+    color: #495057;
+    margin-bottom: 10px;
+}
