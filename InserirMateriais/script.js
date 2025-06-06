@@ -2,7 +2,6 @@ function abrirModalCriarMateria() {
     $('#modalCriarMateria').modal('show')
     $("#nomeArquivoSelecionado").text("")
     $("#nomeMateria").val()
-    $("#fileFake").html("")
 }
 function fecharModalCriarMateria() {
     $('#modalCriarMateria').modal('hide');

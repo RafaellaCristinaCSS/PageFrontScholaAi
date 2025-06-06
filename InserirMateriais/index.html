@@ -14,11 +14,12 @@
                     <div class="form-group">
                         <label for="nomeMateria">Nome da Matéria</label>
                         <input type="text" class="form-control" id="nomeMateria" placeholder="Digite o nome da matéria">
-                        <label for="imagemMateria" style="margin-top: 15px;">Insira uma capa para a
+                        <label class="btn" for="imagemMateria" id="fileFake" onclick="clickInputFileImagemMateria()"
+                            style="margin-top: 15px;"><i class="fa-solid fa-paperclip"></i> &nbsp; Insira uma capa para
+                            a
                             sua
-                            matéria</label>
-                        <div class="btn btn-primary" id="fileFake" onclick="clickInputFileImagemMateria()">Inserir
-                            arquivo</div> <span id="nomeArquivoSelecionado"></span>
+                            matéria </label>
+                        <span id="nomeArquivoSelecionado"></span>
                         <input type="file" name="imagemMateria" class="d-none" id="imagemMateria" accept="image/*">
                     </div>
                     <button type="button" style="margin-top: 10px;" onclick="criarMateria()"
