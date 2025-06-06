@@ -1,7 +1,16 @@
 function redirecionarCadastroUsuario() {
     window.location.href = `${BaseUrlFront}Cadastro/index.html?Educador=${localStorage.getItem("idAgente")}`;
 }
+function blocoNotas() {
+    const bloco = document.getElementById('bloco-anotacoes');
+    const contadorBloco = document.getElementById('contador-anotacoes');
+    const limiteBloco = 100;
 
+    bloco.addEventListener('input', () => {
+        const restante = limiteBloco - bloco.value.length;
+        contadorBloco.textContent = `${restante} caracteres restantes`;
+    });
+}
 async function preencherAlunosVinculados() {
     try {
         const alunos = await getAlunos();

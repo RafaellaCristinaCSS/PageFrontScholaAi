@@ -38,7 +38,6 @@
     </div>
 </div>
 <script>
-
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -56,16 +55,5 @@
         ]
     });
     calendar.render();
-</script>
-
-<script>
-    const bloco = document.getElementById('bloco-anotacoes');
-    const contadorBloco = document.getElementById('contador-anotacoes');
-    const limiteBloco = 100;
-
-    bloco.addEventListener('input', () => {
-        const restante = limiteBloco - bloco.value.length;
-        contadorBloco.textContent = `${restante} caracteres restantes`;
-    });
 </script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

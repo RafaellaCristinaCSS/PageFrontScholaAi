@@ -69,14 +69,4 @@
         gerarGraficos(dados, 'graficoDesempenho', 'graficoGeral');
     }
 </script>
-<script>
-    const bloco = document.getElementById('bloco-anotacoes');
-    const contadorBloco = document.getElementById('contador-anotacoes');
-    const limiteBloco = 100;
-
-    bloco.addEventListener('input', () => {
-        const restante = limiteBloco - bloco.value.length;
-        contadorBloco.textContent = `${restante} caracteres restantes`;
-    });
-</script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
