@@ -2,12 +2,12 @@ function redirecionarCadastroUsuario() {
     window.location.href = `${BaseUrlFront}Cadastro/index.html?Educador=${localStorage.getItem("idAgente")}`;
 }
 async function getAnotacoesBlocoNotas() {
-    debugger
     const response = await executarRequisicao(`blocoNotas/${parseInt(localStorage.idAgente)}`, "", "GET");
     $("#bloco-anotacoes").val(response.anotacao);
+    if (response.anotacao) blocoNotas(100 - response.anotacao.length);
+    else blocoNotas();
 }
-function blocoNotas() {
-    debugger
+function blocoNotas(limiteBloco = 100) {
     const bloco = document.getElementById('bloco-anotacoes');
     const contadorBloco = document.getElementById('contador-anotacoes');
     const limiteBloco = 100;
