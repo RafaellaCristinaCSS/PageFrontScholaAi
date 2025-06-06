@@ -54,7 +54,6 @@ async function preencherLoginsEducadores() {
 }
 
 async function realizarCadastro() {
-    debugger
     const nome = $("#nome").val().trim();
     const tipoAgente = $("#idTipoAgente").val();
     const idEducador = $("#idEducador").val();

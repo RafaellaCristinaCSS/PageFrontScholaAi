@@ -19,6 +19,7 @@ function somarPontuacaoAtividade() {
     $("#pontucaoAtividade").val(pontuacaoAtividade)
 }
 function definirTipoAtividade() {
+    debugger
     $(".cardQuestionario").addClass("hide")
     $(".cardAtividadeLeitura").addClass("hide")
     $(".cardAtividadeExternaOuImpressao").addClass("hide")
@@ -35,6 +36,11 @@ function definirTipoAtividade() {
             $(".cardAtividade").removeClass("hide")
             if (!isAluno()) $("#pontucaoAtividade").prop("disabled", false)
             break;
+        case '4':
+            $(".selecaoAlunos").remove()
+            $("#selectAluno").html(`<select class="form-control form-select" id="aluno"></select>`)
+            preencherSelectALunoPorEducador()
+            break
     }
 }
 function adicionarPergunta() {
@@ -139,8 +145,6 @@ function preencherAtividade(atividade) {
         }
 
         if (atividade.nomeArquivo && atividade.arquivoBase64) {
-
-            debugger
             const imagemBase64 = `${atividade.arquivoBase64} `;
             const imagemSrc = imagemBase64
                 ? `${imagemBase64} `

@@ -28,7 +28,6 @@ async function preencherListMateriais() {
 }
 
 async function excluirMaterial(id) {
-    debugger
     const confirmacao = await swal({
         title: "Tem certeza?",
         text: "Você deseja excluir este material?",
