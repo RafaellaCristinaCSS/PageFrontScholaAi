@@ -14,6 +14,7 @@ async function executarScriptsEspecificos(nome) {
             if (tipoAgente == '2') {
                 preencherAlunosVinculados();
             }
+            getAnotacoesBlocoNotas();
             break;
         case "InserirMateriais":
             preencherNomesMaterias();

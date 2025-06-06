@@ -19,7 +19,6 @@ function somarPontuacaoAtividade() {
     $("#pontucaoAtividade").val(pontuacaoAtividade)
 }
 function definirTipoAtividade() {
-    debugger
     $(".cardQuestionario").addClass("hide")
     $(".cardAtividadeLeitura").addClass("hide")
     $(".cardAtividadeExternaOuImpressao").addClass("hide")

@@ -1,15 +1,30 @@
 function redirecionarCadastroUsuario() {
     window.location.href = `${BaseUrlFront}Cadastro/index.html?Educador=${localStorage.getItem("idAgente")}`;
 }
+function getAnotacoesBlocoNotas() {
+    debugger
+    const response = executarRequisicao(`blocoNotas/${parseInt(localStorage.idAgente)}`, "", "GET");
+    $("#bloco-anotacoes").val(response.anotacao);
+}
 function blocoNotas() {
     debugger
     const bloco = document.getElementById('bloco-anotacoes');
     const contadorBloco = document.getElementById('contador-anotacoes');
     const limiteBloco = 100;
+    let debounceTimeout;
 
     bloco.addEventListener('input', () => {
         const restante = limiteBloco - bloco.value.length;
         contadorBloco.textContent = `${restante} caracteres restantes`;
+
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+            let parametros = [{
+                idAgente: parseInt(localStorage.idAgente),
+                anotacao: bloco.value
+            }]
+            executarRequisicao("blocoNotas", parametros, "POST")
+        }, 800);
     });
 }
 async function preencherAlunosVinculados() {
