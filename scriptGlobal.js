@@ -139,8 +139,6 @@ async function executarRequisicao(rota, parametros, tipo) {
 
     } catch (error) {
         console.error("Erro na requisição:", error);
-        swal("Erro", "Erro na requisição", "error");
-        throw error;
     }
 }
 async function getAlunos() {
