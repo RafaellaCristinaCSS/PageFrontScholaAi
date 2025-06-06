@@ -10,7 +10,6 @@ async function getAnotacoesBlocoNotas() {
 function blocoNotas(limiteBloco = 100) {
     const bloco = document.getElementById('bloco-anotacoes');
     const contadorBloco = document.getElementById('contador-anotacoes');
-    const limiteBloco = 100;
     let debounceTimeout;
 
     bloco.addEventListener('input', () => {
