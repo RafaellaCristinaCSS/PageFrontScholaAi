@@ -133,12 +133,14 @@ async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "jso
                 "Authorization": "Bearer " + localStorage.token,
                 "Content-Type": "application/json"
             },
-            credentials: "include", // necessário apenas se o backend usa cookies ou autenticação via sessão
-            data: JSON.stringify(parametros)
+            data: JSON.stringify(parametros),
+            credentials: "include",
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: true
+            }
         };
-
         const response = await fetch(BaseUrlBack + rota, options);
-
 
         if (!response.ok) console.error(`Erro HTTP ${response.status}`);
         else {
