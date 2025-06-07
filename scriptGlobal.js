@@ -14,6 +14,7 @@ async function executarScriptsEspecificos(nome) {
                 preencherAlunosVinculados();
             }
             getAnotacoesBlocoNotas();
+            preencherCalendario()
             break;
         case "InserirMateriais":
             preencherNomesMaterias();
