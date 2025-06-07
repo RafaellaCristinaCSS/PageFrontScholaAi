@@ -47,27 +47,11 @@
 </div>
 <script>
     $(document).ready(function () {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'pt-br',
-            events: [
-                {
-                    title: 'Reunião',
-                    start: '2025-05-20'
-                },
-                {
-                    title: 'Entrega de projeto',
-                    start: '2025-05-22'
-                }
-            ]
-        });
-        calendar.render();
         carregarGraficosAluno()
         async function carregarGraficosAluno(idAluno) {
             const dados = await executarRequisicao(`relatorio/relatorio-desempenho/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
             gerarGraficos(dados, 'graficoDesempenho', 'graficoGeral');
         }
+        preencherCalendario()
     }) 
 </script>

@@ -39,22 +39,6 @@
 </div>
 <script>
     $(document).ready(function () {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'pt-br',
-            events: [
-                {
-                    title: 'Reunião',
-                    start: '2025-05-20'
-                },
-                {
-                    title: 'Entrega de projeto',
-                    start: '2025-05-22'
-                }
-            ]
-        });
-        calendar.render();
+        preencherCalendario()
     })
 </script>
