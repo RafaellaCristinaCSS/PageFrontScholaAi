@@ -44,7 +44,7 @@ async function preencherAlunosVinculados() {
 function preencherDependentesVinculados(alunos) {
     let html = '';
     for (const aluno of alunos) {
-        html += `<li><img src="imagens/daniel.png" class="rounded-circle" width="30"> ${aluno.nome} </li>`;
+        html += `<li><img src="imagens/Avatar1.png" class="rounded-circle" width="30"> ${aluno.nome} </li>`;
     }
     $("#dependentesVinculados").html(html);
 }

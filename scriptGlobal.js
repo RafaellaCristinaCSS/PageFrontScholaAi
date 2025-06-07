@@ -133,7 +133,7 @@ async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "jso
                 "Authorization": "Bearer " + localStorage.token,
                 "Content-Type": "application/json"
             },
-            data: JSON.stringify(parametros),
+            body: JSON.stringify(parametros),
             credentials: "include",
             crossDomain: true,
             xhrFields: {
