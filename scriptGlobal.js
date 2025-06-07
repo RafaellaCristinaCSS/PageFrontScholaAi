@@ -118,32 +118,45 @@ async function preencherNomesMaterias() {
         preencherNomesMaterias()
     }
 }
-async function executarRequisicao(rota, parametros, tipo) {
+async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "json") {
     try {
         adicionarLoading();
+
         const response = await $.ajax({
             type: tipo,
             url: BaseUrlBack + rota,
             headers: {
-                "Authorization": "Bearer " + localStorage.token
+                "Authorization": "Bearer " + localStorage.token,
+                "Content-Type": "application/json; charset=utf-8"
             },
             crossDomain: true,
-            data: JSON.stringify(parametros),
+            body: JSON.stringify(parametros),
             xhrFields: {
                 withCredentials: true
-            },
-            contentType: "application/json; charset=utf-8",
+            }
         });
 
-        console.log("Resposta da API:", response);
-        return response;
-
+        if (!response.ok) {
+            throw new Error(`Erro HTTP ${response.status}`);
+        }
+        switch (retorno) {
+            case "json":
+                const json = await response.json();
+                return json;
+            case "blob":
+                const blob = await response.blob();
+                return blob;
+            case "text":
+                const text = await response.text();
+                return text;
+        }
     } catch (error) {
         console.error("Erro na requisição:", error);
     } finally {
         removerLoading();
     }
 }
+
 async function getAlunos() {
     return await executarRequisicao(`Agente/buscarAlunosPorEducador/${localStorage.getItem("idAgente")}`, "", "GET");
 }
