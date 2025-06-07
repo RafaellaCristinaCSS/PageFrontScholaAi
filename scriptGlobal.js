@@ -173,47 +173,9 @@ async function executarRequisicao(rota, parametros, tipo, exibirLoading = true) 
 
         console.log("Resposta da API:", response);
         return response;
-
     } catch (error) {
         console.error("Erro na requisição:", error);
         throw error;
-    } finally {
-        removerLoading();
-    }
-}
-async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "json", exibirLoading = true) {
-    try {
-        if (exibirLoading) adicionarLoading();
-
-        const options = {
-            method: tipo,
-            headers: {
-                "Authorization": "Bearer " + localStorage.token,
-                "Content-Type": "application/json"
-            },
-            data: JSON.stringify(parametros),
-            credentials: "include",
-            crossDomain: true,
-            xhrFields: {
-                withCredentials: true
-            }
-        };
-        const response = await fetch(BaseUrlBack + rota, options);
-
-        if (!response.ok) console.error(`Erro HTTP ${response.status}`);
-        else {
-            if (retorno === "json") {
-                return await response.json();
-            } else if (retorno === "blob") {
-                return await response.blob();
-            } else if (retorno === "text") {
-                return await response.text();
-            } else {
-                return response;
-            }
-        }
-    } catch (error) {
-        console.error("Erro na requisição:", error);
     } finally {
         removerLoading();
     }
