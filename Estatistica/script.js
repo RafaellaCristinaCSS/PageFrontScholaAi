@@ -33,17 +33,34 @@ async function criarSelectAlunos() {
     }
 }
 async function exportarArtefatos() {
-    let pdf = null;
+    debugger
+    let response = null;
 
-    if (isAluno()) pdf = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
-    else {
+    if (isAluno()) {
+        response = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
+    } else {
         const idAluno = $("#alunos").val();
-        if (idAluno != "0") pdf = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(idAluno)}`, "", "GET");
-        else swal("Por favor, selecione um aluno", "", "info");
+        if (idAluno != "0") {
+            response = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(idAluno)}`, "", "GET");
+        } else {
+            swal("Por favor, selecione um aluno", "", "info");
+            return;
+        }
     }
 
-    if (pdf) window.location.href = pdf;
+    if (response && response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'RelatorioCompleto.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+    } else {
+        swal("Erro ao gerar relatório", "Verifique se o aluno tem atividades publicadas", "error");
+    }
 }
+
 
 async function gerarRelatorio(idAluno, nome = 'Aluno') {
     try {
