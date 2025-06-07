@@ -35,14 +35,8 @@ async function criarSelectAlunos() {
 async function gerarRelatorio(idAluno, nome = 'Aluno') {
     try {
         const relatorioAluno = await executarRequisicao(`relatorio/relatorio-desempenho/${idAluno}`, "", "GET");
-        if (relatorioAluno.length > 0) {
-            gerarGraficosRelatorio(relatorioAluno, nome);
-        } else {
-            window.location.href = `${BaseUrlFront}`;
-            setTimeout(() => {
-                swal('Nenhuma estatística registrada', '', 'info');
-            }, 1500);
-        }
+        if (relatorioAluno.length > 0) gerarGraficosRelatorio(relatorioAluno, nome);
+        else swal('Nenhuma estatística registrada', '', 'info');
     } catch (error) {
         console.error("Erro ao gerar relatório:", error);
         gerarRelatorio(idAluno, nome);
