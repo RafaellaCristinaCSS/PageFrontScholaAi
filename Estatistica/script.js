@@ -37,8 +37,8 @@ async function exportarArtefatos() {
 
     if (isAluno()) pdf = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
     else {
-        const idAluno = $("#alunos").val() != "";
-        if (idAluno) pdf = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(idAluno)}`, "", "GET");
+        const idAluno = $("#alunos").val();
+        if (idAluno != "0") pdf = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(idAluno)}`, "", "GET");
         else swal("Por favor, selecione um aluno", "", "info");
     }
 
