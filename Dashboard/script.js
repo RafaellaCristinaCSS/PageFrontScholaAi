@@ -25,7 +25,7 @@ function blocoNotas(limiteBloco = 100) {
                 idAgente: parseInt(localStorage.idAgente),
                 anotacao: bloco.value
             }
-            executarRequisicao("blocoNotas", parametros, "POST")
+            executarRequisicao("blocoNotas", parametros, "POST", "json", false)
         }, 800);
     });
 }
