@@ -32,6 +32,14 @@ async function criarSelectAlunos() {
         criarSelectAlunos();
     }
 }
+function exportarArtefatos() {
+    if (isAluno()) executarRequisicao(`relatorio/relatorio_completo/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
+    else {
+        const idAluno = $("#alunos").val();
+        if (idAluno) executarRequisicao(`relatorio/relatorio_completo/${parseInt()}`, "", "GET");
+        else swal("Por favor, selecione um aluno", "", "info")
+    }
+}
 async function gerarRelatorio(idAluno, nome = 'Aluno') {
     try {
         const relatorioAluno = await executarRequisicao(`relatorio/relatorio-desempenho/${idAluno}`, "", "GET");

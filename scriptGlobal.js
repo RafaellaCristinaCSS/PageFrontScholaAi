@@ -203,3 +203,6 @@ function removerLoading() {
         overlay.remove();
     }
 }
+function isAluno() {
+    return localStorage.getItem("tipo") == "1";
+}

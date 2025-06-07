@@ -337,7 +337,3 @@ async function montarAtividadeExternaOuImpressao() {
         reader.readAsDataURL(file);
     });
 }
-
-function isAluno() {
-    return localStorage.getItem("tipo") == "1";
-}
