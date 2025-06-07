@@ -62,10 +62,14 @@ async function exportarArtefatos() {
 
 
 async function gerarRelatorio(idAluno, nome = 'Aluno') {
+    $("#graficosRelatorio").html("");
     try {
         const relatorioAluno = await executarRequisicao(`relatorio/relatorio-desempenho/${idAluno}`, "", "GET");
         if (relatorioAluno.length > 0) gerarGraficosRelatorio(relatorioAluno, nome);
-        else swal('Nenhuma estatística registrada', '', 'info');
+        else {
+            swal('Nenhuma estatística registrada', '', 'info');
+            $("#exportarArtefatos").hide();
+        }
     } catch (error) {
         console.error("Erro ao gerar relatório:", error);
         gerarRelatorio(idAluno, nome);
@@ -77,7 +81,7 @@ function gerarGraficosRelatorio(relatorio, nome) {
     const alunoRelatorio = document.getElementById('alunoRelatorio');
     container.innerHTML = '';
     alunoRelatorio.innerHTML = 'Relatório ' + nome;
-
+    $("#exportarArtefatos").show()
     relatorio.forEach((materia, index) => {
         const idCanvas = `graficoMateria_${index}`;
 
