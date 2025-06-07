@@ -66,6 +66,7 @@ async function preencherCheckboxALunoPorEducador() {
 }
 async function preencherAtividadesPorAgente() {
     try {
+        adicionarLoading()
         const dados = await executarRequisicao(`atividade/atividadesPorAgente/${localStorage.getItem("idAgente")}`, "", "GET");
         if (dados.tipoAgente == 'educador') $(".cabecalhoEducador").show();
 
@@ -102,6 +103,8 @@ async function preencherAtividadesPorAgente() {
     } catch (error) {
         console.error("Erro - preencherAtividadesPorAgente:", error);
         preencherAtividadesPorAgente()
+    } finally {
+        removerLoading()
     }
 }
 
@@ -120,9 +123,9 @@ async function preencherNomesMaterias() {
         preencherNomesMaterias()
     }
 }
-async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "json") {
+async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "json", exibirLoading = true) {
     try {
-        adicionarLoading();
+        if (exibirLoading) adicionarLoading();
 
         const options = {
             method: tipo,
@@ -130,6 +133,7 @@ async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "jso
                 "Authorization": "Bearer " + localStorage.token,
                 "Content-Type": "application/json"
             },
+            data: JSON.stringify(parametros),
             credentials: "include",
             crossDomain: true,
             xhrFields: {
@@ -202,7 +206,7 @@ function adicionarLoading() {
     overlay.style.zIndex = "9999";
 
     const img = document.createElement("img");
-    img.src = "https://github.com/RafaellaCristinaCSS/PageFrontScholaAi/blob/351a82b749d140764bb32e35e35ca7cd6da8143d/imagens/loading.gif";
+    img.src = "./imagens/loading.gif";
     img.alt = "Carregando...";
     img.style.width = "100px";
 
