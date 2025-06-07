@@ -135,10 +135,6 @@ async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "jso
                 withCredentials: true
             }
         });
-
-        if (!response.ok) {
-            throw new Error(`Erro HTTP ${response.status}`);
-        }
         switch (retorno) {
             case "json":
                 const json = await response.json();
