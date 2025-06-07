@@ -189,7 +189,7 @@ function adicionarLoading() {
     overlay.style.zIndex = "9999";
 
     const img = document.createElement("img");
-    img.src = "/images/loading.gif";
+    img.src = "./imagens/loading.gif";
     img.alt = "Carregando...";
     img.style.width = "100px";
 
