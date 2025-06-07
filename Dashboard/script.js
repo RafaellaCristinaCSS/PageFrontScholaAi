@@ -25,7 +25,7 @@ function blocoNotas(limiteBloco = 100) {
                 idAgente: parseInt(localStorage.idAgente),
                 anotacao: bloco.value
             }
-            executarRequisicao("blocoNotas", parametros, "POST", "json", false)
+            executarRequisicao("blocoNotas", parametros, "POST", false);
         }, 800);
     });
 }
@@ -160,4 +160,26 @@ async function gerarGraficos(dados, idCanvasDesempenho = null, idCanvasGeral = n
         console.error("Erro ao gerar gráficos:", error);
         gerarGraficos(dados, idCanvasDesempenho, idCanvasGeral)
     }
+}
+function preencherCalendario() {
+    var calendarEl = document.getElementById('calendar');
+    fetch('https://date.nager.at/api/v3/PublicHolidays/2025/BR')
+        .then(response => response.json())
+        .then(data => {
+            const feriados = data.map(feriado => {
+                return {
+                    title: feriado.localName,
+                    start: feriado.date
+                };
+            });
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'pt-br',
+                events: feriados
+            });
+            calendar.render();
+        })
+        .catch(error => {
+            console.error('Erro ao buscar feriados:', error);
+        });
 }
