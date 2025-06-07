@@ -37,11 +37,11 @@ async function exportarArtefatos() {
     let response = null;
 
     if (isAluno()) {
-        response = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET", "blob");
+        response = await executarRequisicaoFetch(`relatorio/relatorio_completo/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET", "blob");
     } else {
         const idAluno = $("#alunos").val();
         if (idAluno != "0") {
-            response = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(idAluno)}`, "", "GET", "blob");
+            response = await executarRequisicaoFetch(`relatorio/relatorio_completo/${parseInt(idAluno)}`, "", "GET", "blob");
         } else {
             swal("Por favor, selecione um aluno", "", "info");
             return;
