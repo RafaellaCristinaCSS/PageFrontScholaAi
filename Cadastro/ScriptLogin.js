@@ -103,13 +103,13 @@ async function realizarCadastro() {
     };
 
     try {
-        await executarRequisicao("Agente", parametros, "POST", false);
-        swal('Cadastro realizado com sucesso', '', 'success');
+        let response = await executarRequisicao("Agente", parametros, "POST", false);
+        if (response.ok) swal('Cadastro realizado com sucesso', '', 'success');
         setTimeout(() => {
             window.location.href = `${BaseUrlFront}Login/index.html`;
         }, 2000);
     } catch (e) {
         console.error(e);
-        swal('Erro ao cadastrar', 'Verifique os dados e tente novamente.', 'error');
+        swal('Erro ao cadastrar', 'Esse login já esta sendo usado por outra pessoa', 'error');
     }
 }

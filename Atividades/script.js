@@ -22,7 +22,7 @@ function definirTipoAtividade() {
     $(".cardQuestionario").addClass("hide")
     $(".cardAtividadeLeitura").addClass("hide")
     $(".cardAtividadeExternaOuImpressao").addClass("hide")
-
+    $("#gerarQuestionario").hide()
     switch ($("#tipoAtividade").val()) {
         case '1':
             $(".cardQuestionario").removeClass("hide")
@@ -38,9 +38,17 @@ function definirTipoAtividade() {
         case '4':
             $(".selecaoAlunos").remove()
             $("#selectAluno").html(`<select class="form-control form-select" id="aluno"></select>`)
-            preencherSelectALunoPorEducador()
+            preencherSelectALunoPorEducador();
+            monitorarAlunoSelecionado();
+            $("#gerarQuestionario").show()
             break
     }
+}
+function monitorarAlunoSelecionado() {
+    $("#aluno").change(() => {
+        debugger
+        $("#listaSelecionados").val($("#aluno").val());
+    })
 }
 function adicionarPergunta() {
     perguntaCount++;
@@ -262,7 +270,7 @@ async function salvarAtividade(publicar) {
     try {
         const idAtividade = $('#idAtividade').val();
         if (idAtividade) {
-            await executarRequisicao(`atividade / ${parseInt(idAtividade)} `, atividadeBase, 'PUT');
+            await executarRequisicao(`atividade/${parseInt(idAtividade)} `, atividadeBase, 'PUT');
         } else {
             await executarRequisicao('atividade', atividadeBase, 'POST');
         }
@@ -316,11 +324,9 @@ function montarAtividadeQuestionario() {
 
     return questoes;
 }
-
 function montarAtividadeLeitura() {
     return $("#textoLeitura").val().trim();
 }
-
 async function montarAtividadeExternaOuImpressao() {
     const arquivoInput = document.getElementById("arquivoPdf");
     if (arquivoInput.files.length === 0) return { base64: "", nome: "" };
