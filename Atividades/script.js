@@ -24,7 +24,7 @@ function definirTipoAtividade() {
     $(".cardAtividadeExternaOuImpressao").addClass("hide")
     $("#gerarQuestionario").hide()
     $(".selecaoAlunos").show()
-    $()
+    $("#selectAluno").remove()
     switch ($("#tipoAtividade").val()) {
         case '1':
             $(".cardQuestionario").removeClass("hide")
