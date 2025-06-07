@@ -22,12 +22,12 @@ function definirTipoAtividade() {
     $(".cardQuestionario").addClass("hide")
     $(".cardAtividadeLeitura").addClass("hide")
     $(".cardAtividadeExternaOuImpressao").addClass("hide")
-    $("#gerarQuestionario").hide()
-    $(".selecaoAlunos").show()
-    $("#selectAluno").html("")
+    $(".divTipoQuestionario").addClass("d-none")
     switch ($("#tipoAtividade").val()) {
         case '1':
             $(".cardQuestionario").removeClass("hide")
+            $(".divTipoQuestionario").removeClass("d-none")
+            exibirCamposDeAcordoComTipoQuestionario()
             break;
         case '2':
             $(".cardAtividade").removeClass("hide")
@@ -37,14 +37,28 @@ function definirTipoAtividade() {
             $(".cardAtividade").removeClass("hide")
             if (!isAluno()) $("#pontucaoAtividade").prop("disabled", false)
             break;
-        case '4':
-            $(".selecaoAlunos").hide()
-            $("#selectAluno").html(`<select class="form-control form-select" id="aluno"></select>`)
-            preencherSelectALunoPorEducador();
-            monitorarAlunoSelecionado();
-            $("#gerarQuestionario").show()
-            break
     }
+}
+function exibirCamposDeAcordoComTipoQuestionario() {
+    const tipoQuestionario = $("#tipoQuestionario");
+    $(tipoQuestionario).change(() => {
+
+        switch (tipoQuestionario.val()) {
+            case 1:
+                $(".selecaoAlunos").show()
+                $("#selectAluno").html("")
+                $("#gerarQuestionario").addClass("d-none")
+                preencherCheckboxALunoPorEducador()
+                break;
+            case 2:
+                $(".selecaoAlunos").hide()
+                $("#selectAluno").html(`<select class="form-control form-select" id="aluno"></select>`)
+                $("#gerarQuestionario").removeClass("d-none")
+                preencherSelectALunoPorEducador();
+                monitorarAlunoSelecionado();
+                break;
+        }
+    })
 }
 function monitorarAlunoSelecionado() {
     $("#aluno").change(() => {

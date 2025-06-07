@@ -20,7 +20,13 @@
                 <option value="1">Questionário</option>
                 <option value="2">Atividade Leitura</option>
                 <option value="3">Ativdade Externa</option>
-                <option value="4">Questionário Automático</option>
+            </select>
+        </div>
+        <div class="col-4 divTipoQuestionario d-none">
+            <label>Tipo de Questionário</label>
+            <select class="form-control form-select" id="tipoQuestionario">
+                <option value="1">Tradicional</option>
+                <option value="">Automático</option>
             </select>
         </div>
         <div class="col-4">
@@ -87,10 +93,10 @@
     </div>
     <div id="perguntas-container"></div>
     <div class="row d-flex justify-content-around">
-        <button class="btn col-5 salvarRascunho" id="salvarRascunho">Salvar
+        <button type="button" class="btn col-5 salvarRascunho" id="salvarRascunho">Salvar
             Rascunho</button>
-        <button class="btn btn-success col-5" id="publicar">Publicar Atividade</button>
-        <button class="btn btn-success d-none" id="gerarQuestionario">Gerar Questionário</button>
+        <button type="button" class="btn btn-success col-5" id="publicar">Publicar Atividade</button>
+        <button type="button" class="btn btn-success d-none" id="gerarQuestionario">Gerar Questionário</button>
     </div>
 </main>
 <script src="./script.js"></script>
