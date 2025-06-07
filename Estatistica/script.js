@@ -32,13 +32,16 @@ async function criarSelectAlunos() {
         criarSelectAlunos();
     }
 }
-function exportarArtefatos() {
+async function exportarArtefatos() {
     debugger
-    if (isAluno()) executarRequisicao(`relatorio/relatorio_completo/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
+    if (isAluno()) var pdf = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
     else {
-        const idAluno = $("#alunos").val();
-        if (idAluno) executarRequisicao(`relatorio/relatorio_completo/${parseInt(idAluno)}`, "", "GET");
+        const idAluno = $("#alunos").val() != "";
+        if (idAluno) var pdf = await executarRequisicao(`relatorio/relatorio_completo/${parseInt(idAluno)}`, "", "GET");
         else swal("Por favor, selecione um aluno", "", "info")
+    }
+    if (pdf) {
+        window.location.href = pdf;
     }
 }
 async function gerarRelatorio(idAluno, nome = 'Aluno') {
