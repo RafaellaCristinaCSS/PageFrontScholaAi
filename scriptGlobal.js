@@ -133,14 +133,11 @@ async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "jso
                 "Authorization": "Bearer " + localStorage.token,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(parametros),
             credentials: "include",
-            crossDomain: true,
-            xhrFields: {
-                withCredentials: true
-            }
+            body: JSON.stringify(parametros)
         };
         const response = await fetch(BaseUrlBack + rota, options);
+
 
         if (!response.ok) console.error(`Erro HTTP ${response.status}`);
         else {
