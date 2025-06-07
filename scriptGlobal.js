@@ -30,7 +30,7 @@ async function executarScriptsEspecificos(nome) {
             preencherNomesMaterias();
             break;
         case "Estatistica":
-            if (localStorage.getItem("tipo") == "1") gerarRelatorio(parseInt(localStorage.getItem('idAluno')));
+            if (isAluno()) gerarRelatorio(parseInt(localStorage.getItem('idAluno')));
             else criarSelectAlunos();
             break;
         case "Perfil":

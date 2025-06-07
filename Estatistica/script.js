@@ -33,6 +33,7 @@ async function criarSelectAlunos() {
     }
 }
 function exportarArtefatos() {
+    debugger
     if (isAluno()) executarRequisicao(`relatorio/relatorio_completo/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
     else {
         const idAluno = $("#alunos").val();
