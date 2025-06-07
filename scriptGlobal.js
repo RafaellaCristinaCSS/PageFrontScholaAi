@@ -202,7 +202,7 @@ function adicionarLoading() {
     overlay.style.zIndex = "9999";
 
     const img = document.createElement("img");
-    img.src = "./imagens/loading.gif";
+    img.src = "https://github.com/RafaellaCristinaCSS/PageFrontScholaAi/blob/351a82b749d140764bb32e35e35ca7cd6da8143d/imagens/loading.gif";
     img.alt = "Carregando...";
     img.style.width = "100px";
 
