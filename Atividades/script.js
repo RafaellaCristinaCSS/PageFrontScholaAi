@@ -23,6 +23,8 @@ function definirTipoAtividade() {
     $(".cardAtividadeLeitura").addClass("hide")
     $(".cardAtividadeExternaOuImpressao").addClass("hide")
     $("#gerarQuestionario").hide()
+    $(".selecaoAlunos").show()
+    $()
     switch ($("#tipoAtividade").val()) {
         case '1':
             $(".cardQuestionario").removeClass("hide")
@@ -36,7 +38,7 @@ function definirTipoAtividade() {
             if (!isAluno()) $("#pontucaoAtividade").prop("disabled", false)
             break;
         case '4':
-            $(".selecaoAlunos").remove()
+            $(".selecaoAlunos").hide()
             $("#selectAluno").html(`<select class="form-control form-select" id="aluno"></select>`)
             preencherSelectALunoPorEducador();
             monitorarAlunoSelecionado();
@@ -47,7 +49,7 @@ function definirTipoAtividade() {
 function monitorarAlunoSelecionado() {
     $("#aluno").change(() => {
         debugger
-        $("#listaSelecionados").val($("#aluno").val());
+        $("#alunosSelecionados").val($("#aluno").val());
     })
 }
 function adicionarPergunta() {
