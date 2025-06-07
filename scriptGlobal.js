@@ -133,9 +133,10 @@ async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "jso
                 "Authorization": "Bearer " + localStorage.token,
                 "Content-Type": "application/json"
             },
-            credentials: "include",
-            body: JSON.stringify(parametros)
+            credentials: "include", // necessário apenas se o backend usa cookies ou autenticação via sessão
+            data: JSON.stringify(parametros)
         };
+
         const response = await fetch(BaseUrlBack + rota, options);
 
 
