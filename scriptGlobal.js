@@ -120,6 +120,7 @@ async function preencherNomesMaterias() {
 }
 async function executarRequisicao(rota, parametros, tipo) {
     try {
+        adicionarLoading();
         const response = await $.ajax({
             type: tipo,
             url: BaseUrlBack + rota,
@@ -139,6 +140,8 @@ async function executarRequisicao(rota, parametros, tipo) {
 
     } catch (error) {
         console.error("Erro na requisição:", error);
+    } finally {
+        removerLoading();
     }
 }
 async function getAlunos() {
@@ -167,5 +170,36 @@ function definirMenu(response) {
 
     if (payload.Nivel !== "contribuidor" && payload.Nivel !== "admin") {
         $("#menuMateriais, #menuInserirMateriais").hide();
+    }
+}
+function adicionarLoading() {
+    if (document.getElementById("loading-overlay")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "loading-overlay";
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "9999";
+
+    const img = document.createElement("img");
+    img.src = "/images/loading.gif";
+    img.alt = "Carregando...";
+    img.style.width = "100px";
+
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+}
+
+function removerLoading() {
+    const overlay = document.getElementById("loading-overlay");
+    if (overlay) {
+        overlay.remove();
     }
 }
