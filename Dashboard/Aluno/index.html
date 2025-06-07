@@ -52,5 +52,6 @@
             const dados = await executarRequisicao(`relatorio/relatorio-desempenho/${parseInt(localStorage.getItem('idAluno'))}`, "", "GET");
             gerarGraficos(dados, 'graficoDesempenho', 'graficoGeral');
         }
+        preencherCalendario()
     }) 
 </script>
