@@ -122,29 +122,31 @@ async function executarRequisicao(rota, parametros, tipo = "GET", retorno = "jso
     try {
         adicionarLoading();
 
-        const response = await $.ajax({
-            type: tipo,
-            url: BaseUrlBack + rota,
+        const options = {
+            method: tipo,
             headers: {
                 "Authorization": "Bearer " + localStorage.token,
-                "Content-Type": "application/json; charset=utf-8"
+                "Content-Type": "application/json"
             },
+            credentials: "include",
             crossDomain: true,
-            body: JSON.stringify(parametros),
             xhrFields: {
                 withCredentials: true
             }
-        });
-        switch (retorno) {
-            case "json":
-                const json = await response.json();
-                return json;
-            case "blob":
-                const blob = await response.blob();
-                return blob;
-            case "text":
-                const text = await response.text();
-                return text;
+        };
+        const response = await fetch(BaseUrlBack + rota, options);
+
+        if (!response.ok) console.error(`Erro HTTP ${response.status}`);
+        else {
+            if (retorno === "json") {
+                return await response.json();
+            } else if (retorno === "blob") {
+                return await response.blob();
+            } else if (retorno === "text") {
+                return await response.text();
+            } else {
+                return response;
+            }
         }
     } catch (error) {
         console.error("Erro na requisição:", error);
