@@ -49,7 +49,7 @@ async function exportarArtefatos() {
     }
 
     if (response) {
-        const url = window.URL.createObjectURL(blob);
+        const url = window.URL.createObjectURL(response);
         const a = document.createElement('a');
         a.href = url;
         a.download = 'RelatorioCompleto.pdf';
