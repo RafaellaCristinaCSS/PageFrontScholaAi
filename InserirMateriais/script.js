@@ -12,7 +12,7 @@ function clickInputFile() {
 }
 
 function clickInputFileImagemMateria() {
-    $("#imagemMateria").click();
+    $("#imagemMateria").off().on();
 }
 function preencherTextoArquivoInserido() {
     $("#nomeArquivoSelecionado").text("Arquivo inserido com sucesso!");
