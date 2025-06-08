@@ -140,8 +140,10 @@ async function preencherAtividade(atividade) {
 
     let idsAlunos = [];
     atividade.alunos.forEach(aluno => {
-        idsAlunos.push(aluno.id);
-        $(`#aluno input[type = checkbox][value = '${aluno.id}']`).prop("checked", true).prop("disabled", publicada);
+        if (!idsAlunos.includes(aluno.id)) {
+            idsAlunos.push(aluno.id);
+        }
+        $(`#aluno input[type=checkbox][value='${aluno.id}']`).prop("checked", true).prop("disabled", publicada);
     });
     $(`#aluno input[type = checkbox]`).prop("disabled", publicada);
     $(".adicionarAlunos").trigger("click");
@@ -242,16 +244,17 @@ function moverCheckboxes(origemId, destinoId) {
         cb.checked = false;
         destino.appendChild(label);
     });
-
     let alunosSelecionados = $("#alunosSelecionados");
     let listaAlunosSelecionados = alunosSelecionados.val();
     let listaSelecionados = $("#listaSelecionados").find("input");
-
-    for (const aluno of listaSelecionados) {
-        if (listaAlunosSelecionados) listaAlunosSelecionados += "," + $(aluno).val();
-        else listaAlunosSelecionados = $(aluno).val();
+    let alunosSet = new Set();
+    if (listaAlunosSelecionados) {
+        listaAlunosSelecionados.split(",").forEach(id => alunosSet.add(id));
     }
-    alunosSelecionados.val(listaAlunosSelecionados)
+    for (const aluno of listaSelecionados) {
+        alunosSet.add($(aluno).val());
+    }
+    alunosSelecionados.val(Array.from(alunosSet).join(","));
 }
 async function salvarAtividade(publicar) {
     debugger
