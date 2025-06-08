@@ -235,6 +235,7 @@ function moverCheckboxes(origemId, destinoId) {
     alunosSelecionados.val(listaAlunosSelecionados)
 }
 async function salvarAtividade(publicar) {
+    debugger
     let nomeAtividade = $("#nomeAtividade").val();
     let materia = $("#materia").val();
     let tipoAtividade = $("#tipoAtividade").val();
@@ -268,14 +269,7 @@ async function salvarAtividade(publicar) {
             atividadeBase.questoes = questoes;
             break;
 
-
         case "2":
-            const { base64: base64_2, nome: nome_2, texto: texto_2 } = await montarAtividadeLeitura();
-            atividadeBase.textoLeitura = texto_2;
-            atividadeBase.arquivoBase64 = base64_2;
-            atividadeBase.nomeArquivo = nome_2;
-            break;
-
         case "3":
             const { base64: base64_3, nome: nome_3, texto: texto_3 } = await montarAtividadeExternaOuImpressao();
             atividadeBase.textoLeitura = texto_3;
@@ -341,12 +335,20 @@ function montarAtividadeQuestionario() {
 
     return questoes;
 }
-function montarAtividadeLeitura() {
-    return $("#textoLeitura").val().trim();
-}
 async function montarAtividadeExternaOuImpressao() {
     const arquivoInput = document.getElementById("arquivoPdf");
-    if (arquivoInput.files.length === 0) return { base64: "", nome: "" };
+    const textoInput = document.getElementById("textoLeitura");
+
+    const texto = textoInput.value.trim();
+
+    if (!texto) {
+        alert("O campo de texto é obrigatório.");
+        throw new Error("Texto obrigatório não preenchido.");
+    }
+
+    if (arquivoInput.files.length === 0) {
+        return { base64: "", nome: "", texto };
+    }
 
     const file = arquivoInput.files[0];
     const nome = file.name;
@@ -354,12 +356,13 @@ async function montarAtividadeExternaOuImpressao() {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = function () {
-            resolve({ base64: reader.result, nome });
+            resolve({ base64: reader.result, nome, texto });
         };
         reader.onerror = reject;
         reader.readAsDataURL(file);
     });
 }
+
 async function gerarQuestionario() {
     let nomeAtividade = $("#nomeAtividade").val();
     let materia = $("#materia").val();

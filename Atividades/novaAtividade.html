@@ -95,12 +95,15 @@
     <div class="row d-flex justify-content-around">
         <button type="button" class="btn btn-info d-none" id="gerarQuestionario" style="margin-bottom: 20px;">Gerar
             Questionário</button>
-        <button type="button" class="btn col-5 salvarRascunho" id="salvarRascunho">Salvar
+        <button type="button" class="btn col-5 salvarRascunho" id="salvarRascunho"
+            onclick="salvarAtividade(false)">Salvar
             Rascunho</button>
-        <button type="button" class="btn btn-success col-5" id="publicar">Publicar Atividade</button>
+        <button type="button" class="btn btn-success col-5" onclick="salvarAtividade(true)" id="publicar">Publicar
+            Atividade</button>
     </div>
 </main>
 <script src="./script.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     let perguntaCount = 0;
     $(document).ready(function () {
@@ -114,15 +117,6 @@
         $(document).on("click", ".add-alternativa", adicionarAlternativa);
         $(document).on("click", "#gerarQuestionario", gerarQuestionario);
         $('#perguntas-container').on('change', '.pontuacaoPergunta', somarPontuacaoAtividade)
-
-        $('#salvarRascunho').click(function () {
-            debugger
-            salvarAtividade(false)
-        });
-        $('#publicar').click(function () {
-            debugger
-            salvarAtividade(true)
-        });
     });
 
 </script>
