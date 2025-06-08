@@ -49,7 +49,14 @@
         return;
       }
 
-      const confirmar = confirm("Você tem certeza de que deseja enviar suas respostas?");
+      const confirmar = swal({
+        title: 'Tem certeza?',
+        text: `Você tem certeza de que deseja enviar suas respostas?`,
+        icon: 'warning',
+        buttons: ['Cancelar', 'Confirmar'],
+        dangerMode: true
+      });
+
       if (!confirmar) return;
 
       const objetoResposta = {

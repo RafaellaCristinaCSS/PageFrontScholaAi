@@ -21,6 +21,11 @@ body {
 
 }
 
+.gerarQuestionario,
+.gerarQuestionario:hover {
+  color: white;
+}
+
 .salvarRascunho {
   background-color: #eebe2d;
   color: #ffffff;
