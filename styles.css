@@ -99,6 +99,16 @@ input[type='checkbox'] {
   color: red;
 }
 
+.btn-primary {
+  background-color: #3b5998 !important;
+  border: none !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: #3b5998 !important;
+}
+
 .logo-container {
   display: flex;
   align-items: center;

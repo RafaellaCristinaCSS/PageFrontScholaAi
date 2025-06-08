@@ -89,10 +89,6 @@ ul#listMateriais {
     transition: color 0.3s;
 }
 
-.material-actions .btn.delete i {
-    color: #3b5998;
-}
-
 .material-actions .btn:hover i {
     color: #3b5998;
 }

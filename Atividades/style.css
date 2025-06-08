@@ -46,16 +46,6 @@
     transition: all 0.3s ease;
 }
 
-#bodyAtividades .btn-primary {
-    background-color: #3b5998;
-    border: none;
-    color: white;
-}
-
-#bodyAtividades .btn-primary:hover {
-    background-color: #3b5998;
-}
-
 #bodyAtividades .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

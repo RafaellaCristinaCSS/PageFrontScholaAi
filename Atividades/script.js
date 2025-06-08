@@ -91,10 +91,10 @@ function adicionarPergunta() {
 function adicionarAlternativa() {
     const container = $(this).siblings('.alternativas-container');
     const alternativaHtml = `
-        < div class="alternativa d-flex align-items-center mb-2" >
+        <div class="alternativa d-flex align-items-center mb-2" >
         <input type="checkbox" class="me-2" />
         <input type="text" placeholder="Texto da alternativa" class="form-control" />
-        </div >
+        </div>
         `;
     container.append(alternativaHtml);
 }
@@ -143,7 +143,7 @@ function preencherAtividade(atividade) {
 
         atividade.questoes.forEach((questao, index) => {
             const perguntaHtml = `
-        < div class="pergunta-container row mb-3" data - pergunta - id="${index + 1}" >
+        <div class="pergunta-container row mb-3" data - pergunta - id="${index + 1}" >
                     <div class="col-12 col-md-10 mb-2">
                         <input type="text" name="pergunta_${index + 1}" value="${questao.texto}" placeholder="Digite a pergunta" class="pergunta form-control" ${desabilitar}/>
                     </div>
@@ -161,7 +161,7 @@ function preencherAtividade(atividade) {
                         </div>
                         ${!publicada ? `<button class="add-alternativa btn btn-secondary">+ Nova Alternativa</button>` : ''}
                     </div>
-                </div >
+                </div>
         `;
             $('#perguntas-container').append(perguntaHtml);
         });
