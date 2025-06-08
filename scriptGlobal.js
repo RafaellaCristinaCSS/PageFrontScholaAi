@@ -156,7 +156,9 @@ async function executarRequisicaoFetch(rota, retorno = "json", exibirLoading = t
 }
 async function executarRequisicao(rota, parametros, tipo, exibirLoading = true) {
     try {
-        if (exibirLoading) adicionarLoading()
+        if (exibirLoading) {
+            adicionarLoading()
+        }
 
         const response = await $.ajax({
             type: tipo,

@@ -40,7 +40,7 @@ function converterData(data) {
 
 async function preencherLoginsEducadores() {
     try {
-        const educadores = await executarRequisicao("Agente/buscarLoginEducadores", "", "GET");
+        const educadores = await executarRequisicao("Agente/buscarLoginEducadores", "", "GET", false);
         let html = '<option value="">Selecione um educador</option>';
         for (const educador of educadores) {
             html += `<option value="${educador.id}">${educador.login}</option>`;
