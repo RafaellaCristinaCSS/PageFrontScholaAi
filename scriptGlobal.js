@@ -171,8 +171,7 @@ async function executarRequisicao(rota, parametros, tipo, exibirLoading = true) 
             },
             crossDomain: true,
             data: JSON.stringify(parametros),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            contentType: "application/json; charset=utf-8"
         });
 
         console.log("Resposta da API:", response);

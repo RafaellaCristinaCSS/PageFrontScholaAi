@@ -212,6 +212,7 @@ function exibirQuestoes(questoes, publicada = false) {
             </div>
     `;
         $('#perguntas-container').append(perguntaHtml);
+        $(".cardQuestionario").removeClass("hide")
     });
 }
 function exibirQuestionarioAluno(atividade) {
