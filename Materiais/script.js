@@ -6,23 +6,23 @@ async function preencherListMateriais() {
         for (const material of materiais) {
             html += `
                 <li class="material-item">
-                    <div class="row d-flex">
+                     <div class="row d-flex">
                         <span class="material-titulo">${material.nomeMateria}</span>
                         <span class="material-educador">Educador criador: ${material.nomeEducador}</span>
                     </div>
                     <div class="material-conteudo" onclick="abrirModal('${encodeURIComponent(material.conteudo)}')">
-                    ${material.conteudo}
+                        ${material.conteudo}
                     </div>
                     <div class="material-actions">
-                    <button class="btn edit" 
-                    data-id="${material.id}" 
-                    data-conteudo="${encodeURIComponent(material.conteudo)}"
-                    onclick="editarMaterial(this)">
-                    <i class="fa fa-edit"></i>
-                    </button>
-                    <button class="btn delete" onclick="excluirMaterial(${material.id})">
-                    <i class="fa fa-trash"></i>
-                    </button>
+                        <button class="btn edit" 
+                                data-id="${material.id}" 
+                                data-conteudo="${encodeURIComponent(material.conteudo)}"
+                                onclick="editarMaterial(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn delete" onclick="excluirMaterial(${material.id})">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </div>
                 </li>`;
         }

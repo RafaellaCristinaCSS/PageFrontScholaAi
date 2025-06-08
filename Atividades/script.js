@@ -39,7 +39,6 @@ function definirTipoAtividade() {
     }
 }
 function exibirCamposDeAcordoComTipoQuestionario() {
-    debugger
     const tipoQuestionario = $("#tipoQuestionario");
     $(tipoQuestionario).change(() => {
         debugger
@@ -195,7 +194,7 @@ function exibirAtividadeParaAluno(atividade) {
 
         const alternativasHtml = questao.alternativas.map((alt, i) => `
 
-        < label class="option" for= "${grupoNome}_alt_${alt.id}" >
+        <label class="option" for= "${grupoNome}_alt_${alt.id}">
             <input type="radio" name="${grupoNome}" id="${grupoNome}_alt_${alt.id}" value="${alt.id}">
                 ${alt.texto}
             </label>
@@ -203,7 +202,7 @@ function exibirAtividadeParaAluno(atividade) {
         `).join('');
 
         const questaoHtml = `
-        < div class= "question" data - questao - id="${questaoId}" >
+        <div class= "question" data - questao - id="${questaoId}">
             <p>${index + 1}. ${questao.texto}</p>
                 ${alternativasHtml}
             </div >

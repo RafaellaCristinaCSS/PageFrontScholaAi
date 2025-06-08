@@ -38,7 +38,7 @@ async function preencherListEducadores() {
             html += `
                 <li>
                     <div class="educador-info">
-                        <img src="./imagens/Avatar1.png" alt="${educador.nomeEducador}" class="educador-icon">
+                        <img src="imagens/Avatar1.png" alt="${educador.nomeEducador}" class="educador-icon">
                         <span>${educador.nomeEducador}</span>
                     </div>
                     <div class="nivel-container">
