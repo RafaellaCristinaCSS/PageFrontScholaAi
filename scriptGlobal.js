@@ -124,16 +124,15 @@ async function preencherNomesMaterias() {
         preencherNomesMaterias()
     }
 }
-async function executarRequisicaoFetch(rota, parametros, tipo = "Post", retorno = "json", exibirLoading = true) {
+async function executarRequisicaoFetch(rota, retorno = "json", exibirLoading = true) {
     try {
         if (exibirLoading) adicionarLoading();
         const options = {
-            method: tipo,
+            method: "GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.token,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(parametros),
             credentials: "include",
         };
         const response = await fetch(BaseUrlBack + rota, options);
