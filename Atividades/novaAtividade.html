@@ -9,11 +9,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3">
+        <div class="col-xs-12 col-xs-4">
             <label>Matéria:</label>
             <select class="form-control form-select" id="materia"></select>
         </div>
-        <div class="col-3">
+        <div class="col-xs-12 col-xs-4">
             <label>Tipo Atividade</label>
             <select class="form-control form-select" id="tipoAtividade">
                 <option value="0">Selecione</option>
@@ -22,18 +22,18 @@
                 <option value="3">Ativdade Externa</option>
             </select>
         </div>
-        <div class="col-4 divTipoQuestionario d-none">
+        <div class="col-xs-12 col-xs-4 divTipoQuestionario d-none">
             <label>Tipo de Questionário</label>
             <select class="form-control form-select" id="tipoQuestionario">
                 <option value="1">Tradicional</option>
                 <option value="2">Automático</option>
             </select>
         </div>
-        <div class="col-4">
+        <div class="col-xs-12 col-xs-4">
             <label>Nome da Atividade</label>
             <input class="form-control" type="text" id="nomeAtividade" />
         </div>
-        <div class="col-2">
+        <div class="col-xs-12 col-md-2">
             <label>Pontuação</label>
             <input class="form-control" disabled type="text" id="pontucaoAtividade" />
         </div>
@@ -93,10 +93,11 @@
     </div>
     <div id="perguntas-container"></div>
     <div class="row d-flex justify-content-around">
+        <button type="button" class="btn btn-info d-none" id="gerarQuestionario" style="margin-bottom: 20px;">Gerar
+            Questionário</button>
         <button type="button" class="btn col-5 salvarRascunho" id="salvarRascunho">Salvar
             Rascunho</button>
         <button type="button" class="btn btn-success col-5" id="publicar">Publicar Atividade</button>
-        <button type="button" class="btn btn-success d-none" id="gerarQuestionario">Gerar Questionário</button>
     </div>
 </main>
 <script src="./script.js"></script>
@@ -110,6 +111,7 @@
         $(document).on("change", "#tipoAtividade", definirTipoAtividade);
         $(document).on("click", "#add-pergunta", adicionarPergunta);
         $(document).on("click", ".add-alternativa", adicionarAlternativa);
+        $(document).on("click", "#gerarQuestionario", gerarQuestionario);
         $('#perguntas-container').on('change', '.pontuacaoPergunta', somarPontuacaoAtividade)
 
         $('#salvarRascunho').click(function () {

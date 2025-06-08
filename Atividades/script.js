@@ -358,3 +358,45 @@ async function montarAtividadeExternaOuImpressao() {
         reader.readAsDataURL(file);
     });
 }
+async function gerarQuestionario() {
+    let nomeAtividade = $("#nomeAtividade").val();
+    let materia = $("#materia").val();
+    let tipoAtividade = 4;
+    let aluno = $("#alunosSelecionados").val();
+    let pontuacao = $("#pontucaoAtividade").val();
+
+    if (!nomeAtividade || !materia || !tipoAtividade || !aluno) {
+        Swal.fire({
+            title: 'Preencha todos os campos obrigatórios.',
+            icon: 'warning',
+            timer: 3000,
+            showConfirmButton: false
+        });;
+        return;
+    }
+
+    const atividadeBase = {
+        nome: nomeAtividade,
+        idMateria: parseInt(materia),
+        publicada: false,
+        pontuacao: parseInt(pontuacao) || 0,
+        idAgente: parseInt(localStorage.idAgente),
+        idTipoAtividade: parseInt(tipoAtividade),
+        listaIdAlunos: aluno.split(",").map(s => s.trim())
+    };
+
+    try {
+        const idAtividade = $('#idAtividade').val();
+        if (idAtividade) {
+            await executarRequisicao(`atividade/${parseInt(idAtividade)} `, atividadeBase, 'PUT');
+        } else {
+            await executarRequisicao('atividade', atividadeBase, 'POST');
+        }
+
+        swal('Realizado com sucesso', "", 'success')
+        $("#main").load(`./ Atividades / index.html`);
+        executarScriptsEspecificos('Atividades');
+    } catch (ex) {
+        alert("Erro ao salvar atividade: " + ex);
+    }
+}
