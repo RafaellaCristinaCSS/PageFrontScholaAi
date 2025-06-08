@@ -130,7 +130,7 @@ async function preencherAtividade(atividade) {
     if (!atividade || !atividade.nome) return;
 
     const publicada = atividade.publicada === true;
-    const desabilitar = publicada ? 'disabled' : '';
+
     $('#idAtividade').val(atividade.id);
     $('#nomeAtividade').val(atividade.nome.trim()).prop('disabled', publicada);
     $('#pontucaoAtividade').val(atividade.pontuacao)
@@ -188,6 +188,7 @@ async function preencherAtividade(atividade) {
 }
 function exibirQuestoes(questoes, publicada = false) {
     debugger
+    const desabilitar = publicada ? 'disabled' : '';
     questoes.forEach((questao, index) => {
         const perguntaHtml = `
     <div class="pergunta-container row mb-3" data - pergunta - id="${index + 1}" >
