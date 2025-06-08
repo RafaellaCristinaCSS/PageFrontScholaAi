@@ -52,7 +52,7 @@ async function exportarArtefatos() {
         const url = window.URL.createObjectURL(response);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'RelatorioCompleto.pdf';
+        a.download = 'RelatorioCompleto.zip';
         a.click();
         window.URL.revokeObjectURL(url);
     } else {
