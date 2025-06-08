@@ -46,6 +46,7 @@ function definirTipoAtividade() {
     $("#listaSelecionados").val("")
     $(".divControladoresSelectAlunos").addClass("d-flex").removeClass("d-none")
     $("#pontucaoAtividade").prop("disabled", true)
+    $(".perguntas-container").html("")
     switch ($("#tipoAtividade").val()) {
         case '1':
             exibirCamposDeAcordoComTipoQuestionario()
@@ -73,6 +74,7 @@ function exibirCamposDeAcordoComTipoQuestionario() {
             $("#gerarQuestionario").addClass("d-none")
             preencherCheckboxALunoPorEducador()
             $(".divControladoresSelectAlunos").addClass("d-flex").removeClass("d-none")
+            $(".cardQuestionario").removeClass("hide")
             break;
         case "2":
             $(".selecaoAlunos").hide()
@@ -81,6 +83,8 @@ function exibirCamposDeAcordoComTipoQuestionario() {
             preencherSelectALunoPorEducador();
             monitorarAlunoSelecionado();
             $(".divControladoresSelectAlunos").removeClass("d-flex").addClass("d-none")
+            $(".cardQuestionario").addClass("hide")
+            $(".perguntas-container").html("")
             break;
     }
 }
