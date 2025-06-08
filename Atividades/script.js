@@ -170,7 +170,7 @@ async function preencherAtividade(atividade) {
     const tipo = atividade.idTipoAtividade;
 
     if (tipo === 1 && atividade.questoes) {
-        exibirQuestoes(exibirQuestoes, publicada)
+        exibirQuestoes(atividade.questoes, publicada)
 
     } else if (tipo === 2 || tipo === 3) {
         if (atividade.textoLeitura) {
