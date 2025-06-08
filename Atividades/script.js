@@ -28,6 +28,7 @@ function definirTipoAtividade() {
     $("#gerarQuestionario").addClass("d-none")
     preencherCheckboxALunoPorEducador()
     $("#listaSelecionados").val("")
+    $("#pontucaoAtividade").prop("disabled", true)
     switch ($("#tipoAtividade").val()) {
         case '1':
             exibirCamposDeAcordoComTipoQuestionario()
