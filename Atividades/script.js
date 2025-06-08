@@ -137,6 +137,7 @@ async function preencherAtividade(atividade) {
     $('#tipoAtividade').val(atividade.idTipoAtividade).prop('disabled', publicada);
 
     if (publicada) {
+        $(".cardQuestionario").addClass("hide")
         $('#salvarRascunho').hide();
         $('#publicar').hide();
         $('.adicionarAlunos').hide();
