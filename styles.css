@@ -99,6 +99,11 @@ input[type='checkbox'] {
   color: red;
 }
 
+.gerarQuestionario {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
 .btn-primary {
   background-color: #3b5998 !important;
   border: none !important;

@@ -72,21 +72,22 @@ async function carregarGraficosEducador(dadosTodos) {
 
             const idDesempenho = `graficoDesempenho_${aluno.idAluno}`;
             const idGeral = `graficoGeral_${aluno.idAluno}`;
+            let html = `
+            <h6 class="btn" onclick="carregarEstatistica(${aluno.idAluno}, '${aluno.nomeAluno}')" style="font-size: 0.9rem;">${aluno.nomeAluno}</h6>
+            <div style="display: flex; justify-content: center; gap: 0.5rem;">`;
 
-            divAluno.innerHTML = `
-                <h6 class="btn" onclick="carregarEstatistica(${aluno.idAluno}, '${aluno.nomeAluno}')" style="font-size: 0.9rem;">${aluno.nomeAluno}</h6>
-                <div style="display: flex; justify-content: center; gap: 0.5rem;">
-                    <canvas id="${idDesempenho}" style="max-width: 240px; height: 180px;"></canvas>
-                    <canvas id="${idGeral}" style="max-width: 240px; height: 180px;"></canvas>
-                </div>
-            `;
+            if (aluno.relatorio) html += `<canvas id="${idDesempenho}" style="max-width: 240px; height: 180px;"></canvas>
+                                          <canvas id="${idGeral}" style="max-width: 240px; height: 180px;"></canvas>`;
+            else html += `<span>Não há dados a serem exibidos</span>`
 
+            html += `</div>`
+
+            divAluno.innerHTML = html;
             divAluno.style.minWidth = '520px';
             divAluno.style.flex = '0 0 auto';
-
             container.appendChild(divAluno);
 
-            gerarGraficos(aluno.relatorio, idDesempenho, idGeral);
+            if (aluno.relatorio) gerarGraficos(aluno.relatorio, idDesempenho, idGeral);
         });
     }
 }
@@ -97,7 +98,6 @@ function preencherPainelGeralDependentesVinculados(alunos) {
         html += `<div class="text-center">
                     <span class="dot" style="background-color: #4c6ef5;"></span>
                     <p>${aluno.nome}</p>
-                    <p>40%</p>
                 </div>`;
     }
     $("#graficoAlunosGeral").html(html);

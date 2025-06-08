@@ -391,7 +391,7 @@ async function gerarQuestionario() {
         }
 
         swal('Realizado com sucesso', "", 'success')
-        $("#main").load(`./ Atividades / index.html`);
+        $("#main").load(`./Atividades/index.html`);
         executarScriptsEspecificos('Atividades');
     } catch (ex) {
         alert("Erro ao salvar atividade: " + ex);
