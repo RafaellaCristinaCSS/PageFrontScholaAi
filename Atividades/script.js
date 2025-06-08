@@ -107,12 +107,13 @@ function adicionarPergunta() {
 }
 function adicionarAlternativa() {
     const container = $(this).siblings('.alternativas-container');
+    const perguntaId = $(this).closest('.pergunta-container').data('pergunta-id');
     const alternativaHtml = `
-        <div class="alternativa d-flex align-items-center mb-2" >
-        <input type="checkbox" class="me-2" />
-        <input type="text" placeholder="Texto da alternativa" class="form-control" />
+        <div class="alternativa d-flex align-items-center mb-2">
+            <input type="radio" name="correta_${perguntaId}" class="me-2" />
+            <input type="text" placeholder="Texto da alternativa" class="form-control" />
         </div>
-        `;
+    `;
     container.append(alternativaHtml);
 }
 async function preencherAtividade(atividade) {
