@@ -123,7 +123,7 @@ async function preencherNomesMaterias() {
         preencherNomesMaterias()
     }
 }
-async function executarRequisicaoFetch(rota, parametros, tipo = "Post", retorno = "json") {
+async function executarRequisicaoFetch(rota, parametros, tipo = "Post", retorno = "json", exibirLoading = true) {
     try {
         if (exibirLoading) adicionarLoading();
         const options = {
