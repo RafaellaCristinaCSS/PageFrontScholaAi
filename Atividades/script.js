@@ -4,19 +4,17 @@ async function buscarAtividade(id) {
     if (dados && dados.atividade) {
         if (isAluno()) {
             if (dados.atividade.idTipoAtividade == 3) {
-                $("#main").load(`./Atividades/preencherAtividade.html`, function () {
-                    exibirQuestionarioAluno(dados.atividade);
-                });
+                $("#main").load(`./Atividades/preencherAtividade.html`);
+                exibirQuestionarioAluno(dados.atividade);
             } else {
                 $("#main").load(`./Atividades/leituraAtividade.html`, function () {
                     exibirAtividadeLeituraExternaAluno(dados.atividade);
                 });
             }
         } else {
-            $("#main").load(`./Atividades/novaAtividade.html`, function () {
-                executarScriptsEspecificos('NovaAtividade')
-                preencherAtividade(dados.atividade);
-            });
+            $("#main").load(`./Atividades/novaAtividade.html`);
+            executarScriptsEspecificos('NovaAtividade')
+            preencherAtividade(dados.atividade);
         }
     } else {
         console.log("Erro ao buscar atividade")
