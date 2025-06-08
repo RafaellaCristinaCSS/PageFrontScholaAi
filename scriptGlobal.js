@@ -166,6 +166,9 @@ async function executarRequisicao(rota, parametros, tipo, exibirLoading = true) 
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
             },
+            xhrFields: {
+                withCredentials: true
+            },
             crossDomain: true,
             data: JSON.stringify(parametros),
             contentType: "application/json; charset=utf-8",
