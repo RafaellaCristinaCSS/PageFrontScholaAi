@@ -16,6 +16,15 @@
 </main>
 <script>
   $(document).ready(function () {
+    debugger
+    const atividadeRespondida = $("#atividade-aluno").data("respondida");
+
+    if (atividadeRespondida === true || atividadeRespondida === "true") {
+      $("#questoes-container input").attr("disabled", true);
+      $("#respostaAtividadeForm").hide();
+      $("#mensagem").text("Você já respondeu essa atividade.").show();
+    }
+
     $("#respostaAtividadeForm").off().on("click", function () {
       let todasRespondidas = true;
       let respostas = [];
@@ -36,14 +45,12 @@
       });
 
       if (!todasRespondidas) {
-        swal('Por favor, responda todas as questões antes de enviar.', "", 'info')
+        swal('Por favor, responda todas as questões antes de enviar.', "", 'info');
         return;
       }
 
       const confirmar = confirm("Você tem certeza de que deseja enviar suas respostas?");
       if (!confirmar) return;
-
-      const atividadeId = $("#atividade-aluno").data("atividade-id");
 
       const objetoResposta = {
         agenteId: parseInt($("#agenteId").val()),
@@ -52,8 +59,7 @@
         respostas: respostas
       };
 
-      console.log(objetoResposta);
-      enviarRespostaAtividade(objetoResposta)
+      enviarRespostaAtividade(objetoResposta);
     });
   });
   async function enviarRespostaAtividade(parametro) {
