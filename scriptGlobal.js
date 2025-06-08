@@ -172,7 +172,6 @@ async function executarRequisicao(rota, parametros, tipo, exibirLoading = true) 
             data: JSON.stringify(parametros),
             contentType: "application/json; charset=utf-8"
         });
-
         console.log("Resposta da API:", response);
         return response;
     } catch (error) {

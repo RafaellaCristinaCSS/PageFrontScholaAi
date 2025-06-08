@@ -130,7 +130,6 @@ async function preencherAtividade(atividade) {
     if (!atividade || !atividade.nome) return;
 
     const publicada = atividade.publicada === true;
-
     $('#idAtividade').val(atividade.id);
     $('#nomeAtividade').val(atividade.nome.trim()).prop('disabled', publicada);
     $('#pontucaoAtividade').val(atividade.pontuacao)
@@ -171,7 +170,6 @@ async function preencherAtividade(atividade) {
 
     if (tipo === 1 && atividade.questoes) {
         exibirQuestoes(atividade.questoes, publicada)
-
     } else if (tipo === 2 || tipo === 3) {
         if (atividade.textoLeitura) {
             $('#textoLeitura').val(atividade.textoLeitura).show().prop('disabled', publicada);
@@ -401,6 +399,7 @@ async function montarAtividadeExternaOuImpressao() {
 }
 
 async function gerarQuestionario() {
+    $('#perguntas-container').html("");
     let nomeAtividade = $("#nomeAtividade").val();
     let materia = $("#materia").val();
     let tipoAtividade = 4;

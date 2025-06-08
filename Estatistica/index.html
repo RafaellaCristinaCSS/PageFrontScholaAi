@@ -1,6 +1,35 @@
+<style>
+  #graficosRelatorio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* <- alinha à esquerda */
+    align-items: flex-start;
+    gap: 16px; /* espaço entre os cards */
+  }
+
+  .grafico-card {
+    width: 300px;
+    padding: 12px;
+    font-size: 0.85rem;
+    min-height: 180px;
+    flex: 0 0 auto; /* <- impede que cresça */
+  }
+
+  .grafico-container {
+    position: relative;
+    height: 120px;
+    width: 100%;
+  }
+
+  .divSelecaoAluno {
+  max-width: 960px; /* define a mesma largura que 3 cards (3 x 300px + gaps) */
+  margin: 0 auto 20px auto; /* centraliza */
+}
+</style>
+
 <main class="content">
 
-  <div class="container mt-4">
+  <div class="container mt-4" style="max-width: 960px; margin: 0 auto;">
     <h3 class="mb-4 text-center" id="alunoRelatorio">Relatório do Aluno</h3>
 
     <div id="graficosRelatorio" class="row d-flex"></div>

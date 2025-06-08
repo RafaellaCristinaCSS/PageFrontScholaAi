@@ -83,16 +83,24 @@ function gerarGraficosRelatorio(relatorio, nome) {
     const alunoRelatorio = document.getElementById('alunoRelatorio');
     container.innerHTML = '';
     alunoRelatorio.innerHTML = 'Relatório ' + nome;
-    $("#exportarArtefatos").show()
+    $("#exportarArtefatos").show();
+
     relatorio.forEach((materia, index) => {
         const idCanvas = `graficoMateria_${index}`;
 
         const div = document.createElement('div');
-        div.className = 'card col-5 p-3 m-2';
+        div.className = 'card grafico-card';
+        div.style.minHeight = '180px';
+        div.style.fontSize = '0.8rem';
+
+
+
         div.innerHTML = `
-          <h5>${materia.nomeMateria} (${materia.totalPontuacaoObtida}/${materia.totalPontuacaoPossivel})</h5>
-          <canvas id="${idCanvas}" height="300"></canvas>
-        `;
+  <h6>${materia.nomeMateria} (${materia.totalPontuacaoObtida}/${materia.totalPontuacaoPossivel})</h6>
+  <div class="grafico-container">
+    <canvas id="${idCanvas}"></canvas>
+  </div>
+`;
         container.appendChild(div);
 
         const labels = materia.atividades.map(a => a.nomeAtividade);
@@ -116,7 +124,8 @@ function gerarGraficosRelatorio(relatorio, nome) {
                     x: {
                         beginAtZero: true
                     }
-                }
+                },
+                maintainAspectRatio: false,
             }
         });
     });
