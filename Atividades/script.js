@@ -1,9 +1,8 @@
 async function buscarAtividade(id) {
     debugger
-    let isAluno = isAluno();
     let dados = await executarRequisicao(`atividade/buscarAtividade/${id}`, "", "GET");
     if (dados && dados.atividade) {
-        if (isAluno) {
+        if (isAluno()) {
             if (dados.atividade.idTipoAtividade == 3) {
                 $("#main").load(`./Atividades/preencherAtividade.html`);
                 exibirQuestionarioAluno(dados.atividade);
