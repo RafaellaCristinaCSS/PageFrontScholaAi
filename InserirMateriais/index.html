@@ -45,8 +45,6 @@
 
 
         <label for="texto" class="form-label mt-3">Escreva seu texto:</label>
-        <textarea id="texto" class="form-control" rows="4" maxlength="3000" placeholder="Digite aqui..."></textarea>
-        <small id="contador" class="form-text text-muted">3000 caracteres restantes</small>
         <label class="form-label mt-3">Insira os arquivos:</label>
         <div class="upload-box border border-dashed text-center p-3">
             <i class="fa-solid fa-cloud-upload fa-2x"></i>
@@ -60,13 +58,3 @@
 </div>
 <script src="../scriptGlobal.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    const textarea = document.getElementById('texto');
-    const contador = document.getElementById('contador');
-    const limite = 3000;
-
-    textarea.addEventListener('input', () => {
-        const restante = limite - textarea.value.length;
-        contador.textContent = `${restante} caracteres restantes`;
-    });
-</script>
