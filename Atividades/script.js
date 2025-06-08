@@ -302,20 +302,16 @@ async function salvarAtividade(publicar) {
             break;
     }
 
-    try {
-        const idAtividade = $('#idAtividade').val();
-        if (idAtividade) {
-            await executarRequisicao(`atividade/${parseInt(idAtividade)} `, atividadeBase, 'PUT');
-        } else {
-            await executarRequisicao('atividade', atividadeBase, 'POST');
-        }
-
-        swal('Realizado com sucesso', "", 'success')
-        $("#main").load(`./Atividades/index.html`);
-        executarScriptsEspecificos('Atividades');
-    } catch (ex) {
-        alert("Erro ao salvar atividade: " + ex);
+    const idAtividade = $('#idAtividade').val();
+    if (idAtividade) {
+        await executarRequisicao(`atividade/${parseInt(idAtividade)} `, atividadeBase, 'PUT');
+    } else {
+        await executarRequisicao('atividade', atividadeBase, 'POST');
     }
+
+    swal('Realizado com sucesso', "", 'success')
+    $("#main").load(`./Atividades/index.html`);
+    executarScriptsEspecificos('Atividades');
 }
 function montarAtividadeQuestionario() {
     const questoes = [];
@@ -413,18 +409,14 @@ async function gerarQuestionario() {
         listaIdAlunos: aluno.split(",").map(s => s.trim())
     };
 
-    try {
-        const idAtividade = $('#idAtividade').val();
-        if (idAtividade) {
-            await executarRequisicao(`atividade/${parseInt(idAtividade)} `, atividadeBase, 'PUT');
-        } else {
-            await executarRequisicao('atividade', atividadeBase, 'POST');
-        }
-
-        swal('Realizado com sucesso', "", 'success')
-        $("#main").load(`./Atividades/index.html`);
-        executarScriptsEspecificos('Atividades');
-    } catch (ex) {
-        alert("Erro ao salvar atividade: " + ex);
+    const idAtividade = $('#idAtividade').val();
+    if (idAtividade) {
+        await executarRequisicao(`atividade/${parseInt(idAtividade)} `, atividadeBase, 'PUT');
+    } else {
+        await executarRequisicao('atividade', atividadeBase, 'POST');
     }
+
+    swal('Realizado com sucesso', "", 'success')
+    $("#main").load(`./Atividades/index.html`);
+    executarScriptsEspecificos('Atividades');
 }
