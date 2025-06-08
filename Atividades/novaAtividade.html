@@ -16,7 +16,7 @@
         </div>
         <div class="col-xs-12 col-md-4">
             <label>Tipo Atividade</label>
-            <select class="form-control form-select" id="tipoAtividade">
+            <select class="form-control form-select" id="tipoAtividade" onchange="definirTipoAtividade()">
                 <option value="0">Selecione</option>
                 <option value="1">Questionário</option>
                 <option value="2">Atividade Leitura</option>
@@ -109,7 +109,6 @@
 <script>
     let perguntaCount = 0;
     $(document).ready(function () {
-        $(document).on("change", "#tipoAtividade", definirTipoAtividade);
         $(document).on("change", "#tipoQuestionario", exibirCamposDeAcordoComTipoQuestionario);
         $(document).on("click", "#add-pergunta", adicionarPergunta);
         $(document).on("click", ".add-alternativa", adicionarAlternativa);
