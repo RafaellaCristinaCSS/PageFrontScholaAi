@@ -74,7 +74,7 @@ async function preencherAtividadesPorAgente() {
         if (lista) {
             lista.innerHTML = "";
 
-            dados.atividades.forEach(atividade => {
+            await dados.atividades.forEach(atividade => {
                 const li = document.createElement('li');
                 li.className = "card btn editarAtividade";
                 li.setAttribute("data-materia", atividade.materia.nome);
