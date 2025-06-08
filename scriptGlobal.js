@@ -22,7 +22,6 @@ async function executarScriptsEspecificos(nome) {
             await preencherListMateriais();
             break;
         case "Atividades":
-            await preencherNomesMaterias();
             await preencherAtividadesPorAgente();
             break;
         case "NovaAtividade":
