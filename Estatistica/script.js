@@ -1,6 +1,8 @@
 async function carregarEstatistica(idAluno, nome) {
     try {
-        $("#main").load(`./Estatistica/index.html`);
+        $("#main").load(`./Estatistica/index.html`, function () {
+            $($("#alunoRelatorio").after(`<input id='alunos' class='d-none' val='${idAluno}' />`));
+        });
         $(".sidebar li").removeClass("active");
         $("#menuEstatisticas").addClass("active");
         gerarRelatorio(idAluno, nome);
