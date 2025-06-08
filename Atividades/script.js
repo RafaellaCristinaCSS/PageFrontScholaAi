@@ -202,7 +202,7 @@ function exibirQuestoes(questoes, publicada = false) {
                     <div class="alternativas-container">
                         ${questao.alternativas.map(alt => `
                             <div class="alternativa d-flex align-items-center mb-2">
-                                <input type="radio" name="correta_${questao.id}" class="me-2" ${alt.correta ? 'checked' : ''} ${desabilitar}/>
+                                <input type="radio" name="correta_${index + 1}" class="me-2" ${alt.correta ? 'checked' : ''} ${desabilitar}/>
                                 <input type="text" placeholder="Texto da alternativa" class="form-control" value="${alt.texto}" ${desabilitar}/>
                             </div>
                         `).join('')}
