@@ -111,12 +111,13 @@ function adicionarAlternativa() {
     container.append(alternativaHtml);
 }
 function preencherAtividade(atividade) {
+    $("#aluno").val("")
     preencherNomesMaterias();
+    preencherCheckboxALunoPorEducador();
     if (!atividade || !atividade.nome) return;
 
     const publicada = atividade.publicada === true;
     const desabilitar = publicada ? 'disabled' : '';
-    $("#aluno").val("")
     $('#idAtividade').val(atividade.id);
     $('#nomeAtividade').val(atividade.nome.trim()).prop('disabled', publicada);
     $('#pontucaoAtividade').val(atividade.pontuacao)
