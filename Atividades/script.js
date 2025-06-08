@@ -19,6 +19,7 @@ function somarPontuacaoAtividade() {
     $("#pontucaoAtividade").val(pontuacaoAtividade)
 }
 function definirTipoAtividade() {
+    debugger
     $(".cardQuestionario").addClass("hide")
     $(".cardAtividadeLeitura").addClass("hide")
     $(".cardAtividadeExternaOuImpressao").addClass("hide")
@@ -40,9 +41,10 @@ function definirTipoAtividade() {
     }
 }
 function exibirCamposDeAcordoComTipoQuestionario() {
+    debugger
     const tipoQuestionario = $("#tipoQuestionario");
     $(tipoQuestionario).change(() => {
-
+        debugger
         switch (tipoQuestionario.val()) {
             case 1:
                 $(".selecaoAlunos").show()
