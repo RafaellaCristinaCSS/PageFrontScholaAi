@@ -16,7 +16,6 @@ async function getDadosAluno() {
         }
 
         $("#estiloAprendizagem").val(resposta.estiloAprendizagem ?? "");
-        $("#dataNascimento").val(resposta.dataNascimento ?? "");
         $("#generoLiterarioFavorito").val(resposta.generoLiterarioFavorito ?? "");
         $("#modeloEnsino").val(resposta.modeloEnsino ?? "");
         $("#horasEstudo").val(resposta.horasEstudo ?? "");
