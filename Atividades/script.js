@@ -46,13 +46,13 @@ function exibirCamposDeAcordoComTipoQuestionario() {
     $(tipoQuestionario).change(() => {
         debugger
         switch (tipoQuestionario.val()) {
-            case 1:
+            case "1":
                 $(".selecaoAlunos").show()
                 $("#selectAluno").html("")
                 $("#gerarQuestionario").addClass("d-none")
                 preencherCheckboxALunoPorEducador()
                 break;
-            case 2:
+            case "2":
                 $(".selecaoAlunos").hide()
                 $("#selectAluno").html(`<select class="form-control form-select" id="aluno"></select>`)
                 $("#gerarQuestionario").removeClass("d-none")
