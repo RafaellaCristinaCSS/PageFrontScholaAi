@@ -76,7 +76,7 @@ async function carregarGraficosEducador(dadosTodos) {
             <h6 class="btn" onclick="carregarEstatistica(${aluno.idAluno}, '${aluno.nomeAluno}')" style="font-size: 0.9rem;">${aluno.nomeAluno}</h6>
             <div style="display: flex; justify-content: center; gap: 0.5rem;">`;
 
-            if (aluno.relatorio) html += `<canvas id="${idDesempenho}" style="max-width: 240px; height: 180px;"></canvas>
+            if (aluno.relatorio && aluno.relatorio != 0) html += `<canvas id="${idDesempenho}" style="max-width: 240px; height: 180px;"></canvas>
                                           <canvas id="${idGeral}" style="max-width: 240px; height: 180px;"></canvas>`;
             else html += `<span>Não há dados a serem exibidos</span>`
 
@@ -87,7 +87,7 @@ async function carregarGraficosEducador(dadosTodos) {
             divAluno.style.flex = '0 0 auto';
             container.appendChild(divAluno);
 
-            if (aluno.relatorio) gerarGraficos(aluno.relatorio, idDesempenho, idGeral);
+            if (aluno.relatorio && aluno.relatorio != 0) gerarGraficos(aluno.relatorio, idDesempenho, idGeral);
         });
     }
 }
