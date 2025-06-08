@@ -12,8 +12,9 @@ async function buscarAtividade(id) {
                 });
             }
         } else {
-            $("#main").load(`./Atividades/novaAtividade.html`);
-            executarScriptsEspecificos('NovaAtividade')
+            const html = await $.get('./Atividades/novaAtividade.html');
+            $("#main").html(html);
+            await executarScriptsEspecificos('NovaAtividade');
             preencherAtividade(dados.atividade);
         }
     } else {
