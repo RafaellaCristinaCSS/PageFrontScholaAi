@@ -44,6 +44,7 @@ function definirTipoAtividade() {
     $("#gerarQuestionario").addClass("d-none")
     preencherCheckboxALunoPorEducador()
     $("#listaSelecionados").val("")
+    $(".divControladoresSelectAlunos").show()
     $("#pontucaoAtividade").prop("disabled", true)
     switch ($("#tipoAtividade").val()) {
         case '1':
@@ -71,6 +72,7 @@ function exibirCamposDeAcordoComTipoQuestionario() {
             $("#selectAluno").html("")
             $("#gerarQuestionario").addClass("d-none")
             preencherCheckboxALunoPorEducador()
+            $(".divControladoresSelectAlunos").show()
             break;
         case "2":
             $(".selecaoAlunos").hide()
@@ -78,6 +80,7 @@ function exibirCamposDeAcordoComTipoQuestionario() {
             $("#gerarQuestionario").removeClass("d-none")
             preencherSelectALunoPorEducador();
             monitorarAlunoSelecionado();
+            $(".divControladoresSelectAlunos").hide()
             break;
     }
 }
