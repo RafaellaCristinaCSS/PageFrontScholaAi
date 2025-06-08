@@ -73,12 +73,12 @@ async function carregarGraficosEducador(dadosTodos) {
             const idDesempenho = `graficoDesempenho_${aluno.idAluno}`;
             const idGeral = `graficoGeral_${aluno.idAluno}`;
             let html = `
-            <h6 class="btn" onclick="carregarEstatistica(${aluno.idAluno}, '${aluno.nomeAluno}')" style="font-size: 0.9rem;">${aluno.nomeAluno}</h6>
+            <h6 class="btn btn-primary" onclick="carregarEstatistica(${aluno.idAluno}, '${aluno.nomeAluno}')" style="font-size: 0.9rem;">${aluno.nomeAluno}</h6>
             <div style="display: flex; justify-content: center; gap: 0.5rem;">`;
 
             if (aluno.relatorio && aluno.relatorio != 0) html += `<canvas id="${idDesempenho}" style="max-width: 240px; height: 180px;"></canvas>
                                           <canvas id="${idGeral}" style="max-width: 240px; height: 180px;"></canvas>`;
-            else html += `<span>Não há dados a serem exibidos</span>`
+            else html += `<span>Não há atividades registradas</span>`
 
             html += `</div>`
 

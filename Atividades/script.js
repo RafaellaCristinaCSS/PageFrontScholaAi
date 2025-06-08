@@ -22,6 +22,7 @@ function definirTipoAtividade() {
     debugger
     $(".cardAtividade").addClass("hide")
     $(".cardQuestionario").addClass("hide")
+    $("#salvarRascunho").addClass("hide")
     $(".divTipoQuestionario").addClass("d-none")
     $(".selecaoAlunos").show()
     $("#selectAluno").html("")
@@ -32,6 +33,7 @@ function definirTipoAtividade() {
     switch ($("#tipoAtividade").val()) {
         case '1':
             exibirCamposDeAcordoComTipoQuestionario()
+            $("#salvarRascunho").removeClass("hide");
             break;
         case '2':
             $(".cardAtividade").removeClass("hide")
@@ -103,7 +105,7 @@ function preencherAtividade(atividade) {
 
     const publicada = atividade.publicada === true;
     const desabilitar = publicada ? 'disabled' : '';
-
+    $("#aluno").val("")
     $('#idAtividade').val(atividade.id);
     $('#nomeAtividade').val(atividade.nome.trim()).prop('disabled', publicada);
     $('#pontucaoAtividade').val(atividade.pontuacao)
