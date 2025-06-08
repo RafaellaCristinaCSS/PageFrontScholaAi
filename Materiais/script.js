@@ -43,14 +43,14 @@ function fecharModal() {
 
 
 async function excluirMaterial(id) {
-    const confirmacao = await swal({
-        title: "Tem certeza?",
-        text: "Você deseja excluir este material?",
-        icon: "warning",
-        buttons: ["Cancelar", "Excluir"],
-        dangerMode: true,
-    });
-
+    // const confirmacao = await swal({
+    //     title: "Tem certeza?",
+    //     text: "Você deseja excluir este material?",
+    //     icon: "warning",
+    //     buttons: ["Cancelar", "Excluir"],
+    //     dangerMode: true,
+    // });
+    let confirmacao = true;
     if (confirmacao) {
         const response = await executarRequisicao(`materiais/${id}`, {}, 'DELETE');
         if (response) {

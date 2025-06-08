@@ -49,15 +49,15 @@
         return;
       }
 
-      const confirmar = swal({
-        title: 'Tem certeza?',
-        text: `Você tem certeza de que deseja enviar suas respostas?`,
-        icon: 'warning',
-        buttons: ['Cancelar', 'Confirmar'],
-        dangerMode: true
-      });
+      // const confirmar = swal({
+      //   title: 'Tem certeza?',
+      //   text: `Você tem certeza de que deseja enviar suas respostas?`,
+      //   icon: 'warning',
+      //   buttons: ['Cancelar', 'Confirmar'],
+      //   dangerMode: true
+      // });
 
-      if (!confirmar) return;
+      // if (!confirmar) return;
 
       const objetoResposta = {
         agenteId: parseInt($("#agenteId").val()),

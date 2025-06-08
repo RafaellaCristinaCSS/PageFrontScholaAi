@@ -2,14 +2,14 @@ async function alterarNivelEducador(idEducador, nivelVisibilidade) {
     const novoNivel = nivelVisibilidade;
     const textoNivel = `Nível ${novoNivel}`;
 
-    const confirmacao = await swal({
-        title: 'Tem certeza?',
-        text: `Você deseja mover este educador para ${textoNivel}?`,
-        icon: 'warning',
-        buttons: ['Cancelar', 'Confirmar'],
-        dangerMode: true
-    });
-
+    // const confirmacao = await swal({
+    //     title: 'Tem certeza?',
+    //     text: `Você deseja mover este educador para ${textoNivel}?`,
+    //     icon: 'warning',
+    //     buttons: ['Cancelar', 'Confirmar'],
+    //     dangerMode: true
+    // });
+    let confirmacao = true;
     if (confirmacao) {
         const parametros = {
             nivelVisibilidade: novoNivel
