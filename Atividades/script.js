@@ -27,6 +27,7 @@ function definirTipoAtividade() {
     $("#selectAluno").html("")
     $("#gerarQuestionario").addClass("d-none")
     preencherCheckboxALunoPorEducador()
+    $("#listaSelecionados").val("")
     switch ($("#tipoAtividade").val()) {
         case '1':
             exibirCamposDeAcordoComTipoQuestionario()
@@ -282,7 +283,7 @@ async function salvarAtividade(publicar) {
         }
 
         swal('Realizado com sucesso', "", 'success')
-        $("#main").load(`./ Atividades / index.html`);
+        $("#main").load(`./Atividades/index.html`);
         executarScriptsEspecificos('Atividades');
     } catch (ex) {
         alert("Erro ao salvar atividade: " + ex);
@@ -333,7 +334,7 @@ function montarAtividadeQuestionario() {
 async function montarAtividadeExternaOuImpressao() {
     const arquivoInput = document.getElementById("arquivoPdf");
     const textoInput = document.getElementById("textoLeitura");
-
+    const pontuacao = document.getElementById("pontucaoAtividade");
     const texto = textoInput.value.trim();
 
     if (!texto) {
@@ -342,7 +343,7 @@ async function montarAtividadeExternaOuImpressao() {
     }
 
     if (arquivoInput.files.length === 0) {
-        return { base64: "", nome: "", texto };
+        return { base64: "", nome: "", pontuacao: 0, texto };
     }
 
     const file = arquivoInput.files[0];

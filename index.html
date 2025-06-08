@@ -91,8 +91,8 @@
                 const caminho = $(this).attr("href");
 
                 if (caminho === 'Dashboard') {
-                    let tipoAgente = localStorage.getItem('tipo');
-                    let caminhoDashboard = (tipoAgente == '1') ? 'Dashboard/Aluno' : 'Dashboard/Educador';
+                    let idAluno = isAluno();
+                    let caminhoDashboard = (idAluno) ? 'Dashboard/Aluno' : 'Dashboard/Educador';
                     $("#main").load(`./${caminhoDashboard}/index.html`);
                 } else {
                     $("#main").load(`./${caminho}/index.html`);
