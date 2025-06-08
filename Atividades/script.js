@@ -332,20 +332,24 @@ function montarAtividadeQuestionario() {
         const texto = $(this).find('.pergunta').val().trim();
         const pontuacao = parseInt($(this).find('.pontuacaoPergunta').val().trim());
 
-        if (!texto || isNaN(pontuacao)) {
-            erro = `Pergunta ${index + 1} inválida.`;
+        if (!texto) {
+            erro = `Por favor, preencha o texto da pergunta ${index + 1}.`;
+            return false;
+        }
+        if (isNaN(pontuacao)) {
+            erro = `Por favor, preencha a pontuação da pergunta ${index + 1}.`;
             return false;
         }
 
         const alternativas = [];
         $(this).find('.alternativa').each(function () {
             const textoAlt = $(this).find('input[type="text"]').val().trim();
-            const correta = $(this).find('input[type="checkbox"]').is(':checked');
+            const correta = $(this).find('input[type="radio"]').is(':checked');
             if (textoAlt) alternativas.push({ texto: textoAlt, correta: correta });
         });
 
         if (alternativas.length < 2 || !alternativas.some(a => a.correta)) {
-            erro = `Pergunta ${index + 1} inválida.`;
+            erro = `É necessario que a pergunta ${index + 1} tenha no mínimo duas alternativas sendo uma correta.`;
             return false;
         }
 
