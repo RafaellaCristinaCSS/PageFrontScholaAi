@@ -63,12 +63,7 @@
       $("#main").load(`./Atividades/index.html`);
       executarScriptsEspecificos('Atividades')
     } catch (ex) {
-      Swal({
-        title: `Erro ao tentar enviar resposta atividade, por favor tente novamente ${ex}`,
-        icon: 'error',
-        timer: 3000,
-        showConfirmButton: false
-      });
+      swal('Erro ao tentar enviar resposta atividade, por favor tente novamente', "", 'info')
     }
   }
 </script>
