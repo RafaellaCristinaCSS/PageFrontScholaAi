@@ -6,7 +6,10 @@ async function preencherListMateriais() {
         for (const material of materiais) {
             html += `
                 <li class="material-item">
-                    <div class="material-titulo">${material.nomeMateria}</div>
+                    <div class="row d-flex">
+                        <span class="material-titulo">${material.nomeMateria}</span>
+                        <span class="material-educador">Educador criador: ${material.nomeEducador}</span>
+                    </div>
                     <div class="material-conteudo" onclick="abrirModal('${encodeURIComponent(material.conteudo)}')">
                     ${material.conteudo}
                     </div>
@@ -21,7 +24,6 @@ async function preencherListMateriais() {
                     <i class="fa fa-trash"></i>
                     </button>
                     </div>
-                    <div class="material-titulo">${material.nomeEducador}</div>
                 </li>`;
         }
 
@@ -55,6 +57,7 @@ async function excluirMaterial(id) {
         const response = await executarRequisicao(`materiais/${id}`, {}, 'DELETE');
         if (response) {
             swal("Excluído!", "O material foi removido.", "success");
+            $("#listMateriais").html("");
             preencherListMateriais();
         } else {
             swal("Erro", "Não foi possível excluir o material.", "error");

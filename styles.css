@@ -94,6 +94,10 @@ input[type='checkbox'] {
   height: 40px;
 }
 
+.delete {
+  color: red;
+}
+
 .logo-container {
   display: flex;
   align-items: center;
