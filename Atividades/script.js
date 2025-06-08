@@ -20,9 +20,7 @@ function somarPontuacaoAtividade() {
 }
 function definirTipoAtividade() {
     debugger
-    $(".cardQuestionario").addClass("hide")
-    $(".cardAtividadeLeitura").addClass("hide")
-    $(".cardAtividadeExternaOuImpressao").addClass("hide")
+    $(".cardAtividade").addClass("hide")
     $(".divTipoQuestionario").addClass("d-none")
     switch ($("#tipoAtividade").val()) {
         case '1':
