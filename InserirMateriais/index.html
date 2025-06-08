@@ -20,7 +20,8 @@
                             sua
                             matéria </label>
                         <p id="nomeArquivoSelecionado"></p>
-                        <input type="file" name="imagemMateria" class="d-none" id="imagemMateria" accept="image/*">
+                        <input type="file" name="imagemMateria" class="d-none"
+                            onchange="preencherTextoArquivoInserido()" id="imagemMateria" accept="image/*">
                     </div>
                     <button type="button" style="margin-top: 10px;" onclick="criarMateria()"
                         class="btn btn-success">Criar

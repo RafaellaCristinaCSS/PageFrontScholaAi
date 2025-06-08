@@ -13,9 +13,9 @@ function clickInputFile() {
 
 function clickInputFileImagemMateria() {
     $("#imagemMateria").click();
-    $("#imagemMateria").change(() => {
-        $("#nomeArquivoSelecionado").text("Arquivo inserido com sucesso!");
-    })
+}
+function preencherTextoArquivoInserido() {
+    $("#nomeArquivoSelecionado").text("Arquivo inserido com sucesso!");
 }
 function carregarTextoInseridoPorArquivo(event) {
     const file = event.target.files[0];
