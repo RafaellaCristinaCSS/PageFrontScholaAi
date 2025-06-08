@@ -21,7 +21,7 @@
 <script>
   $(document).ready(function () {
 
-    $(document).on('click', '.editarAtividade', function () {
+    $(document).off().on('click', '.editarAtividade', function () {
       const id = $(this).attr('id').replace('atividade-', '');
       buscarAtividade(id);
     });

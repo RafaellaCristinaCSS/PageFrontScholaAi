@@ -143,6 +143,7 @@ async function preencherAtividade(atividade) {
         if (!idsAlunos.includes(aluno.id)) {
             idsAlunos.push(aluno.id);
         }
+        $(`#aluno input[type=checkbox][value='']`);
         $(`#aluno input[type=checkbox][value='${aluno.id}']`).prop("checked", true).prop("disabled", publicada);
     });
     $(`#aluno input[type = checkbox]`).prop("disabled", publicada);
