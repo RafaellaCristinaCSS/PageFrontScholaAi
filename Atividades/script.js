@@ -124,6 +124,7 @@ function adicionarAlternativa() {
     container.append(alternativaHtml);
 }
 async function preencherAtividade(atividade) {
+    debugger
     $("#aluno").val("")
     await preencherNomesMaterias();
     await preencherCheckboxALunoPorEducador();
