@@ -170,31 +170,8 @@ async function preencherAtividade(atividade) {
     const tipo = atividade.idTipoAtividade;
 
     if (tipo === 1 && atividade.questoes) {
+        exibirQuestoes(exibirQuestoes, publicada)
 
-        atividade.questoes.forEach((questao, index) => {
-            const perguntaHtml = `
-        <div class="pergunta-container row mb-3" data - pergunta - id="${index + 1}" >
-                    <div class="col-12 col-md-10 mb-2">
-                        <input type="text" name="pergunta_${index + 1}" value="${questao.texto}" placeholder="Digite a pergunta" class="pergunta form-control" ${desabilitar}/>
-                    </div>
-                    <div class="col-12 col-md-2 mb-2">
-                        <input type="text" name="pontuacao_${index + 1}" placeholder="Valor da pergunta" class="pontuacaoPergunta form-control" value="${questao.pontuacao || ''}" ${desabilitar}/>
-                    </div>
-                    <div class='row'>
-                        <div class="alternativas-container">
-                            ${questao.alternativas.map(alt => `
-                                <div class="alternativa d-flex align-items-center mb-2">
-                                    <input type="radio" name="correta_${questao.id}" class="me-2" ${alt.correta ? 'checked' : ''} ${desabilitar}/>
-                                    <input type="text" placeholder="Texto da alternativa" class="form-control" value="${alt.texto}" ${desabilitar}/>
-                                </div>
-                            `).join('')}
-                        </div>
-                        ${!publicada ? `<button class="add-alternativa btn btn-secondary">+ Nova Alternativa</button>` : ''}
-                    </div>
-                </div>
-        `;
-            $('#perguntas-container').append(perguntaHtml);
-        });
     } else if (tipo === 2 || tipo === 3) {
         if (atividade.textoLeitura) {
             $('#textoLeitura').val(atividade.textoLeitura).show().prop('disabled', publicada);
@@ -208,6 +185,33 @@ async function preencherAtividade(atividade) {
 
         $('#arquivoLeitura').show();
     }
+}
+function exibirQuestoes(questoes, publicada = false) {
+    debugger
+    questoes.forEach((questao, index) => {
+        const perguntaHtml = `
+    <div class="pergunta-container row mb-3" data - pergunta - id="${index + 1}" >
+                <div class="col-12 col-md-10 mb-2">
+                    <input type="text" name="pergunta_${index + 1}" value="${questao.texto}" placeholder="Digite a pergunta" class="pergunta form-control" ${desabilitar}/>
+                </div>
+                <div class="col-12 col-md-2 mb-2">
+                    <input type="text" name="pontuacao_${index + 1}" placeholder="Valor da pergunta" class="pontuacaoPergunta form-control" value="${questao.pontuacao || ''}" ${desabilitar}/>
+                </div>
+                <div class='row'>
+                    <div class="alternativas-container">
+                        ${questao.alternativas.map(alt => `
+                            <div class="alternativa d-flex align-items-center mb-2">
+                                <input type="radio" name="correta_${questao.id}" class="me-2" ${alt.correta ? 'checked' : ''} ${desabilitar}/>
+                                <input type="text" placeholder="Texto da alternativa" class="form-control" value="${alt.texto}" ${desabilitar}/>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ${!publicada ? `<button class="add-alternativa btn btn-secondary">+ Nova Alternativa</button>` : ''}
+                </div>
+            </div>
+    `;
+        $('#perguntas-container').append(perguntaHtml);
+    });
 }
 function exibirQuestionarioAluno(atividade) {
     if (!atividade.questoes) return;
@@ -418,5 +422,5 @@ async function gerarQuestionario() {
 
     debugger
     let dados = await executarRequisicao('atividade/gerarQuestoesAutomaticas', atividadeBase, 'POST');
-
+    exibirQuestoes(dados, false);
 }
