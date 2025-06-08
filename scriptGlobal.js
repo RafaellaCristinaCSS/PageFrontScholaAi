@@ -6,35 +6,35 @@ async function buscarEducadores() {
 async function executarScriptsEspecificos(nome) {
     switch (nome) {
         case "ListaEducadores":
-            preencherListEducadores();
+            await preencherListEducadores();
             break;
         case "Dashboard":
-            let tipoAgente = localStorage.getItem('tipo');
-            if (tipoAgente == '2') {
-                preencherAlunosVinculados();
+            let aluno = isAluno();
+            if (!aluno) {
+                await preencherAlunosVinculados();
             }
-            getAnotacoesBlocoNotas();
+            await getAnotacoesBlocoNotas();
             break;
         case "InserirMateriais":
-            preencherNomesMaterias();
+            await preencherNomesMaterias();
             break;
         case "Materiais":
-            preencherListMateriais();
+            await preencherListMateriais();
             break;
         case "Atividades":
-            preencherNomesMaterias();
-            preencherAtividadesPorAgente();
+            await preencherNomesMaterias();
+            await preencherAtividadesPorAgente();
             break;
         case "NovaAtividade":
-            preencherCheckboxALunoPorEducador();
-            preencherNomesMaterias();
+            await preencherCheckboxALunoPorEducador();
+            await preencherNomesMaterias();
             break;
         case "Estatistica":
-            if (isAluno()) gerarRelatorio(parseInt(localStorage.getItem('idAluno')));
-            else criarSelectAlunos();
+            if (isAluno()) await gerarRelatorio(parseInt(localStorage.getItem('idAluno')));
+            else await criarSelectAlunos();
             break;
         case "Perfil":
-            getDadosAluno();
+            await getDadosAluno();
             break;
     }
 }
