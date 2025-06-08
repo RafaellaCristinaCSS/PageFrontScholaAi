@@ -21,11 +21,14 @@ function somarPontuacaoAtividade() {
 function definirTipoAtividade() {
     debugger
     $(".cardAtividade").addClass("hide")
+    $(".cardQuestionario").addClass("hide")
     $(".divTipoQuestionario").addClass("d-none")
+    $(".selecaoAlunos").show()
+    $("#selectAluno").html("")
+    $("#gerarQuestionario").addClass("d-none")
+    preencherCheckboxALunoPorEducador()
     switch ($("#tipoAtividade").val()) {
         case '1':
-            $(".cardQuestionario").removeClass("hide")
-            $(".divTipoQuestionario").removeClass("d-none")
             exibirCamposDeAcordoComTipoQuestionario()
             break;
         case '2':
@@ -39,25 +42,25 @@ function definirTipoAtividade() {
     }
 }
 function exibirCamposDeAcordoComTipoQuestionario() {
+    debugger
     const tipoQuestionario = $("#tipoQuestionario");
-    $(tipoQuestionario).change(() => {
-        debugger
-        switch (tipoQuestionario.val()) {
-            case "1":
-                $(".selecaoAlunos").show()
-                $("#selectAluno").html("")
-                $("#gerarQuestionario").addClass("d-none")
-                preencherCheckboxALunoPorEducador()
-                break;
-            case "2":
-                $(".selecaoAlunos").hide()
-                $("#selectAluno").html(`<select class="form-control form-select" id="aluno"></select>`)
-                $("#gerarQuestionario").removeClass("d-none")
-                preencherSelectALunoPorEducador();
-                monitorarAlunoSelecionado();
-                break;
-        }
-    })
+    switch (tipoQuestionario.val()) {
+        case "1":
+            $(".cardQuestionario").removeClass("hide")
+            $(".divTipoQuestionario").removeClass("d-none")
+            $(".selecaoAlunos").show()
+            $("#selectAluno").html("")
+            $("#gerarQuestionario").addClass("d-none")
+            preencherCheckboxALunoPorEducador()
+            break;
+        case "2":
+            $(".selecaoAlunos").hide()
+            $("#selectAluno").html(`<select class="form-control form-select" id="aluno"></select>`)
+            $("#gerarQuestionario").removeClass("d-none")
+            preencherSelectALunoPorEducador();
+            monitorarAlunoSelecionado();
+            break;
+    }
 }
 function monitorarAlunoSelecionado() {
     $("#aluno").change(() => {

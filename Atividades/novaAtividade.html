@@ -109,15 +109,18 @@
             executarScriptsEspecificos('Atividades')
         })
         $(document).on("change", "#tipoAtividade", definirTipoAtividade);
+        $(document).on("change", "#tipoQuestionario", exibirCamposDeAcordoComTipoQuestionario);
         $(document).on("click", "#add-pergunta", adicionarPergunta);
         $(document).on("click", ".add-alternativa", adicionarAlternativa);
         $(document).on("click", "#gerarQuestionario", gerarQuestionario);
         $('#perguntas-container').on('change', '.pontuacaoPergunta', somarPontuacaoAtividade)
 
         $('#salvarRascunho').click(function () {
+            debugger
             salvarAtividade(false)
         });
         $('#publicar').click(function () {
+            debugger
             salvarAtividade(true)
         });
     });
