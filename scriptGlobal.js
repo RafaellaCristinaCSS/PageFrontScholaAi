@@ -66,39 +66,40 @@ async function preencherCheckboxALunoPorEducador() {
 }
 async function preencherAtividadesPorAgente() {
     try {
-        adicionarLoading()
         const dados = await executarRequisicao(`atividade/atividadesPorAgente/${localStorage.getItem("idAgente")}`, "", "GET");
-        if (dados.tipoAgente == 'educador') $(".cabecalhoEducador").show();
-
+        adicionarLoading()
         const lista = document.getElementById('lista-atividades');
         if (lista) {
             lista.innerHTML = "";
+            if (dados && dados.atividades.length != 0) {
+                await dados.atividades.forEach(atividade => {
+                    const li = document.createElement('li');
+                    li.className = "card btn editarAtividade";
+                    li.setAttribute("data-materia", atividade.materia.nome);
+                    li.setAttribute("id", `atividade-${atividade.id}`);
 
-            await dados.atividades.forEach(atividade => {
-                const li = document.createElement('li');
-                li.className = "card btn editarAtividade";
-                li.setAttribute("data-materia", atividade.materia.nome);
-                li.setAttribute("id", `atividade-${atividade.id}`);
+                    const imagemBase64 = atividade.materia.imagem;
+                    const imagemSrc = imagemBase64
+                        ? `${imagemBase64}`
+                        : "caminho/para/imagem-default.png";
 
-                const imagemBase64 = atividade.materia.imagem;
-                const imagemSrc = imagemBase64
-                    ? `${imagemBase64}`
-                    : "caminho/para/imagem-default.png";
+                    li.innerHTML = `
+                        <div class="d-flex flex-column">
+                            <img src="${imagemSrc}" alt="Capa da Matéria" id="imagem-atividade-${atividade.id}">
+                            <div class="card-title">${atividade.nome}</div>
+                            <small class="text-muted hide">${atividade.materia.nome}</small>
+                            <div class="card-description">${atividade.informacaoExtra}</div>
+                            <button type="button" class="btn btn-sm btn-outline-danger deletarAtividade d-none">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
 
-                li.innerHTML = `
-                    <div class="d-flex flex-column">
-                        <img src="${imagemSrc}" alt="Capa da Matéria" id="imagem-atividade-${atividade.id}">
-                        <div class="card-title">${atividade.nome}</div>
-                        <small class="text-muted hide">${atividade.materia.nome}</small>
-                        <div class="card-description">${atividade.informacaoExtra}</div>
-                        <button type="button" class="btn btn-sm btn-outline-danger deletarAtividade d-none">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-
-                lista.appendChild(li);
-            });
+                    lista.appendChild(li);
+                });
+            }
+        } else {
+            lista.innerHTML = "<span>Não há aulas registradas</span>"
         }
     } catch (error) {
         console.error("Erro - preencherAtividadesPorAgente:", error);
