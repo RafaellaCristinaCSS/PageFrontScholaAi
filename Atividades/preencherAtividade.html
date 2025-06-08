@@ -26,6 +26,7 @@
     }
 
     $("#respostaAtividadeForm").off().on("click", function () {
+      debugger
       let todasRespondidas = true;
       let respostas = [];
 
@@ -70,6 +71,7 @@
     });
   });
   async function enviarRespostaAtividade(parametro) {
+    debugger
     try {
       let dados = await executarRequisicao(`atividade/responderAtividade`, parametro, "POST");
       console.log(dados);
