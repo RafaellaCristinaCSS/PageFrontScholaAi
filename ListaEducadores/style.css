@@ -1,14 +1,14 @@
-#listEducadores .educadores {
+.educadores {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#listEducadores .educadores .order,
-#listEducadores .educadores ul {
+.educadores .order,
+.educadores ul {
     width: 100%;
 }
 
-#listEducadores .educadores .salvar {
+.educadores .salvar {
     margin-top: 20px;
 }
