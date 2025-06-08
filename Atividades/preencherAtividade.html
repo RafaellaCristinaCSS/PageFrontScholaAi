@@ -36,12 +36,7 @@
       });
 
       if (!todasRespondidas) {
-        Swal.fire({
-          title: 'Por favor, responda todas as questões antes de enviar.',
-          icon: 'warning',
-          timer: 3000,
-          showConfirmButton: false
-        });;
+        swal('Por favor, responda todas as questões antes de enviar.', "", 'info')
         return;
       }
 

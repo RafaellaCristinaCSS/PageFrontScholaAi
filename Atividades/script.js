@@ -243,12 +243,7 @@ async function salvarAtividade(publicar) {
     let pontuacao = $("#pontucaoAtividade").val();
 
     if (!nomeAtividade || !materia || !tipoAtividade || !aluno) {
-        Swal.fire({
-            title: 'Preencha todos os campos obrigatórios.',
-            icon: 'warning',
-            timer: 3000,
-            showConfirmButton: false
-        });;
+        swal('Por favor preencha todos os campos', "", 'info')
         return;
     }
 
@@ -371,12 +366,7 @@ async function gerarQuestionario() {
     let pontuacao = $("#pontucaoAtividade").val();
 
     if (!nomeAtividade || !materia || !tipoAtividade || !aluno) {
-        Swal.fire({
-            title: 'Preencha todos os campos obrigatórios.',
-            icon: 'warning',
-            timer: 3000,
-            showConfirmButton: false
-        });;
+        swal('Por favor preencha todos os campos', "", 'info')
         return;
     }
 
