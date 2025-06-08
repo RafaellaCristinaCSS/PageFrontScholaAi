@@ -5,19 +5,22 @@ async function preencherListMateriais() {
 
         for (const material of materiais) {
             html += `
-                <li>
-                <span class="material-nome">${material.conteudo}</span>
-                <div class="material-actions">
-                    <button class="btn edit" 
-                            data-id="${material.id}" 
-                            data-conteudo="${encodeURIComponent(material.conteudo)}"
-                            onclick="editarMaterial(this)">
-                    <i class="fa fa-edit"></i>
-                    </button>
-                    <button class="btn delete" onclick="excluirMaterial(${material.id})">
-                    <i class="fa fa-trash"></i>
-                    </button>
-                </div>
+                <li class="material-item">
+                    <div class="material-titulo">${material.nome}</div>
+                    <div class="material-conteudo" onclick="abrirModal('${encodeURIComponent(material.conteudo)}')">
+                        ${material.conteudo}
+                    </div>
+                    <div class="material-actions">
+                        <button class="btn edit" 
+                                data-id="${material.id}" 
+                                data-conteudo="${encodeURIComponent(material.conteudo)}"
+                                onclick="editarMaterial(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn delete" onclick="excluirMaterial(${material.id})">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
                 </li>`;
         }
 
@@ -26,6 +29,17 @@ async function preencherListMateriais() {
         console.error("Erro ao carregar materiais:", error);
     }
 }
+
+function abrirModal(conteudo) {
+    const texto = decodeURIComponent(conteudo);
+    document.getElementById("modalTexto").innerText = texto;
+    document.getElementById("modalConteudo").style.display = "block";
+}
+
+function fecharModal() {
+    document.getElementById("modalConteudo").style.display = "none";
+}
+
 
 async function excluirMaterial(id) {
     const confirmacao = await swal({

@@ -62,7 +62,6 @@ function exibirCamposDeAcordoComTipoQuestionario() {
 }
 function monitorarAlunoSelecionado() {
     $("#aluno").change(() => {
-        debugger
         $("#alunosSelecionados").val($("#aluno").val());
     })
 }
