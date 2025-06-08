@@ -25,7 +25,7 @@
       $("#mensagem").text("Você já respondeu essa atividade.").show();
     }
 
-    $("#respostaAtividadeForm").off().on("click", function () {
+    $("#respostaAtividadeForm").on("click", function () {
       debugger
       let todasRespondidas = true;
       let respostas = [];
@@ -50,15 +50,6 @@
         return;
       }
 
-      // const confirmar = swal({
-      //   title: 'Tem certeza?',
-      //   text: `Você tem certeza de que deseja enviar suas respostas?`,
-      //   icon: 'warning',
-      //   buttons: ['Cancelar', 'Confirmar'],
-      //   dangerMode: true
-      // });
-
-      // if (!confirmar) return;
 
       const objetoResposta = {
         agenteId: parseInt($("#agenteId").val()),
@@ -82,4 +73,3 @@
     }
   }
 </script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
