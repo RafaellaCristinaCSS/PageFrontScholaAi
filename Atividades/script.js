@@ -187,11 +187,10 @@ async function preencherAtividade(atividade) {
     }
 }
 function exibirQuestoes(questoes, publicada = false) {
-    debugger
     const desabilitar = publicada ? 'disabled' : '';
     questoes.forEach((questao, index) => {
         const perguntaHtml = `
-    <div class="pergunta-container row mb-3" data - pergunta - id="${index + 1}" >
+            <div class="pergunta-container row mb-3" data-questao-id="${questao.id}">
                 <div class="col-12 col-md-10 mb-2">
                     <input type="text" name="pergunta_${index + 1}" value="${questao.texto}" placeholder="Digite a pergunta" class="pergunta form-control" ${desabilitar}/>
                 </div>
@@ -201,8 +200,8 @@ function exibirQuestoes(questoes, publicada = false) {
                 <div class='row'>
                     <div class="alternativas-container">
                         ${questao.alternativas.map(alt => `
-                            <div class="alternativa d-flex align-items-center mb-2">
-                                <input type="radio" name="correta_${index + 1}" class="me-2" ${alt.correta ? 'checked' : ''} ${desabilitar}/>
+                            <div class="alternativa d-flex align-items-center mb-2" data-alternativa-id="${alt.id}">
+                                <input type="radio" name="correta_${index + 1}" value="${alt.id}" class="me-2" ${alt.correta ? 'checked' : ''} ${desabilitar}/>
                                 <input type="text" placeholder="Texto da alternativa" class="form-control" value="${alt.texto}" ${desabilitar}/>
                             </div>
                         `).join('')}
@@ -210,11 +209,12 @@ function exibirQuestoes(questoes, publicada = false) {
                     ${!publicada ? `<button class="add-alternativa btn btn-secondary">+ Nova Alternativa</button>` : ''}
                 </div>
             </div>
-    `;
+        `;
         $('#perguntas-container').append(perguntaHtml);
-        $(".cardQuestionario").removeClass("hide")
+        $(".cardQuestionario").removeClass("hide");
     });
 }
+
 function exibirQuestionarioAluno(atividade) {
     if (!atividade.questoes) return;
 
