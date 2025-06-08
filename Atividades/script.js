@@ -15,7 +15,7 @@ async function buscarAtividade(id) {
             const html = await $.get('./Atividades/novaAtividade.html');
             $("#main").html(html);
             await executarScriptsEspecificos('NovaAtividade');
-            preencherAtividade(dados.atividade);
+            await preencherAtividade(dados.atividade);
         }
     } else {
         console.log("Erro ao buscar atividade")
@@ -110,10 +110,10 @@ function adicionarAlternativa() {
         `;
     container.append(alternativaHtml);
 }
-function preencherAtividade(atividade) {
+async function preencherAtividade(atividade) {
     $("#aluno").val("")
-    preencherNomesMaterias();
-    preencherCheckboxALunoPorEducador();
+    await preencherNomesMaterias();
+    await preencherCheckboxALunoPorEducador();
     if (!atividade || !atividade.nome) return;
 
     const publicada = atividade.publicada === true;
