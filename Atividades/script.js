@@ -239,7 +239,7 @@ function exibirQuestionarioAluno(atividade) {
         `).join('');
 
         const questaoHtml = `
-        <div class= "question" data - questao - id="${questaoId}">
+        <div class= "question" data-questao-id="${questaoId}">
             <p>${index + 1}. ${questao.texto}</p>
                 ${alternativasHtml}
             </div >
