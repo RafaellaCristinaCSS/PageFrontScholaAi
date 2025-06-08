@@ -107,7 +107,7 @@
             $("#main").load(`./Atividades/index.html`);
             executarScriptsEspecificos('Atividades')
         })
-        $(document).on("click", "#tipoAtividade", definirTipoAtividade);
+        $(document).on("change", "#tipoAtividade", definirTipoAtividade);
         $(document).on("click", "#add-pergunta", adicionarPergunta);
         $(document).on("click", ".add-alternativa", adicionarAlternativa);
         $('#perguntas-container').on('change', '.pontuacaoPergunta', somarPontuacaoAtividade)
