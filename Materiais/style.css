@@ -1,63 +1,98 @@
-.material-item {
-    background: #f9f9f9;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: relative;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.materiais {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 10px;
+}
+
+ul#listMateriais {
     list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.material-item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    transition: box-shadow 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.material-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    border-color: #007bff;
 }
 
 .material-titulo {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 6px;
-    text-align: left;
+    font-weight: 600;
+    font-size: 18px;
+    color: #212529;
+    margin-bottom: 5px;
+}
+
+.material-educador {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .material-conteudo {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;  
+    font-size: 15px;
+    color: #444;
+    max-height: 3.2em;
+    /* cerca de 2 linhas */
     overflow: hidden;
     text-overflow: ellipsis;
-    cursor: pointer;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
+}
+
+.material-item.expandido .material-conteudo {
+    max-height: none;
+    -webkit-line-clamp: unset;
 }
 
 .material-actions {
     display: flex;
-    gap: 8px;
     justify-content: flex-end;
+    gap: 10px;
 }
 
-.modal {
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 24px;
-    font-weight: bold;
+.material-actions button {
+    background: none;
+    border: none;
     cursor: pointer;
+}
+
+.material-actions .btn i {
+    font-size: 18px;
+    color: #3b5998;
+    transition: color 0.3s;
+}
+
+.material-actions .btn.delete i {
+    color: #3b5998;
+}
+
+.material-actions .btn:hover i {
+    color: #3b5998;
 }

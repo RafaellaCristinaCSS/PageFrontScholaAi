@@ -58,15 +58,15 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 1px; /* Aumentado o espaço entre botão e texto */
-    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 1px;
+    flex-wrap: wrap;
 }
 
 /* Texto do nível */
 .nivel {
     font-size: 0.95rem;
     font-weight: bold;
-    color: #5b34db;
+    color: #3b5998;
 }
 
 /* Botão de editar */
@@ -81,7 +81,7 @@ button.edit {
 }
 
 button.edit i {
-    color: #5b34db;
+    color: #3b5998;
 }
 
 button.edit:hover {
@@ -90,7 +90,7 @@ button.edit:hover {
 
 /* Botão de mover nível */
 button.mover {
-    background-color: #5b34db;
+    background-color: #3b5998;
     color: white;
     font-weight: 500;
     border: none;
@@ -103,5 +103,5 @@ button.mover {
 }
 
 button.mover:hover {
-    background-color: #4529bd;
+    background-color: #3b5998;
 }

@@ -5,26 +5,24 @@ async function preencherListMateriais() {
 
         for (const material of materiais) {
             html += `
-                <li class="material-item">
-                     <div class="row d-flex">
-                        <span class="material-titulo">${material.nomeMateria}</span>
-                        <span class="material-educador">Educador criador: ${material.nomeEducador}</span>
-                    </div>
-                    <div class="material-conteudo" onclick="abrirModal('${encodeURIComponent(material.conteudo)}')">
-                        ${material.conteudo}
-                    </div>
-                    <div class="material-actions">
-                        <button class="btn edit" 
-                                data-id="${material.id}" 
-                                data-conteudo="${encodeURIComponent(material.conteudo)}"
-                                onclick="editarMaterial(this)">
-                            <i class="fa fa-edit"></i>
-                        </button>
-                        <button class="btn delete" onclick="excluirMaterial(${material.id})">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
-                </li>`;
+        <li class="material-item" onclick="toggleConteudo(this)">
+            <div class="material-titulo">${material.nomeMateria}</div>
+            <span class="material-educador">Educador criador: ${material.nomeEducador}</span>
+            <div class="material-conteudo">
+                ${material.conteudo}
+            </div>
+            <div class="material-actions" onclick="event.stopPropagation();">
+                <button class="btn edit" 
+                        data-id="${material.id}" 
+                        data-conteudo="${encodeURIComponent(material.conteudo)}"
+                        onclick="event.stopPropagation(); editarMaterial(this)">
+                    <i class="fa fa-edit"></i>
+                </button>
+                <button class="btn delete" onclick="event.stopPropagation(); excluirMaterial(${material.id})">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </div>
+        </li>`;
         }
 
         document.getElementById("listMateriais").innerHTML = html;
@@ -107,5 +105,13 @@ async function editarMaterial(botao) {
     }
 }
 
-
+function toggleConteudo(elemento) {
+    const todosItens = document.querySelectorAll(".material-item.expandido");
+    todosItens.forEach(item => {
+        if (item !== elemento) {
+            item.classList.remove("expandido");
+        }
+    });
+    elemento.classList.toggle("expandido");
+}
 preencherListMateriais();

@@ -47,13 +47,13 @@
 }
 
 #bodyAtividades .btn-primary {
-    background-color: #007bff;
+    background-color: #3b5998;
     border: none;
     color: white;
 }
 
 #bodyAtividades .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #3b5998;
 }
 
 #bodyAtividades .grid {
@@ -177,7 +177,7 @@
 #bodyPreencherAtividade .submit-btn {
     display: block;
     width: 100%;
-    background-color: #4a67d6;
+    background-color: #3b5998;
     color: #fff;
     font-weight: 600;
     border: none;
@@ -191,7 +191,7 @@
 }
 
 #bodyPreencherAtividade .submit-btn:hover {
-    background-color: #3b56b0;
+    background-color: #3b5998;
 }
 
 #bodyPreencherAtividade .msg-erro {

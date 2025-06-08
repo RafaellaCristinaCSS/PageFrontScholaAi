@@ -18,6 +18,7 @@ body {
 .adicionarMateria {
   margin-left: 10px;
   padding: 2px 10px;
+
 }
 
 .salvarRascunho {
@@ -205,7 +206,7 @@ input[type='checkbox'] {
 
 .user-menu .profile {
   background-color: #dbeafe;
-  color: #1e3a8a;
+  color: #3b5998;
 }
 
 .user-menu .profile:hover {
@@ -267,7 +268,7 @@ input[type='checkbox'] {
 }
 
 .sidebar li.active i {
-  color: #1e40af;
+  color: #3b5998;
 }
 
 /* Conteúdo principal */
@@ -336,16 +337,16 @@ button.edit {
   background: none;
   border: none;
   font-size: 16px;
-  color: #4F46E5;
+  color: #3b5998;
   cursor: pointer;
 }
 
 button.mover {
   background: none;
-  border: 1px solid #4F46E5;
+  border: 1px solid #3b5998;
   padding: 5px 10px;
   border-radius: 5px;
-  color: #4F46E5;
+  color: #3b5998;
   cursor: pointer;
   font-size: 14px;
   transition: 0.3s;
@@ -360,7 +361,7 @@ button.mover {
 }
 
 button.mover:hover {
-  background: #4F46E5;
+  background: #3b5998;
   color: #fff;
 }
 
