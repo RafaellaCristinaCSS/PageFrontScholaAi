@@ -111,6 +111,7 @@ function adicionarAlternativa() {
     container.append(alternativaHtml);
 }
 function preencherAtividade(atividade) {
+    preencherNomesMaterias();
     if (!atividade || !atividade.nome) return;
 
     const publicada = atividade.publicada === true;
