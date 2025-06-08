@@ -7,8 +7,9 @@ async function buscarAtividade(id) {
                 $("#main").load(`./Atividades/preencherAtividade.html`);
                 exibirQuestionarioAluno(dados.atividade);
             } else {
-                $("#main").load(`./Atividades/leituraAtividade.html`);
-                exibirAtividadeLeituraExternaAluno(dados.atividade)
+                $("#main").load(`./Atividades/leituraAtividade.html`, function () {
+                    exibirAtividadeLeituraExternaAluno(dados.atividade);
+                });
             }
         } else {
             $("#main").load(`./Atividades/novaAtividade.html`);
