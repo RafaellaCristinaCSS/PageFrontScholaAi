@@ -133,7 +133,7 @@ async function executarRequisicaoFetch(rota, parametros, tipo = "Post", retorno 
                 "Authorization": "Bearer " + localStorage.token,
                 "Content-Type": "application/json"
             },
-            data: JSON.stringify(parametros),
+            body: JSON.stringify(parametros),
             credentials: "include",
         };
         const response = await fetch(BaseUrlBack + rota, options);
