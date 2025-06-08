@@ -3,7 +3,7 @@ async function buscarAtividade(id) {
     let dados = await executarRequisicao(`atividade/buscarAtividade/${id}`, "", "GET");
     if (dados && dados.atividade) {
         if (isAluno()) {
-            if (dados.atividade.idTipoAtividade == 3) {
+            if (dados.atividade.idTipoAtividade == 1) {
                 $("#main").load(`./Atividades/preencherAtividade.html`);
                 exibirQuestionarioAluno(dados.atividade);
             } else {
@@ -20,6 +20,10 @@ async function buscarAtividade(id) {
     } else {
         console.log("Erro ao buscar atividade")
     }
+}
+async function carregarTelaAtividades() {
+    $("#main").load(`./Atividades/index.html`);
+    await executarScriptsEspecificos('Atividades')
 }
 function somarPontuacaoAtividade() {
     let pontucoesDasQuestoes = $(".pontuacaoPergunta");

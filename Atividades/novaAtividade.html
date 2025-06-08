@@ -116,8 +116,4 @@
         $(document).on("click", "#gerarQuestionario", gerarQuestionario);
         $('#perguntas-container').on('change', '.pontuacaoPergunta', somarPontuacaoAtividade)
     });
-    function carregarTelaAtividades() {
-        $("#main").load(`./Atividades/index.html`);
-        executarScriptsEspecificos('Atividades')
-    }
 </script>
