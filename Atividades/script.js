@@ -1,14 +1,23 @@
 async function buscarAtividade(id) {
-    let tipoAgente = localStorage.tipo;
-    if (tipoAgente == 2) {
-        $("#main").load(`./Atividades/novaAtividade.html`);
-        executarScriptsEspecificos('NovaAtividade')
-        let dados = await executarRequisicao(`atividade/buscarAtividade/${id}`, "", "GET");
-        preencherAtividade(dados.atividade);
+    debugger
+    let isAluno = isAluno();
+    let dados = await executarRequisicao(`atividade/buscarAtividade/${id}`, "", "GET");
+    if (dados && dados.atividade) {
+        if (isAluno) {
+            if (dados.atividade.idTipoAtividade == 3) {
+                $("#main").load(`./Atividades/preencherAtividade.html`);
+                exibirQuestionarioAluno(dados.atividade);
+            } else {
+                $("#main").load(`./Atividades/leituraAtividade.html`);
+                exibirAtividadeLeituraExternaAluno(dados.atividade)
+            }
+        } else {
+            $("#main").load(`./Atividades/novaAtividade.html`);
+            executarScriptsEspecificos('NovaAtividade')
+            preencherAtividade(dados.atividade);
+        }
     } else {
-        $("#main").load(`./Atividades/preencherAtividade.html`);
-        let dados = await executarRequisicao(`atividade/buscarAtividade/${id}`, "", "GET");
-        exibirAtividadeParaAluno(dados.atividade);
+        console.log("Erro ao buscar atividade")
     }
 }
 function somarPontuacaoAtividade() {
@@ -173,11 +182,7 @@ function preencherAtividade(atividade) {
         }
 
         if (atividade.nomeArquivo && atividade.arquivoBase64) {
-            const imagemBase64 = `${atividade.arquivoBase64} `;
-            const imagemSrc = imagemBase64
-                ? `${imagemBase64} `
-                : "caminho/para/imagem-default.png";
-            $("#exibirArquivo").prop("src", imagemBase64)
+            $("#exibirArquivo").prop("src", atividade.arquivoBase64)
             $("#exibirArquivo").closest("div").removeClass("hide")
             $(".cardAtividade").removeClass("hide")
         }
@@ -185,8 +190,8 @@ function preencherAtividade(atividade) {
         $('#arquivoLeitura').show();
     }
 }
-function exibirAtividadeParaAluno(atividade) {
-    if (!atividade || !atividade.nome || !atividade.questoes) return;
+function exibirQuestionarioAluno(atividade) {
+    if (!atividade.questoes) return;
 
     $("#atividadeTitulo").text(atividade.nome);
     $("#questoes-container").empty();
@@ -217,6 +222,13 @@ function exibirAtividadeParaAluno(atividade) {
 
         $("#questoes-container").append(questaoHtml);
     });
+}
+function exibirAtividadeLeituraExternaAluno(atividade) {
+    $("#nomeMateria").val(atividade.materia)
+    $("#nomeAtividade").val(atividade.nome)
+    $("#pontucaoAtividade").val(atividade.pontuacao)
+    $("#textoLeitura").val(atividade.textoLeitura)
+    $("#exibirArquivo").prop("src", (atividade.arquivoBase64 ? atividade.arquivoBase64 : ""))
 }
 function moverCheckboxes(origemId, destinoId) {
     const origem = document.getElementById(origemId);
