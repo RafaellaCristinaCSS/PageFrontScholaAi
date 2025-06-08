@@ -4,8 +4,9 @@ async function buscarAtividade(id) {
     if (dados && dados.atividade) {
         if (isAluno()) {
             if (dados.atividade.idTipoAtividade == 1) {
-                $("#main").load(`./Atividades/preencherAtividade.html`);
-                exibirQuestionarioAluno(dados.atividade);
+                $("#main").load(`./Atividades/preencherAtividade.html`, function () {
+                    exibirQuestionarioAluno(dados.atividade);
+                });
             } else {
                 $("#main").load(`./Atividades/leituraAtividade.html`, function () {
                     exibirAtividadeLeituraExternaAluno(dados.atividade);
