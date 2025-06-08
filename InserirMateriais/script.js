@@ -20,6 +20,11 @@ function preencherTextoArquivoInserido() {
 function carregarTextoInseridoPorArquivo(event) {
     const file = event.target.files[0];
     if (file) {
+        if (!file.name.endsWith(".txt")) {
+            swal("Arquivo inválido", "Por favor, selecione um arquivo com extensão .txt", "warning");
+            return;
+        }
+
         const reader = new FileReader();
         reader.onload = function (e) {
             const text = e.target.result;
