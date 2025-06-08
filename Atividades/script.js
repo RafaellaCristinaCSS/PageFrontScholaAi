@@ -412,14 +412,7 @@ async function gerarQuestionario() {
         listaIdAlunos: aluno.split(",").map(s => s.trim())
     };
 
-    const idAtividade = $('#idAtividade').val();
-    if (idAtividade) {
-        await executarRequisicao(`atividade/${parseInt(idAtividade)} `, atividadeBase, 'PUT');
-    } else {
-        await executarRequisicao('atividade', atividadeBase, 'POST');
-    }
+    debugger
+    let dados = await executarRequisicao('atividade/gerarQuestoesAutomaticas', atividadeBase, 'POST');
 
-    swal('Realizado com sucesso', "", 'success')
-    $("#main").load(`./Atividades/index.html`);
-    executarScriptsEspecificos('Atividades');
 }
