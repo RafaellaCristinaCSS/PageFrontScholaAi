@@ -8,7 +8,7 @@ function fecharModalCriarMateria() {
 }
 
 function clickInputFile() {
-    $("#fileInput").off().on("click");
+    $("#fileInput").on("click");
 }
 
 function clickInputFileImagemMateria() {
