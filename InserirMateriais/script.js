@@ -41,7 +41,7 @@ function criarMaterial() {
         try {
             const parametros = {
                 conteudo: texto,
-                idAgente: parseInt(localStorage.idEducador),
+                idAgente: parseInt(localStorage.getItem("idAgente")),
                 idMateria: idMateria
             };
             const response = executarRequisicao("materiais", parametros, "POST");
