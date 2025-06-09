@@ -108,11 +108,10 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     let perguntaCount = 0;
-    $(document).ready(function () {
-        $(document).on("change", "#tipoQuestionario", exibirCamposDeAcordoComTipoQuestionario);
-        $(document).on("click", "#add-pergunta", adicionarPergunta);
-        $(document).on("click", ".add-alternativa", adicionarAlternativa);
-        $(document).on("click", "#gerarQuestionario", gerarQuestionario);
-        $('#perguntas-container').on('change', '.pontuacaoPergunta', somarPontuacaoAtividade)
-    });
+    $(document).on("change", "#tipoQuestionario", exibirCamposDeAcordoComTipoQuestionario);
+    $(document).on("click", "#add-pergunta", adicionarPergunta);
+    $(document).on("click", ".add-alternativa", adicionarAlternativa);
+    $(document).on("click", "#gerarQuestionario", gerarQuestionario);
+    $('#perguntas-container').on('change', '.pontuacaoPergunta', somarPontuacaoAtividade)
+
 </script>
