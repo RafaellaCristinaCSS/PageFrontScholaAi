@@ -108,11 +108,20 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     let perguntaCount = 0;
-    $(document).on("change", "#tipoAtividade", definirTipoAtividade);
-    $(document).on("change", "#tipoQuestionario", exibirCamposDeAcordoComTipoQuestionario);
-    $(document).on("click", "#add-pergunta", adicionarPergunta);
-    $(document).on("click", ".add-alternativa", adicionarAlternativa);
-    $(document).on("click", "#gerarQuestionario", gerarQuestionario);
-    $('#perguntas-container').on('change', '.pontuacaoPergunta', somarPontuacaoAtividade)
+    document.getElementById("tipoAtividade")?.addEventListener("change", definirTipoAtividade);
+    document.getElementById("tipoQuestionario")?.addEventListener("change", exibirCamposDeAcordoComTipoQuestionario);
+    document.getElementById("add-pergunta")?.addEventListener("click", adicionarPergunta);
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("add-alternativa")) {
+            adicionarAlternativa(e);
+        }
+    });
+
+    document.getElementById("gerarQuestionario")?.addEventListener("click", gerarQuestionario);
+    document.getElementById("perguntas-container")?.addEventListener("change", function (e) {
+        if (e.target.classList.contains("pontuacaoPergunta")) {
+            somarPontuacaoAtividade(e);
+        }
+    });
 
 </script>
