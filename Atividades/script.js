@@ -1,9 +1,11 @@
 function exibirNovaAtividadeAluno() {
-    $(".selecaoAlunos").hide()
-    $("#selectAluno").html(`<input class="form-control d-none" id="aluno"></input>`)
-    $(".divControladoresSelectAlunos").removeClass("d-flex").addClass("d-none")
-    let aluno = localStorage.getItem("idAluno")
-    $("#aluno").val(aluno)
+    if (isAluno()) {
+        $(".selecaoAlunos").hide()
+        $("#selectAluno").html(`<input class="form-control d-none" id="aluno"></input>`)
+        $(".divControladoresSelectAlunos").removeClass("d-flex").addClass("d-none")
+        let aluno = localStorage.getItem("idAluno")
+        $("#aluno").val(aluno)
+    }
 }
 async function buscarAtividade(id) {
     debugger
@@ -28,6 +30,7 @@ async function buscarAtividade(id) {
     } else {
         console.log("Erro ao buscar atividade")
     }
+    exibirNovaAtividadeAluno()
 }
 async function carregarTelaAtividades() {
     $("#main").load(`./Atividades/index.html`);

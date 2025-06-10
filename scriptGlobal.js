@@ -43,6 +43,7 @@ async function executarScriptsEspecificos(nome) {
         case "NovaAtividade":
             await preencherCheckboxALunoPorEducador();
             await preencherNomesMaterias();
+            exibirNovaAtividadeAluno()
             break;
         case "Estatistica":
             if (isAluno()) await gerarRelatorio(parseInt(localStorage.getItem('idAluno')));
