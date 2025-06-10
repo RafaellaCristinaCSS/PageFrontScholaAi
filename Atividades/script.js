@@ -99,6 +99,7 @@ function exibirCamposDeAcordoComTipoQuestionario() {
             $(".perguntas-container").html("")
             break;
     }
+    exibirNovaAtividadeAluno()
 }
 function monitorarAlunoSelecionado() {
     $("#aluno").change(() => {
