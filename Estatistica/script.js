@@ -1,7 +1,8 @@
 async function carregarEstatistica(idAluno, nome) {
     try {
         $("#main").load(`./Estatistica/index.html`, function () {
-            $($("#alunoRelatorio").after(`<input id='alunos' class='d-none' val='${idAluno}' />`));
+            $($("#alunoRelatorio").after(`<input id='alunos' class='d-none' />`));
+            $("#alunos").val(idAluno);
         });
         $(".sidebar li").removeClass("active");
         $("#menuEstatisticas").addClass("active");
@@ -72,6 +73,7 @@ async function gerarRelatorio(idAluno, nome = 'Aluno') {
             swal('Nenhuma estatística registrada', '', 'info');
             $("#exportarArtefatos").hide();
         }
+        $("#alunos").val(idAluno);
     } catch (error) {
         console.error("Erro ao gerar relatório:", error);
         gerarRelatorio(idAluno, nome);
