@@ -1,3 +1,10 @@
+function exibirNovaAtividadeAluno() {
+    $(".selecaoAlunos").hide()
+    $("#selectAluno").html(`<input class="form-control d-none" id="aluno"></input>`)
+    $(".divControladoresSelectAlunos").removeClass("d-flex").addClass("d-none")
+    let aluno = localStorage.getItem("idAluno")
+    $("#aluno").val(aluno)
+}
 async function buscarAtividade(id) {
     debugger
     let dados = await executarRequisicao(`atividade/buscarAtividade/${id}`, "", "GET");
