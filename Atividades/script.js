@@ -106,6 +106,8 @@ function monitorarAlunoSelecionado() {
     })
 }
 function adicionarPergunta() {
+    let perguntas = $("#perguntas-container").find(".pergunta");
+    let perguntaCount = perguntas.length + 1;
     perguntaCount++;
     let perguntaHtml = `
     <div class="pergunta-container row" data-pergunta-id="${perguntaCount}">
