@@ -72,6 +72,7 @@ function definirTipoAtividade() {
             if (!isAluno()) $("#pontucaoAtividade").prop("disabled", false)
             break;
     }
+    exibirNovaAtividadeAluno()
 }
 function exibirCamposDeAcordoComTipoQuestionario() {
     debugger
