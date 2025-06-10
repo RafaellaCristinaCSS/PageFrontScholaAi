@@ -2,6 +2,7 @@ function exibirNovaAtividadeAluno() {
     if (isAluno()) {
         $(".selecaoAlunos").hide()
         $("#selectAluno").html(`<input class="form-control d-none" id="aluno"></input>`)
+        $(".tituloEnviarPara").hide()
         $(".divControladoresSelectAlunos").removeClass("d-flex").addClass("d-none")
         let aluno = localStorage.getItem("idAluno")
         $("#aluno").val(aluno)
