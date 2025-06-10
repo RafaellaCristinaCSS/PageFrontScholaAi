@@ -1,5 +1,21 @@
 let BaseUrlFront = 'https://rafaellacristinacss.github.io/PageFrontScholaAi/';
 let BaseUrlBack = 'https://scholaai-production.up.railway.app/api/';
+document.getElementById("tipoAtividade")?.addEventListener("change", definirTipoAtividade);
+document.getElementById("tipoQuestionario")?.addEventListener("change", exibirCamposDeAcordoComTipoQuestionario);
+document.getElementById("add-pergunta")?.addEventListener("click", adicionarPergunta);
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("add-alternativa")) {
+        adicionarAlternativa(e);
+    }
+});
+
+document.getElementById("gerarQuestionario")?.addEventListener("click", gerarQuestionario);
+document.getElementById("perguntas-container")?.addEventListener("change", function (e) {
+    if (e.target.classList.contains("pontuacaoPergunta")) {
+        somarPontuacaoAtividade(e);
+    }
+});
+
 async function buscarEducadores() {
     return educadores = await executarRequisicao("Agente/buscarDadosEducadores", "", "GET");
 }
