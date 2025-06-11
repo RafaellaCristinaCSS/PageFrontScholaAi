@@ -6,6 +6,7 @@ function exibirNovaAtividadeAluno() {
         $(".divControladoresSelectAlunos").removeClass("d-flex").addClass("d-none")
         let aluno = localStorage.getItem("idAluno")
         $("#aluno").val(aluno)
+        $("#alunosSelecionados").val(aluno)
     }
 }
 async function buscarAtividade(id) {
