@@ -7,7 +7,7 @@ function exibirPerfilAluno() {
 
 async function getDadosAluno() {
     try {
-        const resposta = await executarRequisicao(`Agente/aluno/${idAluno}`, "", "GET");
+        const resposta = await executarRequisicao(`Agente/aluno/${parseInt(localStorage.getItem("idAluno"))}`, "", "GET");
         if (!resposta) {
             console.log("Aluno não encontrado");
         }
